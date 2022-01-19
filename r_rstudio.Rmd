@@ -15,10 +15,8 @@ Before the first day of class, you should follow these instructions to set up th
 - **FIRST:** Download R [here](https://cran.r-project.org/).
     - You will see three links "Download R for ..."
     - Choose the link that corresponds to your computer.
-    - As of August 19, 2021, the latest version of R is 4.1.1.
 - **SECOND:** Download RStudio [here](https://rstudio.com/products/rstudio/download/#download).
     - Click the button under step 2 to install the version of RStudio recommended for your computer.
-    - As of August 19, 2021, the latest version of RStudio is 1.4.1717.
 
 <br>
 

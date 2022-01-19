@@ -9,7 +9,7 @@ output:
         twitter: false
 documentclass: book
 link-citations: yes
-github-repo: bcheggeseth/253_fall_2021
+github-repo: bryandmartin/253_spring_2022
 description: "This is the class website for Statistical Machine Learning at Macalester College."
 ---
 
@@ -24,7 +24,7 @@ description: "This is the class website for Statistical Machine Learning at Maca
 <br>
 <br>
 
-This is the class site for Statistical Machine Learning (STAT 253) at Macalester College for Fall 2021. The content here was made by [Brianna Heggeseth](bcheggeseth.github.io) and draws upon our class textbook, the 1st edition of [An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/s/ISLR-Seventh-Printing.pdf), and on materials prepared by [Alicia Johnson](https://ajohns24.github.io) and [Leslie Myint](https://lmyint.github.io).
+This is the class site for Statistical Machine Learning (STAT 253) at Macalester College for Fall 2021. The content here was made by [Bryan Martin](bryandmartin.github.io) and draws upon our class textbook, the 2nd edition of [An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/), and on materials prepared by [Brianna Heggeseth](bcheggeseth.github.io), [Alicia Johnson](https://ajohns24.github.io), and [Leslie Myint](https://lmyint.github.io).
 
 
 
