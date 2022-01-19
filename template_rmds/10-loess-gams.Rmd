@@ -1,0 +1,339 @@
+```{r 10_setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
+```
+
+# Local Regression & GAMs
+
+## Learning Goals {-}
+
+- Clearly describe the local regression algorithm for making a prediction
+- Explain how bandwidth (span) relate to the bias-variance tradeoff
+- Describe some different formulations for a GAM (how the arbitrary functions are represented)
+- Explain how to make a prediction from a GAM
+- Interpret the output from a GAM
+
+<br>
+
+Slides from today are available [here](https://docs.google.com/presentation/d/1SIErMzED6WMOlA8icVHGd_Cu7wEAJvnBv1V62RqzCnc/edit?usp=sharing).
+
+
+
+<br><br><br>
+
+## GAMs {-}
+
+Generalized Additive Models (GAMs) are extensions of linear models by allowing non-linear functions of any of the variables, while maintaining additivity in the relationships (no interactions; you can keep other variables fixed). 
+
+In theory, we imagine that each predictor variable $x_{.j}$ has its own relationship with the outcome, represented by the function $f_j$: 
+
+$$y_i = \beta_0 + f_1(x_{i1}) + \cdots + f_{p}(x_{ip}) + \epsilon_i$$
+
+That function could be linear, $f_j(x_{ij}) = \beta_j x_{ij}$, or non-linear (curved in some way). There are many ways we could model the non-linear functions. We can model non-linear relationships using 
+
+- local regression (LOESS), 
+- basis splines (natural or not), or 
+- smoothing splines (which estimates/fits splines with a penalty term for being too complex of a relationship).
+
+Smoothing splines are piecewise polynomials with the same properties we talked about before (continuity of function and derivatives) but are estimated with a penalty term. We minimize the penalized least squares,
+
+$$RSS + \lambda \int g''(t)^2dt$$
+
+The $\lambda$ is a tuning parameter often referred to as the degree of smoothness and the spline function $g(t)$ that minimizes this quantity is a **smoothing spline**. Note: the penalty term looks a bit different from LASSO; the second derivative, $g''(t)$, represents how much the slope changes along the function $g$. We square the changes to remove negative changes and take the integral as a measure of overall "wiggliness" of the function (how much the slope changes along the function).
+
+Large $\lambda$ penalizes you for having a too "wiggly" function so it may lead to a more simple linear function and small $\lambda$ allows you to have a more "wiggly" function that may overfit the training data. 
+
+## GAMs - Options for Fitting {-}
+
+### GAMs (B-splines + OLS) {-}
+
+We've already talked about how to fit GAM models with basis splines (`step_ns()`, `step_bs()`) using the `lm` engine (OLS). 
+
+### GAMs (LOESS) {-}
+
+There is a package, called the `gam` package, that could be used to fit GAM models with local regression (LOESS), but we aren't going to do in this class because they aren't implemented in `tidymodels`. 
+
+### GAMs (smoothing splines) in `tidymodels` {-}
+
+Today, we'll try fitting GAM models with smoothing splines in `tidymodels`.
+
+To build GAMs (using smoothing splines) in `tidymodels`, first load the package:
+
+```{r}
+library(dplyr)
+library(readr)
+library(broom)
+library(ggplot2)
+library(tidymodels) 
+tidymodels_prefer() # Resolves conflicts, prefers tidymodel functions
+```
+
+Then adapt the following code:
+
+```{r}
+# Generalized Additive Regression (GAM) Model
+gam_spec <- 
+  gen_additive_mod() %>%
+  set_engine(engine = 'mgcv') %>%
+  set_mode('regression') 
+
+fit_gam_model <- gam_spec %>% # can't use a recipe with gam (yet)
+  fit(y ~ s(x1) + x2 + s(x3), data = train_data) # s() stands for splines, indicating a non-linear relationship  
+
+# To specify the number of knots, update the formula: s(x1, k = __)
+# To specify the degree of smoothing, update the formula: s(x1, sp = __)
+```
+
+<br>
+
+**Ensuring a "good fit" for GAM**
+
+The `mgcv` engine uses generalized cross-validation to select the degree of smoothness for a default number of knots, if these two tuning parameters aren't specified by the user.
+
+Note: the number of knots must be large enough to capture the true "wiggliness" of the relationship, and the $\lambda$ penalty does the rest of the work. In `mgcv`, the default number of knots is arbitrary so you need to run `gam.check` to make sure there are enough knots.
+
+```{r}
+# Summary: Parameter (linear) estimates and then Smooth Terms (H0: no relationship)
+fit_gam_model %>% pluck('fit') %>% summary() 
+
+# Diagnostics: Check to see if the number of knots is large enough (if p-value is low, increase number of knots)
+par(mfrow=c(2,2))
+fit_gam_model %>% pluck('fit') %>% mgcv::gam.check() 
+```
+
+<br>
+
+**Visualizing the GAM**
+
+```{r}
+# Plot functions for each predictor
+# Dashed lines are +/- 2 SEs
+fit_gam_model %>% pluck('fit') %>% plot() 
+```
+
+
+
+<br><br><br>
+
+
+
+## Exercises {-}
+
+**You can download a template RMarkdown file to start from [here](template_rmds/10-loess-gams.Rmd).**
+
+Before proceeding, install the `mgcv` package by entering `install.packages("mgcv")` in the Console.
+
+We'll continue using the `College` dataset in the `ISLR` package to explore splines. You can use `?College` in the Console to look at the data codebook.
+
+```{r}
+library(ISLR)
+library(dplyr)
+library(readr)
+library(broom)
+library(ggplot2)
+library(tidymodels) 
+tidymodels_prefer() # Resolves conflicts, prefers tidymodel functions
+
+data(College)
+
+# A little data cleaning
+college_clean <- College %>% 
+    mutate(school = rownames(College)) %>% 
+    filter(Grad.Rate <= 100) # Remove one school with grad rate of 118%
+rownames(college_clean) <- NULL # Remove school names as row names
+```
+
+
+### Exercise 1: Conceptual warmup {-}
+
+a. How does high/low span relate to bias and variance of a local regression (LOESS) model?
+
+b. How does high/low lambda relate to bias and variance of a smoothing spline in a GAM model?
+
+c. Do you think that a GAM with all possible predictors will have better or worse performance than an ordinary (fully linear) least squares model with all possible predictors? Explain your thoughts.
+
+d. How should we choose predictors to be in a GAM? How could forward and backward stepwise selection and LASSO help with variable selection before a GAM? (Don't answer right away; think about it as you go along in Exercise 2 and come back to this question.)
+
+### Exercise 2: Using LOESS {-}
+
+a. Use LOESS (`geom_smooth()`) to estimate the relationship between Apps and Grad.Rate. Try different values of span between 0 and 1. Write one sentence summarizing what you learned about the relationship between Apps and Grad.Rate.
+
+```{r}
+college_clean %>%
+    ggplot(aes(x = Apps, y = Grad.Rate)) + 
+    geom_point(alpha = 0.2) + 
+    geom_smooth(span = 0.2, se = FALSE) +
+    xlim(c(0,20000)) +
+    theme_classic()
+```
+
+
+b. Use LOESS (`geom_smooth()`) to estimate the relationship between Apps and Grad.Rate, separately for Private and Non-Private colleges. Try different values of span between 0 and 1. Write one sentence summarizing what you learned about the relationship between Apps and Grad.Rate.
+
+```{r}
+college_clean %>%
+    ggplot(aes(x = Apps, y = Grad.Rate, color = Private)) + 
+    geom_point(alpha = 0.2) + 
+    geom_smooth(span = 0.2, se = FALSE) +
+    xlim(c(0,20000)) +
+    theme_classic()
+```
+
+**Stop to Consider**: Is there an additive relationship for `Private` and `Apps` as it relates to the outcome of `Grad.Rate`?
+
+
+### Exercise 3: Building a GAM in `tidymodels` {-}
+
+Suppose that our initial variable selection investigations lead us to using the predictors indicated below in our GAM. Fit a GAM with the following variables in the model.
+
+
+```{r}
+set.seed(123)
+gam_spec <- 
+  gen_additive_mod() %>%
+  set_engine(engine = 'mgcv') %>%
+  set_mode('regression') 
+
+gam_mod <- fit(gam_spec,
+    Grad.Rate ~ Private + s(Apps) + s(Top10perc) + s(Top25perc) + s(P.Undergrad) + s(Outstate) + s(Room.Board) + s(Books) + s(Personal) + s(PhD) + s(perc.alumni),
+    data = college_clean
+)
+```
+
+a. First, let's look to see if the default number of knots (10) is large enough for each variable. The `edf` is the effective degrees of freedom; the larger the edf value, the more wiggly the estimated function is. If `edf = 1`, it is a straight line. Comment on the diagnostic plots and output. 
+
+```{r}
+# Diagnostics: Check to see if the number of knots is large enough (if p-value is low, increase number of knots)
+par(mfrow=c(2,2))
+gam_mod %>% pluck('fit') %>% mgcv::gam.check() 
+```
+
+b. Next, look at the summary of the output. For parametric (linear) estimates, the coefficients and standard errors are interpreted in the same way as OLS output. The approximate significance of smooth terms is a bit different. The `edf` is listed for each variable. The p-value is for the null hypothesis that there is no relationship between that predictor and the outcome (meaning the relationship is horizontal line). Do you think we should make any adjustments to the model? Do we need splines for all of these variables? 
+
+```{r}
+# Summary: Parameter (linear) estimates and then Smooth Terms (H0: no relationship)
+gam_mod %>% pluck('fit') %>% summary() 
+```
+
+c. Lastly, before we make changes to the model, let's visualize the estimated non-linear functions. What do you notice? What about these plots indicates that using GAM instead of ordinary linear regression was probably a good choice?
+
+```{r}
+# Visualize: Look at the estimated non-linear functions
+gam_mod %>% pluck('fit') %>% plot( all.terms = TRUE, pages = 1)
+```
+
+
+
+### Exercise 4: Adjusting the "best" GAM {-}
+
+a. First, let's consider limiting the training sample given the outliers (the bottom vertical lines on the plot is called a "rug plot" and shows where you have observed values). Look at the outlier colleges. 
+
+```{r}
+college_clean %>%
+    filter(Apps > 30000 | P.Undergrad > 20000)
+```
+
+Now that you've seen which colleges we are setting aside, let's refit the model without these two colleges.
+
+```{r}
+gam_mod2 <- college_clean %>%
+    filter(________) %>%
+    fit(gam_spec,
+    Grad.Rate ~ Private + s(Apps) + s(Top10perc) + s(Top25perc) + s(P.Undergrad) + s(Outstate) + s(Room.Board) + s(Books) + s(Personal) + s(PhD) + s(perc.alumni),
+    data = .
+)
+```
+
+
+b. Let's look at the estimated functions again. Pick 1 or 2 of these plots, and interpret your findings. Anything surprising or interesting?
+
+```{r}
+gam_mod2 %>% pluck('fit') %>% summary() 
+
+gam_mod2 %>% pluck('fit') %>% plot( all.terms = TRUE, pages = 1)
+```
+
+c. The `PrivateYes` plot might look odd. Not to worry - the GAM is treating this as a categorical (indicator) variable. What do you learn from this plot?
+
+
+
+d. Based on the output above, which variables may not need splines/non-linear relationships? How could we simplify the model?
+
+
+
+e. Now try fitting a more simple GAM model with `tidymodels` by only using a non-linear spline function for a variable if the edf is greater than 3 (3 is not a magic number; it is arbitrary). What do you notice from the output?
+
+
+```{r}
+gam_mod3 <- college_clean %>%
+    filter(_____) %>% # remove outliers
+    fit(gam_spec,
+    Grad.Rate ~  ______, # add in the formula
+    data = .
+)
+
+gam_mod3 %>% pluck('fit') %>% summary() 
+gam_mod3 %>% pluck('fit') %>% plot( all.terms = TRUE, pages = 1)
+```
+
+### Exercise 5: GAM with recipes {-}
+
+- Use the edf (round to integer) from above to create a recipe by adding `step_ns()` for the variables you want model with a non-linear relationship and do CV. Compare this model to one without any splines.
+
+```{r}
+lm_spec <-
+  linear_reg() %>%
+  set_engine(engine = 'lm') %>%
+  set_mode('regression')
+
+data_cv8 <- college_clean %>% 
+    filter(___) %>% # remove outliers
+    vfold_cv(v = 8)
+
+college_rec <- recipe(Grad.Rate ~ Private + Apps + Top10perc + Top25perc + P.Undergrad + Outstate + Room.Board + Books + Personal + PhD + perc.alumni, data = college_clean)
+
+spline_rec <- college_rec %>%
+    step_ns(__, deg_free = __) 
+
+
+college_wf <- workflow() %>%
+    add_model(lm_spec) %>%
+    add_recipe(college_rec)
+
+spline_wf <- workflow() %>%
+    add_model(lm_spec) %>%
+    add_recipe(spline_rec)
+
+fit_resamples(
+    college_wf,
+    resamples = data_cv8, # cv folds
+    metrics = metric_set(mae,rmse,rsq)                     
+) %>% collect_metrics()
+
+fit_resamples(
+    spline_wf,
+    resamples = data_cv8, # cv folds
+    metrics = metric_set(mae,rmse,rsq)                     
+) %>% collect_metrics()
+
+```
+
+What do you observe? What do you conclude about these models?
+
+
+
+### Exercise 6: Comparison of methods {-}
+
+Brainstorm the pros/cons of the different methods that we've explored. You may find it helpful to refer to the portfolio themes for each method.
+
+(Soon, as part of the Portfolio, you'll be doing a similar synthesis of our regression unit, so this brainstorming session might help!)
+
+
+
+
+
+
+
+
+
+
+

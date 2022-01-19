@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 16 Hierarchical Clustering | STAT 253: Statistical Machine Learning</title>
+  <meta name="description" content="This is the class website for Statistical Machine Learning at Macalester College." />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 16 Hierarchical Clustering | STAT 253: Statistical Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
+  <meta name="github-repo" content="bcheggeseth/253_fall_2021" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 16 Hierarchical Clustering | STAT 253: Statistical Machine Learning" />
+  
+  <meta name="twitter:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="k-means-clustering.html"/>
+<link rel="next" href="catch-up-clustering-day.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="custom_styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "./">STAT 253: Statistical Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a></li>
+<li class="chapter" data-level="" data-path="schedule.html"><a href="schedule.html"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="learning-goals.html"><a href="learning-goals.html"><i class="fa fa-check"></i>Learning Goals</a>
+<ul>
+<li class="chapter" data-level="" data-path="learning-goals.html"><a href="learning-goals.html#general-skills"><i class="fa fa-check"></i>General Skills</a></li>
+<li class="chapter" data-level="" data-path="learning-goals.html"><a href="learning-goals.html#course-topics"><i class="fa fa-check"></i>Course Topics</a></li>
+</ul></li>
+<li class="part"><span><b>I R</b></span></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio-setup.html"><a href="r-and-rstudio-setup.html"><i class="fa fa-check"></i>R and RStudio Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio-setup.html"><a href="r-and-rstudio-setup.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html"><i class="fa fa-check"></i>R Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html#tidymodels-resources"><i class="fa fa-check"></i>Tidymodels resources</a></li>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html#tidyverse-resources"><i class="fa fa-check"></i>Tidyverse resources</a></li>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html#visualization-resources"><i class="fa fa-check"></i>Visualization resources</a></li>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html#general-r-resources"><i class="fa fa-check"></i>General R resources</a></li>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html#free-online-textbooks"><i class="fa fa-check"></i>Free online textbooks</a></li>
+<li class="chapter" data-level="" data-path="r-resources.html"><a href="r-resources.html#example-code"><i class="fa fa-check"></i>Example code</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html"><i class="fa fa-check"></i>R Cheatsheet</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#stat-155-review"><i class="fa fa-check"></i>Stat 155 Review</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#standard-linear-regression-models"><i class="fa fa-check"></i>Standard Linear Regression Models</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#standard-logistic-regression-models"><i class="fa fa-check"></i>Standard Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#data-structures-and-purrr-package"><i class="fa fa-check"></i>Data Structures and Purrr Package</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#vectors-and-lists"><i class="fa fa-check"></i>Vectors and Lists</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#map"><i class="fa fa-check"></i>Map</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#tidymodels-functions"><i class="fa fa-check"></i>Tidymodels Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#model-specification"><i class="fa fa-check"></i>Model Specification</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#preprocessing-data"><i class="fa fa-check"></i>Preprocessing Data</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#data-subsets"><i class="fa fa-check"></i>Data Subsets</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#workflows"><i class="fa fa-check"></i>Workflows</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#fit-model"><i class="fa fa-check"></i>Fit Model</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#evaluate-model-metrics"><i class="fa fa-check"></i>Evaluate Model: Metrics</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#tune-model-choosing-tuning-parameters"><i class="fa fa-check"></i>Tune Model: Choosing tuning parameters</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#use-final-model-predictions"><i class="fa fa-check"></i>Use Final Model: Predictions</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#extraction"><i class="fa fa-check"></i>Extraction</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#variable-importance"><i class="fa fa-check"></i>Variable Importance</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#comparing-models-workflow-sets"><i class="fa fa-check"></i>Comparing Models: Workflow Sets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#visualizing-fit-models"><i class="fa fa-check"></i>Visualizing Fit Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#visualize-coefficients"><i class="fa fa-check"></i>Visualize Coefficients</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#visualize-effects"><i class="fa fa-check"></i>Visualize Effects</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#visualize-residuals"><i class="fa fa-check"></i>Visualize Residuals</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#visualize-predictions"><i class="fa fa-check"></i>Visualize Predictions</a></li>
+<li class="chapter" data-level="0.0.1" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#visualize-lasso-coefficients"><i class="fa fa-check"></i><b>0.0.1</b> Visualize LASSO Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#real-data-example-regression"><i class="fa fa-check"></i>Real Data Example: Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#linear-regression"><i class="fa fa-check"></i>Linear Regression</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#regularized-regression"><i class="fa fa-check"></i>Regularized Regression</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#nearest-neighbors"><i class="fa fa-check"></i>Nearest Neighbors</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#gams---splines-and-local-regression"><i class="fa fa-check"></i>GAMs - Splines and Local Regression</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#gam---smoothing-splines"><i class="fa fa-check"></i>GAM - Smoothing Splines</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#regression-trees"><i class="fa fa-check"></i>Regression Trees</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#comparison-of-methods"><i class="fa fa-check"></i>Comparison of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#real-data-example-classification"><i class="fa fa-check"></i>Real Data Example: Classification</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#logistic-regression"><i class="fa fa-check"></i>Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#regularized-logistic-regression"><i class="fa fa-check"></i>Regularized Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#classification-trees"><i class="fa fa-check"></i>Classification Trees</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#random-forest"><i class="fa fa-check"></i>Random Forest</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#comparison-of-methods-1"><i class="fa fa-check"></i>Comparison of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#real-data-example-clustering"><i class="fa fa-check"></i>Real Data Example: Clustering</a></li>
+<li class="chapter" data-level="" data-path="r-cheatsheet.html"><a href="r-cheatsheet.html#real-data-example-dimension-reduction"><i class="fa fa-check"></i>Real Data Example: Dimension Reduction</a></li>
+</ul></li>
+<li class="part"><span><b>II Introductions</b></span></li>
+<li class="chapter" data-level="1" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1</b> Introductions</a>
+<ul>
+<li class="chapter" data-level="" data-path="introductions.html"><a href="introductions.html#envisioning-a-community-of-learners"><i class="fa fa-check"></i>Envisioning a Community of Learners</a></li>
+<li class="chapter" data-level="" data-path="introductions.html"><a href="introductions.html#explorations"><i class="fa fa-check"></i>Explorations</a></li>
+</ul></li>
+<li class="part"><span><b>III Regression: Evaluation</b></span></li>
+<li class="chapter" data-level="2" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html"><i class="fa fa-check"></i><b>2</b> Evaluating Regression Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#learning-goals-1"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#exercises"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#context"><i class="fa fa-check"></i>Context</a></li>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#class-investigations"><i class="fa fa-check"></i>Class investigations</a></li>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#exercise-1"><i class="fa fa-check"></i>Exercise 1</a></li>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#exercise-2"><i class="fa fa-check"></i>Exercise 2</a></li>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#exercise-3"><i class="fa fa-check"></i>Exercise 3</a></li>
+<li class="chapter" data-level="" data-path="evaluating-regression-models.html"><a href="evaluating-regression-models.html#exercise-4"><i class="fa fa-check"></i>Exercise 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>3</b> Overfitting</a>
+<ul>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#learning-goals-2"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li><a href="overfitting.html#the-tidymodels-package">The <code>tidymodels</code> package</a></li>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#exercises-1"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#context-1"><i class="fa fa-check"></i>Context</a></li>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#exercise-1-5-models"><i class="fa fa-check"></i>Exercise 1: 5 models</a></li>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#exercise-2-visualizing-predictions"><i class="fa fa-check"></i>Exercise 2: Visualizing Predictions</a></li>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#exercise-3-evaluating-on-test-data"><i class="fa fa-check"></i>Exercise 3: Evaluating on Test Data</a></li>
+<li class="chapter" data-level="" data-path="overfitting.html"><a href="overfitting.html#exercise-4-overfitting"><i class="fa fa-check"></i>Exercise 4: Overfitting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cross-validation.html"><a href="cross-validation.html"><i class="fa fa-check"></i><b>4</b> Cross-validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#learning-goals-3"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#writing-good-sentences"><i class="fa fa-check"></i>Writing Good Sentences</a>
+<ul>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#instructions"><i class="fa fa-check"></i>Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#exercises-2"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#context-2"><i class="fa fa-check"></i>Context</a></li>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#exercise-1-cross-validation-in-concept"><i class="fa fa-check"></i>Exercise 1: Cross-validation in Concept</a></li>
+<li><a href="cross-validation.html#exercise-2-cross-validation-with-tidymodels">Exercise 2: Cross-validation with <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#exercise-3-looking-at-the-evaluation-metrics"><i class="fa fa-check"></i>Exercise 3: Looking at the evaluation metrics</a></li>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#exercise-4-practical-issues-choosing-the-number-of-folds"><i class="fa fa-check"></i>Exercise 4: Practical issues: choosing the number of folds</a></li>
+<li class="chapter" data-level="" data-path="cross-validation.html"><a href="cross-validation.html#digging-deeper"><i class="fa fa-check"></i>Digging deeper</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Regression: Building Models</b></span></li>
+<li class="chapter" data-level="5" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html"><i class="fa fa-check"></i><b>5</b> Variable Subset Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#learning-goals-4"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#writing-good-sentences-part-2"><i class="fa fa-check"></i>Writing Good Sentences Part 2</a></li>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#exercises-3"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#exercise-1-backward-stepwise-selection-by-hand"><i class="fa fa-check"></i>Exercise 1: Backward stepwise selection: by hand</a></li>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#exercise-2-interpreting-the-results"><i class="fa fa-check"></i>Exercise 2: Interpreting the results</a></li>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#exercise-3-planning-forward-selection-using-cv"><i class="fa fa-check"></i>Exercise 3: Planning forward selection using CV</a></li>
+<li class="chapter" data-level="" data-path="variable-subset-selection.html"><a href="variable-subset-selection.html#exercise-4-approaches-to-variable-subset-selection"><i class="fa fa-check"></i>Exercise 4: Approaches to variable subset selection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html"><i class="fa fa-check"></i><b>6</b> LASSO: Shrinkage/Regularization</a>
+<ul>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#learning-goals-5"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#lasso-in-theory"><i class="fa fa-check"></i>LASSO in Theory</a></li>
+<li><a href="lasso-shrinkageregularization.html#lasso-models-in-tidymodels">LASSO models in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#exercises-4"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#exercise-1-a-least-squares-model"><i class="fa fa-check"></i>Exercise 1: A least squares model</a></li>
+<li><a href="lasso-shrinkageregularization.html#exercise-2-fitting-a-lasso-model-in-tidymodels">Exercise 2: Fitting a LASSO model in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#exercise-3-examining-output-plot-of-coefficient-paths"><i class="fa fa-check"></i>Exercise 3: Examining output: plot of coefficient paths</a></li>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#exercise-4-examining-and-evaluating-the-best-lasso-model"><i class="fa fa-check"></i>Exercise 4: Examining and evaluating the best LASSO model</a></li>
+<li class="chapter" data-level="" data-path="lasso-shrinkageregularization.html"><a href="lasso-shrinkageregularization.html#digging-deeper-1"><i class="fa fa-check"></i>Digging deeper</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Regression: Building Flexible Models</b></span></li>
+<li class="chapter" data-level="7" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html"><i class="fa fa-check"></i><b>7</b> KNN Regression and the Bias-Variance Tradeoff</a>
+<ul>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#learning-goals-6"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li><a href="knn-regression-and-the-bias-variance-tradeoff.html#knn-models-in-tidymodels">KNN models in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercises-5"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#hello-how-are-things"><i class="fa fa-check"></i>Hello, how are things?</a></li>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-1-bias-variance-tradeoff-warmup"><i class="fa fa-check"></i>Exercise 1: Bias-variance tradeoff warmup</a></li>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-2-impact-of-variable-scale-and-distance-measure"><i class="fa fa-check"></i>Exercise 2: Impact of variable scale and distance measure</a></li>
+<li><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-3-implementing-knn-in-tidymodels">Exercise 3: Implementing KNN in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-4-inspecting-the-results"><i class="fa fa-check"></i>Exercise 4: Inspecting the results</a></li>
+<li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-5-curse-of-dimensionality"><i class="fa fa-check"></i>Exercise 5: Curse of dimensionality</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="catch-up-day.html"><a href="catch-up-day.html"><i class="fa fa-check"></i><b>8</b> Catch up Day</a>
+<ul>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#learning-goals-7"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#content-conversation-1-prompts"><i class="fa fa-check"></i>Content Conversation 1 Prompts</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#peer-review"><i class="fa fa-check"></i>Peer Review</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="splines.html"><a href="splines.html"><i class="fa fa-check"></i><b>9</b> Splines</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#learning-goals-8"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#splines-1"><i class="fa fa-check"></i>Splines</a></li>
+<li><a href="splines.html#splines-in-tidymodels">Splines in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercises-6"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-1-evaluating-a-fully-linear-model"><i class="fa fa-check"></i>Exercise 1: Evaluating a fully linear model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-2-evaluating-a-spline-model"><i class="fa fa-check"></i>Exercise 2: Evaluating a spline model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#extra-variable-scaling"><i class="fa fa-check"></i>Extra! Variable scaling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="local-regression-gams.html"><a href="local-regression-gams.html"><i class="fa fa-check"></i><b>10</b> Local Regression &amp; GAMs</a>
+<ul>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#learning-goals-9"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#gams"><i class="fa fa-check"></i>GAMs</a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#gams---options-for-fitting"><i class="fa fa-check"></i>GAMs - Options for Fitting</a>
+<ul>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#gams-b-splines-ols"><i class="fa fa-check"></i>GAMs (B-splines + OLS)</a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#gams-loess"><i class="fa fa-check"></i>GAMs (LOESS)</a></li>
+<li><a href="local-regression-gams.html#gams-smoothing-splines-in-tidymodels">GAMs (smoothing splines) in <code>tidymodels</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#exercises-7"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#exercise-1-conceptual-warmup"><i class="fa fa-check"></i>Exercise 1: Conceptual warmup</a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#exercise-2-using-loess"><i class="fa fa-check"></i>Exercise 2: Using LOESS</a></li>
+<li><a href="local-regression-gams.html#exercise-3-building-a-gam-in-tidymodels">Exercise 3: Building a GAM in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#exercise-4-adjusting-the-best-gam"><i class="fa fa-check"></i>Exercise 4: Adjusting the “best” GAM</a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#exercise-5-gam-with-recipes"><i class="fa fa-check"></i>Exercise 5: GAM with recipes</a></li>
+<li class="chapter" data-level="" data-path="local-regression-gams.html"><a href="local-regression-gams.html#exercise-6-comparison-of-methods"><i class="fa fa-check"></i>Exercise 6: Comparison of methods</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>VI Classification</b></span></li>
+<li class="chapter" data-level="11" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html"><i class="fa fa-check"></i><b>11</b> Logistic Regression &amp; Evaluation</a>
+<ul>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#learning-goals-10"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li><a href="logistic-regression-evaluation.html#logistic-regression-in-tidymodels">Logistic regression in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#exercises-8"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#context-3"><i class="fa fa-check"></i>Context</a></li>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#exercise-1-visualization-warmup"><i class="fa fa-check"></i>Exercise 1: Visualization warmup</a></li>
+<li><a href="logistic-regression-evaluation.html#exercise-2-implementing-logistic-regression-in-tidymodels">Exercise 2: Implementing logistic regression in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#exercise-3-interpreting-the-model"><i class="fa fa-check"></i>Exercise 3: Interpreting the model</a></li>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#exercise-4-making-predictions"><i class="fa fa-check"></i>Exercise 4: Making predictions</a></li>
+<li class="chapter" data-level="" data-path="logistic-regression-evaluation.html"><a href="logistic-regression-evaluation.html#exercise-5-evaluate-the-model"><i class="fa fa-check"></i>Exercise 5: Evaluate the model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Lasso &amp; Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#learning-goals-11"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li><a href="lasso-logistic-regression.html#lasso-for-logistic-regression-in-tidymodels">LASSO for logistic regression in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercises-9"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#context-4"><i class="fa fa-check"></i>Context</a></li>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercise-1-conceptual-warmup-1"><i class="fa fa-check"></i>Exercise 1: Conceptual warmup</a></li>
+<li><a href="lasso-logistic-regression.html#exercise-2-implementing-lasso-logistic-regression-in-tidymodels">Exercise 2: Implementing LASSO logistic regression in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercise-3-inspecting-the-model"><i class="fa fa-check"></i>Exercise 3: Inspecting the model</a></li>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercise-4-interpreting-evaluation-metrics"><i class="fa fa-check"></i>Exercise 4: Interpreting evaluation metrics</a></li>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercise-5-using-the-final-model-choosing-a-threshold"><i class="fa fa-check"></i>Exercise 5: Using the final model (choosing a threshold)</a></li>
+<li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercise-6-algorithmic-understanding-for-evaluation-metrics"><i class="fa fa-check"></i>Exercise 6: Algorithmic understanding for evaluation metrics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="trees.html"><a href="trees.html"><i class="fa fa-check"></i><b>13</b> Trees</a>
+<ul>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#learning-goals-12"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li><a href="trees.html#trees-in-tidymodels">Trees in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercises-10"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#context-5"><i class="fa fa-check"></i>Context</a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-1-core-theme-parametricnonparametric"><i class="fa fa-check"></i>Exercise 1: Core theme: parametric/nonparametric</a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-2-core-theme-tuning-parameters-and-the-bvt"><i class="fa fa-check"></i>Exercise 2: Core theme: Tuning parameters and the BVT</a></li>
+<li><a href="trees.html#exercise-3-building-tuning-trees-in-tidymodels">Exercise 3: Building &amp; tuning trees in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-4-visualizing-trees"><i class="fa fa-check"></i>Exercise 4: Visualizing trees</a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-5-predictions-from-trees"><i class="fa fa-check"></i>Exercise 5: Predictions from trees</a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-6-variable-importance-in-trees"><i class="fa fa-check"></i>Exercise 6: Variable importance in trees</a></li>
+<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#extra-regression-trees"><i class="fa fa-check"></i>Extra! Regression Trees!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html"><i class="fa fa-check"></i><b>14</b> Bagging and Random Forests</a>
+<ul>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#learning-goals-13"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercises-11"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#hello-how-are-things-1"><i class="fa fa-check"></i>Hello, how are things?</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-1-bagging-bootstrap-aggregation"><i class="fa fa-check"></i>Exercise 1: Bagging: Bootstrap Aggregation</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-2-preparation-to-build-a-random-forest"><i class="fa fa-check"></i>Exercise 2: Preparation to build a random forest</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-3-building-the-random-forest"><i class="fa fa-check"></i>Exercise 3: Building the random forest</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-4-preliminary-interpretation"><i class="fa fa-check"></i>Exercise 4: Preliminary interpretation</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-5-evaluating-the-forest"><i class="fa fa-check"></i>Exercise 5: Evaluating the forest</a></li>
+<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-6-variable-importance-measures"><i class="fa fa-check"></i>Exercise 6: Variable importance measures</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>VII Unsupervised Learning</b></span></li>
+<li class="chapter" data-level="15" data-path="k-means-clustering.html"><a href="k-means-clustering.html"><i class="fa fa-check"></i><b>15</b> K-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#learning-goals-14"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercises-12"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-1-visual-explorations"><i class="fa fa-check"></i>Exercise 1: Visual explorations</a></li>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-2-k-means-clustering-on-bill-length-and-depth"><i class="fa fa-check"></i>Exercise 2: K-means clustering on bill length and depth</a></li>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-3-addressing-variable-scale"><i class="fa fa-check"></i>Exercise 3: Addressing variable scale</a></li>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-4-clustering-on-more-variables"><i class="fa fa-check"></i>Exercise 4: Clustering on more variables</a></li>
+<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-5-interpreting-the-clusters"><i class="fa fa-check"></i>Exercise 5: Interpreting the clusters</a></li>
+<li><a href="k-means-clustering.html#exercise-6-picking-k">Exercise 6: Picking <span class="math inline">\(k\)</span></a></li>
+<li><a href="k-means-clustering.html#go-deeper-picking-k">Go Deeper: Picking <span class="math inline">\(k\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html"><i class="fa fa-check"></i><b>16</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#learning-goals-15"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercises-13"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-1-hierarchical-clustering-by-hand"><i class="fa fa-check"></i>Exercise 1: Hierarchical clustering by hand</a></li>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-2-exploring-penguin-dendrograms"><i class="fa fa-check"></i>Exercise 2: Exploring penguin dendrograms</a></li>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-3-interpreting-the-clusters-visually"><i class="fa fa-check"></i>Exercise 3: Interpreting the clusters visually</a></li>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-4-tree-cutting-and-interpretation"><i class="fa fa-check"></i>Exercise 4: Tree-cutting and interpretation</a></li>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-5-k-means-vs.-hierarchical"><i class="fa fa-check"></i>Exercise 5: K-means vs. hierarchical</a></li>
+<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#dig-into-dendrograms"><i class="fa fa-check"></i>Dig into Dendrograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html"><i class="fa fa-check"></i><b>17</b> Catch up Clustering Day</a>
+<ul>
+<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#learning-goals-16"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#real-data-clustering"><i class="fa fa-check"></i>Real Data Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#your-goal"><i class="fa fa-check"></i>Your Goal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#clustering-in-the-wild"><i class="fa fa-check"></i>Clustering in the Wild</a></li>
+<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#r-coding-challenges"><i class="fa fa-check"></i>R Coding Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>18</b> Principal Components Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#learning-goals-17"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercises-14"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-1-core-concepts"><i class="fa fa-check"></i>Exercise 1: Core concepts</a></li>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-2-exploring-pc-loadings"><i class="fa fa-check"></i>Exercise 2: Exploring PC loadings</a></li>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-3-exploring-pc-scores"><i class="fa fa-check"></i>Exercise 3: Exploring PC scores</a></li>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-4-scree-plots-and-dimension-reduction"><i class="fa fa-check"></i>Exercise 4: Scree plots and dimension reduction</a></li>
+<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-5-variable-scaling"><i class="fa fa-check"></i>Exercise 5: Variable scaling</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>VIII Homework</b></span></li>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work-1"><i class="fa fa-check"></i>Project Work</a></li>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#portfolio-work"><i class="fa fa-check"></i>Portfolio Work</a></li>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#reflection"><i class="fa fa-check"></i>Reflection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i>Homework 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-2"><i class="fa fa-check"></i>Project Work</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#instructions-1"><i class="fa fa-check"></i>Instructions</a></li>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#required-analyses"><i class="fa fa-check"></i>Required Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#portfolio-work-1"><i class="fa fa-check"></i>Portfolio Work</a></li>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#reflection-1"><i class="fa fa-check"></i>Reflection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="homework-3.html"><a href="homework-3.html"><i class="fa fa-check"></i>Homework 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-3.html"><a href="homework-3.html#project-work-3"><i class="fa fa-check"></i>Project Work</a></li>
+<li class="chapter" data-level="" data-path="homework-3.html"><a href="homework-3.html#portfolio-work-2"><i class="fa fa-check"></i>Portfolio Work</a></li>
+<li class="chapter" data-level="" data-path="homework-3.html"><a href="homework-3.html#reflection-2"><i class="fa fa-check"></i>Reflection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html"><i class="fa fa-check"></i>Homework 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#project-work-4"><i class="fa fa-check"></i>Project Work</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#open-communication-about-expectations-and-goals"><i class="fa fa-check"></i>Open Communication about Expectations and Goals</a></li>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#delegation-of-analysis"><i class="fa fa-check"></i>Delegation of Analysis</a></li>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#required-analysis"><i class="fa fa-check"></i>Required Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#portfolio-work-3"><i class="fa fa-check"></i>Portfolio Work</a></li>
+<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#reflection-3"><i class="fa fa-check"></i>Reflection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html"><i class="fa fa-check"></i>Homework 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#project-work-5"><i class="fa fa-check"></i>Project Work</a></li>
+<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#portfolio-work-4"><i class="fa fa-check"></i>Portfolio Work</a></li>
+<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#reflection-4"><i class="fa fa-check"></i>Reflection</a></li>
+</ul></li>
+<li class="part"><span><b>IX Project</b></span></li>
+<li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i>Final Project</a>
+<ul>
+<li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html#requirements"><i class="fa fa-check"></i>Requirements</a></li>
+<li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html#expectations"><i class="fa fa-check"></i>Expectations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 253: Statistical Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hierarchical-clustering" class="section level1" number="16">
+<h1><span class="header-section-number">Topic 16</span> Hierarchical Clustering</h1>
+<div id="learning-goals-15" class="section level2 unnumbered">
+<h2>Learning Goals</h2>
+<ul>
+<li>Clearly describe / implement by hand the hierarchical clustering algorithm</li>
+<li>Compare and contrast k-means and hierarchical clustering in their outputs and algorithms</li>
+<li>Interpret cuts of the dendrogram for single and complete linkage</li>
+<li>Describe the rationale for how clustering algorithms work in terms of within-cluster variation</li>
+<li>Describe the tradeoff of more vs. less clusters in terms of interpretability</li>
+<li>Implement strategies for interpreting / contextualizing the clusters</li>
+</ul>
+<p><br></p>
+<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1f8ppYgsqW6O-tLuAIA3gIOFYxNa5XGYUjPl5UFwdsWk/edit?usp=sharing">here</a>.</p>
+<p><br><br><br></p>
+</div>
+<div id="exercises-13" class="section level2 unnumbered">
+<h2>Exercises</h2>
+<p><strong>You can download a template RMarkdown file to start from <a href="template_rmds/16-hclust.Rmd">here</a>.</strong></p>
+<p>In <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">this paper</a>, Gorman et al. study characteristics of penguin populations in the Antarctic. We’ll be looking at a dataset of penguin body measurements available in the <code>palmerpenguins</code> package. (Make sure to install this package before beginning.)</p>
+<p>Our goal in using this data is to better understand the following questions: What similarities are there among the penguins? Do there appear to be different species? If so, how many species are there?</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="hierarchical-clustering.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb219-2"><a href="hierarchical-clustering.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb219-3"><a href="hierarchical-clustering.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb219-4"><a href="hierarchical-clustering.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb219-5"><a href="hierarchical-clustering.html#cb219-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-6"><a href="hierarchical-clustering.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove observations with missing data on key variables</span></span>
+<span id="cb219-7"><a href="hierarchical-clustering.html#cb219-7" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb219-8"><a href="hierarchical-clustering.html#cb219-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span></code></pre></div>
+<p><br></p>
+<div id="exercise-1-hierarchical-clustering-by-hand" class="section level3 unnumbered">
+<h3>Exercise 1: Hierarchical clustering by hand</h3>
+<p>To practice the hierarchical clustering algorithm, let’s look at a small example. Suppose we collect the following bill depth and length measurements from 5 penguins:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="hierarchical-clustering.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: these data are already scaled!</span></span>
+<span id="cb220-2"><a href="hierarchical-clustering.html#cb220-2" aria-hidden="true" tabindex="-1"></a>penguins_small <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb220-3"><a href="hierarchical-clustering.html#cb220-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">depth =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.7</span>, <span class="fl">3.2</span>, <span class="fl">3.5</span>, <span class="fl">3.6</span>),</span>
+<span id="cb220-4"><a href="hierarchical-clustering.html#cb220-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">length =</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">6.0</span>, <span class="fl">4.5</span>, <span class="fl">5.0</span>, <span class="fl">4.7</span>)</span>
+<span id="cb220-5"><a href="hierarchical-clustering.html#cb220-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb220-6"><a href="hierarchical-clustering.html#cb220-6" aria-hidden="true" tabindex="-1"></a>penguins_small</span>
+<span id="cb220-7"><a href="hierarchical-clustering.html#cb220-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-8"><a href="hierarchical-clustering.html#cb220-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins_small, <span class="fu">aes</span>(<span class="at">x =</span> depth, <span class="at">y =</span> length)) <span class="sc">+</span></span>
+<span id="cb220-9"><a href="hierarchical-clustering.html#cb220-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb220-10"><a href="hierarchical-clustering.html#cb220-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="at">vjust =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb220-11"><a href="hierarchical-clustering.html#cb220-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p>In the exercises below, you’ll draw a dendrogram for these 5 penguins by hand. Sketch the following plotting frame on some scrap paper:</p>
+<p><strong>Step 1: First fusion</strong></p>
+<p>Calculate the distance between each pair of penguins:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="hierarchical-clustering.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">dist</span>(penguins_small), <span class="dv">2</span>)</span></code></pre></div>
+<p>Which pair of penguins 1-5 is most similar? Draw the fusion between this pair of leaves on your plot. Clearly indicate the height (which should be based on the distance) at which you draw this fusion.</p>
+<p><strong>Step 2: Second fusion</strong></p>
+<p>Construct a new distance matrix (fill in the xxxx) reflecting the distances between each pair of branches (where 4 and 5 have now been fused). Use <strong>complete linkage</strong>. That is, the distance between one branch and another is the <em>maximum</em> distance between any pair of leaves in those branches. We can do this by taking the distances from the distance matrix above and using the complete linkage strategy to obtain distances to the 4+5 cluster.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4 &amp; 5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="center">xxxx</td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="center">xxxx</td>
+<td align="center">xxxx</td>
+<td align="center">0</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>4 &amp; 5</td>
+<td align="center">xxxx</td>
+<td align="center">xxxx</td>
+<td align="center">xxxx</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>Which pair of branches is most similar? Draw the fusion between this pair on the plot (pay attention to the distance and the height in the dendrogram).</p>
+<p><strong>Step 3: Third fusion</strong></p>
+<p>Repeat! Construct a new distance matrix reflecting the distances between each pair of branches, those that have been fused already and those that have not.</p>
+<p>Which pair of branches is most similar? Draw the fusion between this pair on the plot.</p>
+<p><strong>Step 4: Final fusion</strong></p>
+<p>At this point, you should have 2 penguins in one cluster and 3 in another. The final step is to combine these into the tree trunk. Draw this fusion.</p>
+<p><strong>Final step:</strong> Check your work in R:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="hierarchical-clustering.html#cb222-1" aria-hidden="true" tabindex="-1"></a>penguin_cluster <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">dist</span>(penguins_small), <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb222-2"><a href="hierarchical-clustering.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penguin_cluster)</span></code></pre></div>
+</div>
+<div id="exercise-2-exploring-penguin-dendrograms" class="section level3 unnumbered">
+<h3>Exercise 2: Exploring penguin dendrograms</h3>
+<p>Let’s use hierarchical clustering under different linkage strategies to look at nestings of clusters for the full set of penguins. We’ll continue to cluster based on bill length and depth as well as flipper length. (We’ll use a smaller random subset of 50 penguins for ease of visualization.)</p>
+<ul>
+<li>Remind yourselves about the importance of considering variable scaling by looking at the summary statistics for the 3 variables.</li>
+<li>In looking at the dendrograms under the different linkage types, do you notice any particular features of how the dendrograms look (as mentioned in the video for single and centroid linkage)?</li>
+</ul>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="hierarchical-clustering.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Random subsample of 50 penguins</span></span>
+<span id="cb223-2"><a href="hierarchical-clustering.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
+<span id="cb223-3"><a href="hierarchical-clustering.html#cb223-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb223-4"><a href="hierarchical-clustering.html#cb223-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">50</span>)</span>
+<span id="cb223-5"><a href="hierarchical-clustering.html#cb223-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-6"><a href="hierarchical-clustering.html#cb223-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the variables to be used in clustering</span></span>
+<span id="cb223-7"><a href="hierarchical-clustering.html#cb223-7" aria-hidden="true" tabindex="-1"></a>penguins_sub <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb223-8"><a href="hierarchical-clustering.html#cb223-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(bill_length_mm, bill_depth_mm, flipper_length_mm)</span>
+<span id="cb223-9"><a href="hierarchical-clustering.html#cb223-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-10"><a href="hierarchical-clustering.html#cb223-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for the variables</span></span>
+<span id="cb223-11"><a href="hierarchical-clustering.html#cb223-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penguins_sub)</span>
+<span id="cb223-12"><a href="hierarchical-clustering.html#cb223-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-13"><a href="hierarchical-clustering.html#cb223-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute a distance matrix on the scaled data</span></span>
+<span id="cb223-14"><a href="hierarchical-clustering.html#cb223-14" aria-hidden="true" tabindex="-1"></a>dist_mat_scaled <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">scale</span>(penguins_sub))</span>
+<span id="cb223-15"><a href="hierarchical-clustering.html#cb223-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-16"><a href="hierarchical-clustering.html#cb223-16" aria-hidden="true" tabindex="-1"></a><span class="co"># The (scaled) distance matrix is the input to hclust()</span></span>
+<span id="cb223-17"><a href="hierarchical-clustering.html#cb223-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The method argument indicates the linkage type</span></span>
+<span id="cb223-18"><a href="hierarchical-clustering.html#cb223-18" aria-hidden="true" tabindex="-1"></a>hc_complete <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist_mat_scaled, <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb223-19"><a href="hierarchical-clustering.html#cb223-19" aria-hidden="true" tabindex="-1"></a>hc_single <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist_mat_scaled, <span class="at">method =</span> <span class="st">&quot;single&quot;</span>)</span>
+<span id="cb223-20"><a href="hierarchical-clustering.html#cb223-20" aria-hidden="true" tabindex="-1"></a>hc_average <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist_mat_scaled, <span class="at">method =</span> <span class="st">&quot;average&quot;</span>)</span>
+<span id="cb223-21"><a href="hierarchical-clustering.html#cb223-21" aria-hidden="true" tabindex="-1"></a>hc_centroid <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist_mat_scaled, <span class="at">method =</span> <span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb223-22"><a href="hierarchical-clustering.html#cb223-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-23"><a href="hierarchical-clustering.html#cb223-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dendrograms</span></span>
+<span id="cb223-24"><a href="hierarchical-clustering.html#cb223-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_complete)</span>
+<span id="cb223-25"><a href="hierarchical-clustering.html#cb223-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_single)</span>
+<span id="cb223-26"><a href="hierarchical-clustering.html#cb223-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_average)</span>
+<span id="cb223-27"><a href="hierarchical-clustering.html#cb223-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_centroid)</span></code></pre></div>
+</div>
+<div id="exercise-3-interpreting-the-clusters-visually" class="section level3 unnumbered">
+<h3>Exercise 3: Interpreting the clusters visually</h3>
+<p>Let’s continue exploring the dendrogram from complete linkage. The <code>plot()</code> function for <code>hclust()</code> output allows a <code>labels</code> argument which can show custom labels for the leaves (cases). The code below labels the leaves with the species of each penguin.</p>
+<ul>
+<li>What do you notice about the clustering in relation to the actual penguin species?</li>
+<li>Try changing the labels to show the <code>sex</code> of the penguin. What do you notice?</li>
+</ul>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="hierarchical-clustering.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_complete, <span class="at">labels =</span> penguins<span class="sc">$</span>species)</span></code></pre></div>
+</div>
+<div id="exercise-4-tree-cutting-and-interpretation" class="section level3 unnumbered">
+<h3>Exercise 4: Tree-cutting and interpretation</h3>
+<p>When we cut a dendrogram at a given height, we indicate that the branches that have fused before (below) that point should be distinct clusters.</p>
+<ul>
+<li><p>For the complete linkage dendrogram, say that we cut the tree at a height of 3? How many clusters should result (eyeball from dendrogram)? How can we interpret this cut in terms of the distances between cases in the resulting clusters?</p></li>
+<li><p>We can add new variables containing cluster assignments with <code>mutate()</code> and <code>cutree()</code>, as below. Using either set of cluster assignments, make some visualizations to explore how variables of interest are related to the cluster assignments.</p></li>
+</ul>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="hierarchical-clustering.html#cb225-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb225-2"><a href="hierarchical-clustering.html#cb225-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb225-3"><a href="hierarchical-clustering.html#cb225-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">hclust_height3 =</span> <span class="fu">factor</span>(<span class="fu">cutree</span>(hc_complete, <span class="at">h =</span> <span class="dv">3</span>)), <span class="co"># Cut at height (h) 3</span></span>
+<span id="cb225-4"><a href="hierarchical-clustering.html#cb225-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">hclust_num6 =</span> <span class="fu">factor</span>(<span class="fu">cutree</span>(hc_complete, <span class="at">k =</span> <span class="dv">6</span>)) <span class="co"># Cut into 6 clusters (k)</span></span>
+<span id="cb225-5"><a href="hierarchical-clustering.html#cb225-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+</div>
+<div id="exercise-5-k-means-vs.-hierarchical" class="section level3 unnumbered">
+<h3>Exercise 5: K-means vs. hierarchical</h3>
+<p>Brainstorm some pros/cons of hierarchical clustering vs. k-means in terms of their algorithms and the output produced.</p>
+</div>
+<div id="dig-into-dendrograms" class="section level3 unnumbered">
+<h3>Dig into Dendrograms</h3>
+<p>If you are interested in visualizations of hierarchical clustering, there are two interesting R packages:</p>
+<ul>
+<li>dendextend (<a href="https://cran.r-project.org/web/packages/dendextend/vignettes/dendextend.html" class="uri">https://cran.r-project.org/web/packages/dendextend/vignettes/dendextend.html</a>)</li>
+<li>ggdendro (<a href="http://andrie.github.io/ggdendro/" class="uri">http://andrie.github.io/ggdendro/</a>)</li>
+</ul>
+<p>These two packages together allow you to change the following in a dendrogram</p>
+<ul>
+<li>labels (text, color, size of text)</li>
+<li>leaves (point type, size, color)</li>
+<li>nodes (point type, size, color)</li>
+<li>hang of leaves</li>
+<li>branches (colors, width, type)</li>
+<li>orientation (in polar coordinates, horizontal, vertical, etc.)</li>
+<li>annotate the plot</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="k-means-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="catch-up-clustering-day.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

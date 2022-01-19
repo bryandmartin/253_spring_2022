@@ -1,0 +1,146 @@
+
+
+
+# Catch up Clustering Day
+
+## Learning Goals {-}
+
+
+- Implement k-means and hierarchical clustering and interpret in their outputs and algorithms
+- Synthesize and apply concepts covered so far on real data
+
+
+<br>
+
+Slides from today are available [here](https://docs.google.com/presentation/d/1vi8HLrUuTmbqh4J4HgGXgBel-rF9j9_K6EmkAj6mwTM/edit?usp=sharing).
+
+
+
+<br><br><br>
+
+## Real Data Clustering {-}
+
+As a group, choose one of the following three datasets to work with:
+
+1. Wine Attributes (download [here](template_rmds/wine.csv))
+- 178 Italian wines were analyzed
+- Variables (from Chemical Analysis)
+  - Alcohol
+  - Malic acid
+  - Ash
+  - Alcalinity of ash
+  - Magnesium
+  - Total phenols
+  - Flavanoids
+  - Nonflavanoid phenols
+  - Proanthocyanins
+  - Color intensity
+  - Hue
+  - OD280/OD315 of diluted wines
+  - Proline
+
+```{r}
+library(readr)
+wine <- read_csv('wine.csv')
+```
+
+2. Mall Customers (download [here](template_rmds/mall_customers.csv))
+- 200 individuals
+- Variables
+  - Binary Gender
+  - Age
+  - Annual Income (in $1000's)
+  - Spending Score (summary of buying behavior)
+  
+```{r}
+library(readr)
+customers <- read_csv('mall_customers.csv')
+```  
+  
+3. Credit Card Clients (download [here](template_rmds/creditcard.csv))
+- Almost 9000 credit card holders
+- Variables based on 6 months of time
+  - CUSTID: Identification of Credit Card holder
+  - BALANCE : Balance amount left in their account to make purchases
+  - BALANCEFREQUENCY : How frequently the Balance is updated, score between 0 and 1 (1 = frequently updated, 0 = not frequently updated)
+  - PURCHASES : Number of purchases made from account
+  - ONEOFFPURCHASES : Maximum purchase amount done in one-go
+  - INSTALLMENTSPURCHASES : Amount of purchase done in installment
+  - CASHADVANCE : Cash in advance given by the user
+  - PURCHASESFREQUENCY : How frequently the Purchases are being made, score between 0 and 1 (1 = frequently purchased, 0 = not frequently purchased)
+  - ONEOFFPURCHASESFREQUENCY : How frequently Purchases are happening in one-go (1 = frequently purchased, 0 = not frequently purchased)
+  - PURCHASESINSTALLMENTSFREQUENCY : How frequently purchases in installments are being done (1 = frequently done, 0 = not frequently done)
+  - CASHADVANCEFREQUENCY : How frequently the cash in advance being paid
+  - CASHADVANCETRX : Number of Transactions made with "Cash in Advanced"
+  - PURCHASESTRX : Number of purchase transactions made
+  - CREDITLIMIT : Limit of Credit Card for user
+  - PAYMENTS : Amount of Payment done by user
+  - MINIMUM_PAYMENTS : Minimum amount of payments made by user
+  - PRCFULLPAYMENT : Percent of full payment paid by user
+  - TENURE : Tenure of credit card service for user
+
+```{r}
+library(readr)
+credit <- read_csv('creditcard.csv')
+```
+
+### Your Goal {-}
+
+- Goal: Cluster the data to discover insight and patterns in the data
+
+- Available Methods
+  - K-means with all quantitative variables
+  - Partitioning around Medoids (pam) as a robust version of K-means
+    - If you have at least one categorical variable, `daisy()` will calculate [Gower's distance](https://stat.ethz.ch/R-manual/R-devel/library/cluster/html/daisy.html)
+  - Hierarchical clustering
+    - If you have at least one categorical variable, `daisy()` will calculate [Gower's distance](https://stat.ethz.ch/R-manual/R-devel/library/cluster/html/daisy.html)
+
+```{r}
+kmeans(data, centers = k)
+
+library(cluster)
+pam(daisy(data), k = k)
+
+hclust(daisy(data))
+```
+
+- Insights
+  - Based on clustering, you'll want to interpret/visualize the resulting clusters to gain insight
+
+- Deliverable
+  - Create 1 graphic that demonstrates your insight
+  - Add it to this [Shared Folder](https://drive.google.com/drive/folders/1RRNsbNXbXCX-RSNW5QWsh88Fq3nIOomM?usp=sharing) with your names in the filename
+
+
+## Clustering in the Wild {-}
+
+To give you a taste of how these methods get use in "the wild" world of science, here are a few papers (quality varies):
+
+- Image Segmentation (https://link.springer.com/article/10.1007/s11042-021-10594-9)
+- Bacteria Clustering (https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002843)
+- Document Clustering (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7790388/)
+- Clustering ICD10 Diagnosis Codes (https://arxiv.org/abs/1909.00306)
+- Clustering Activity Sequences (https://www.sciencedirect.com/science/article/abs/pii/S0968090X21000395?via%3Dihub)
+
+## R Coding Challenges {-}
+
+The best way to learn new things about R is to work on a data project.
+
+- The goals drive what code is needed. 
+- Learn them as you need them. 
+
+
+What things have come up so far for you?
+
+- What has been the most frustrating?
+- When do you get stuck?
+- What are you wanting to do with your data?
+
+
+Besides class projects, you can practice visualizing data:
+
+- [TidyTuesday Challenges](https://github.com/rfordatascience/tidytuesday)
+  - Check out David Robinson's [TidyTuesday's Screencasts](https://www.youtube.com/watch?v=nx5yhXAQLxw)
+  
+
+

@@ -1,0 +1,101 @@
+```{r hw1_setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
+```
+
+# (PART) Homework {-}
+
+# Homework 1 {-}
+
+<center>
+**Due Thursday, September 16 at midnight CST on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=27979)**
+
+Please turn in a **single PDF document** containing (1) your responses for the Project Work and Reflection sections and (2) a LINK to the Google Doc with your responses for the Portfolio Work section.
+</center>
+
+## Project Work {-}
+
+**Goal:** Find a dataset (or datasets) to use for your [final project](final-project.html), and start to get to know the data.
+
+**Details:**
+
+Your dataset(s) should allow you to perform a (1) regression, (2) classification, and (3) unsupervised learning analysis. The following resources are good places to start looking for data:
+
+- [Google Dataset Search](https://datasetsearch.research.google.com/)
+- [Kaggle](https://www.kaggle.com/datasets)
+- [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets.php)
+- [Harvard Dataverse](https://dataverse.harvard.edu/)
+
+You'll end up working in a group of 2-3 people on the project, but please complete this initial work individually. It's fine if you and a potential/future group member end up using the same dataset for this homework and collaborate on the finding of data, but complete the short bit of writing (below) individually.
+
+Check in with the instructor *early* if you need help.
+
+**Deliverables:**
+
+Write 1-2 paragraphs (no more than 350 words) summarizing:
+
+- The information in the dataset(s) and the *context* behind the data. Use the prompts below to guide your thoughts. (Note: in some situations, there may be incomplete information on the data context. That's fine. Just do your best to summarize what information is available, and acknowledge the lack of information where relevant.)
+    - What are the cases?
+    - Broadly describe the variables contained in the data.
+    - Who collected the data? When, why, and how?
+- 3 research questions
+    - 1 that can be investigated in a regression setting
+    - 1 that can be investigated in a classification setting
+    - 1 that can be investigated in an unsupervised learning setting
+
+Also make sure that you can read the data into R. You don't need to do any analysis in R yet, but making sure that you can read the data will make the next steps go more smoothly.
+
+
+
+<br><br><br>
+
+
+
+## Portfolio Work {-}
+
+**Page maximum:** 2 pages **of text** (pictures don't count)
+
+**Organization:** Your choice! Use titles and section headings that make sense to you. (It probably makes sense to have a separate section for each method.)
+
+**Deliverables:** Put your responses for this part in a Google Doc, and update the link sharing so that anyone with the link at Macalester College can edit. Include the URL for the Google Doc in your submission.
+
+**Note:** Some prompts below may seem very open-ended. This is intentional. Crafting good responses requires looking back through our material to organize the concepts in a coherent, thematic way, which is extremely useful for your learning.
+
+<br>
+
+
+**Concepts to address:**
+
+
+- **Evaluating regression models:** Describe how residuals are central to the evaluation of regression models. Explain how they arise in quantitative evaluation metrics and how they are used in evaluation plots. Include examples of plots that show desirable and undesirable model behavior (feel free to draw them by hand if you wish) and what steps can be taken to address that undesirable behavior.
+
+- **Overfitting:** The concept video used the analogy of a cat picture model to explain overfitting. Come up with your own analogy to explain overfitting.
+
+- **Cross-validation:** In your own words, explain the rationale for cross-validation in relation to overfitting and model evaluation. Describe the algorithm in your own words in at most 2 sentences.
+
+
+
+
+<br><br><br>
+
+
+
+## Reflection {-}
+
+
+<br>
+
+**Ethics:** Read the article [Amazon scraps secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G) or watch the rest of Coded Bias (available on Netflix). Write a short (roughly 250 words), thoughtful response about the themes and cautions that the article or movie brings forth.
+
+
+**Reflection:** Write a short, thoughtful reflection about how things are going in the course. Feel free to use whichever prompts below resonate most with you, but don't feel limited to these prompts.
+
+- How is your understanding of the material? What ideas/topics have stuck out for you?
+- How is group work going? Any strategies for improving collaboration that you want to try out next week?
+- How is your work/life balance going? Any new activities or strategies that you want to try out for next week?
+
+
+**Self-Assessment:** Before turning in this assignment on Moodle, go to the individual rubric shared with you and complete the self-assessment for the general skills. After "HW1:", assess yourself on each of the general skills. Assessing yourself is hard. We must practice this skill. These "grades" you give yourself are intended to have you stop and think about your learning as you grow and develop the general skills and deepen your understanding of the course topics. These grades do not map directly to a final grade. 
+
+
+
+

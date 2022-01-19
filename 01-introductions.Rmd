@@ -1,0 +1,62 @@
+# (PART) Introductions {-}
+# Introductions
+
+Slides from today are available [here](https://docs.google.com/presentation/d/1TIi6fhh6oLGyL3wPIVafgLVKOljq_qqeL5AbaZvfb0U/edit?usp=sharing).
+
+<br>
+
+## Envisioning a Community of Learners{-}
+
+**Directions:**
+
+- In small groups, please first introduce yourselves in whatever way you feel appropriate (e.g. name, pronouns, how you're feeling at the moment, things you're looking forward to, best part of summer, why you are motivated to take this class).
+- When everyone is ready, discuss the prompts below. One of you volunteer to record a few thoughts in [this Google Doc](https://docs.google.com/document/d/1kLgCgTD0B3-vUBOSUSNWaZkMPrcygHZjapvSVNELeGY/edit?usp=sharing). The instructor will summarize responses from all the sections to create a resource that everyone can use.
+
+<br>
+
+**Prompts:**
+
+1. Collectivist education focuses on prioritizing the group over the individual while individualist education focuses solely on the success of the individual. Considering your own experiences and backgrounds, discuss your values as they relate to collectivist and individualistic aspects of your own education. 
+
+2. It is important to create a set of agreements to guide our community in and out of class. Which of the following do you think are most important to keep in mind for our time together in this course and why? What might you add to our guiding principles?
+
+    - W.A.I.T. (Why Am I Talking/Why Aren't I Talking) 
+    - Be curious
+    - Extend and receive grace
+    - Understand impact vs. intention
+    - Breathe and lean into discomfort
+    - Embrace diversity of experience
+
+
+3. What strategies have you found work well for you to succeed in learning both in and out of class that you want to continue this year?
+
+4. What are some things that have contributed to positive learning experiences in your courses that you would like to have in place for this course? What has contributed to negative experiences that you would like to prevent?
+
+
+<br><br><br>
+
+
+## Explorations {-}
+
+Each of the data contexts below prompts a broad research goal. For each, sharpen the focus of that goal by coming up with more targeted research questions that:
+
+- Can be studied with a regression exploration
+- Can be studied with a classification exploration
+- Can be studied with an unsupervised learning exploration
+
+Also, consider the impact of these research questions on society:
+
+- Who or what might benefit from the collection of data, its analysis, or a prediction model based on it?
+- Who or what might be harmed from the collection of data, its analysis, or a prediction model based on it?
+
+
+
+<br>
+
+
+**Context 1:** The New York Times is trying to better understand the popularity of its different articles with the hope of using this understanding to improve hiring of writers and improve their website layout.
+
+**Context 2:** The Minnesota Department of Health is trying to better understand the different health trajectories of people who have contracted a certain illness to improve funding for relevant health services.
+
+**Context 3:** The campaign management team for a political candidate is trying to better understand voter turnout in different regions of the country to run a better campaign in the next election.
+

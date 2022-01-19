@@ -1,0 +1,65 @@
+
+
+
+# Catch up Day
+
+## Learning Goals {-}
+
+- Give and receive constructive feedback on writing about data and machine learning concepts
+- Synthesize and apply concepts covered so far on new project data
+
+
+<br>
+
+Slides from today are available [here](https://docs.google.com/presentation/d/1FaoiknqFziYnOa0j_HQDSJcsvZt4aF4j6wHTT-Tgh5E/edit?usp=sharing).
+
+
+
+<br><br><br>
+
+## Content Conversation 1 Prompts {-}
+
+In preparation for your content conversations next week, please go to the [Google Doc here](https://docs.google.com/document/d/1krfQsb8mU2HJxRjZnoOJAuhrAnFbBqbfveepfXBkxhA/edit) for all of the details and instructions.
+
+Here is a brief summary.
+
+- You'll meet with me in your final project groups
+- You'll need to schedule a meeting with me by choosing a time slot on my calendar (link in the Google Doc)
+- You can meet with your group ahead of time to practice/prep for this conversation
+- Prompts for the conversation are available in the Google Doc. 
+
+## Peer Review {-}
+
+In groups of 2, you'll do the following:
+
+- Send the link to your portfolio to your groupmate
+- Choose 2 concepts/topics that you'd like feedback on
+- Think about what aspects of the writing you'd like feedback on (e.g. conceptual, clarity, creativity)
+- Tell your groupmate the concepts/topics and aspects you'd like feedback on. 
+
+Spend 10 minutes reading your groupmate's writing.
+
+- Make comments in the Google Doc (focusing on the aspects that your groupmate wanted you to look at)
+  - Comment on sentences that you really like and why.
+  - Comment on sentences that are not clear.
+  - Comment on sentences that suggest a misunderstanding.
+- If your groupmate is open to you providing wording suggestions, change from "editing" to "suggesting" and offer an alternative way to write something.
+
+Spend 10 minutes discussing the comments for one of your writing and then switch. 
+
+## Project Work {-}
+
+By the end of today, your group should 
+
+- finalize the data set you'd like to work with
+- make sure that you can read it into R
+- made some initial progress on visualizing and cleaning the data 
+  - choose on quantitative outcome variable for regression
+  - focus on a subset of about 10-20 predictor variables for now 
+      - for some of you, that may mean that you need to create new variables out of existing ones (like time/date)
+      - for some of you, that may mean choose some from over 100 variables
+  - focus on a subset of rows that you can easily load into R
+      - if the data won't load in quickly, focus on a subset of the data (by year or another characteristic) and then create a test set and a training set (save them into csv separately using `write_csv`)
+  - look for missing data & outliers
+  - understand what the values of the variables mean
+  - get a sense for possible relationships that may exist in the data

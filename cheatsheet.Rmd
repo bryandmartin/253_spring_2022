@@ -1,0 +1,1532 @@
+```{r setupcheat, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+```
+
+# R Cheatsheet {.unnumbered}
+
+This cheatsheet is a work in progress. It will be updated and improved throughout the semester.
+
+## Stat 155 Review {.unnumbered}
+
+### Standard Linear Regression Models {.unnumbered}
+
+To fit a linear model, start with a formula to specify variable roles and which variable is the predictor variable (left hand side before \~). The `lm` function formats variables for you by creating indicator variables for factor/categorical variables.
+
+```{r}
+# predictor variables have pluses between them
+formula <- y ~ x1 + x2 
+
+# specifies least squares estimation of the linear model specified by the formula using the data provided
+fit_model <- lm(formula, data) 
+
+# provides an overall summary of the fit model
+fit_model %>% 
+  summary() 
+
+# provides a data frame of the estimated coefficients, standard errors, and information for individual coefficient hypothesis tests
+fit_model %>% 
+  tidy() 
+
+# provides many model summaries including rsquared and sigma (the estimated sd of residuals)
+fit_model %>% 
+  glance()
+
+# provides a data set that includes the original variables as well as the residuals and fitted values; used to plot residuals
+fit_model %>% 
+  augment()
+
+# predict outcome values based on the fit model for newdata
+fit_model %>% 
+  predict(newdata) 
+```
+
+### Standard Logistic Regression Models {.unnumbered}
+
+To fit a linear model, start with a formula to specify variable roles and which variable is the predictor variable (left hand side before \~). The `glm` function formats variables for you by creating indicator variables for factor/categorical variables. Make sure that your outcome variable `y` is an indicator variable (0/1 or FALSE/TRUE).
+
+```{r}
+# predictor variables have pluses between them
+formula <- y ~ x1 + x2 
+
+# specifies maximum likelihood estimation of the generalized linear model specified by the formula using the data provided; when family = 'binomial', it fits a logistic regression model rather than a linear model
+fit_model <- glm(formula, data, family = 'binomial') 
+
+# provides an overall summary of the fit model
+fit_model %>% 
+  summary() 
+
+# provides a data frame of the estimated coefficients, standard errors, and information for individual coefficient hypothesis tests
+fit_model %>% 
+  tidy() 
+
+# predict probability of outcome values based on the fit model for newdata
+fit_model %>% 
+  predict(newdata, type = 'response') 
+
+# calculate specificity, false positive rate, false negative rate, and sensitivity
+threshold <- 0.25 # you choose threshold
+
+augment(fit_model, type.predict ='response') %>%
+    mutate(predOutcome = .fitted >= threshold) %>%
+    count(y, predOutcome) %>%
+    mutate(correct = (y == predictOutcome)) %>%
+    group_by(y) %>% # condition on the true y outcome value
+    mutate(prop = n/sum(n))
+```
+
+## Data Structures and Purrr Package {.unnumbered}
+
+### Vectors and Lists {.unnumbered}
+
+In R, there are many data structures. Read <http://adv-r.had.co.nz/Data-structures.html> for more information.
+
+The two most basic types of data structures are vectors and lists.
+
+#### Vectors {.unnumbered}
+
+-   **Atomic Vector** (numeric, character, integer, logical)
+
+    -   All elements of an atomic vector must have the same type (numeric/double, character, integer, logical/boolean).
+
+```{r}
+x <- 1:10 
+typeof(x) # atomic type
+class(x) # object class name
+is.integer(x)
+x
+x[1:2] #access elements in vector with []
+
+z <- (x > 5)
+typeof(z) 
+class(z)
+is.logical(z)
+z
+z[-c(1:2)]
+
+y <- if_else(x > 5, 'greater than 5','less than or equal to 5')
+typeof(y) 
+class(y)
+is.character(y)
+y
+y[-c(1,5)]
+
+v <- x + .2
+typeof(v) 
+class(v)
+is.numeric(v)
+is.double(v)
+```
+
+Factors are vectors with special attributes.
+
+```{r}
+yfactor <- factor(y) 
+
+yfactor %>% attributes()
+
+as.numeric(yfactor) #underlying a factor is an integer vector, indexing the levels/categories
+
+levels(yfactor) # first level is reference level
+
+relevel(yfactor, ref='less than or equal to 5') # can change reference level
+```
+
+#### Lists {.unnumbered}
+
+-   **Lists**
+
+    -   Lists can have elements of differing types. You can even have lists of lists or lists of vectors.
+
+```{r}
+l1 <- list(x,y,z,v,2) #unnamed list
+l1
+l1[[1]] #access elements in list with [[]]
+
+l2 <- list(x = x, y = y, z = z, v = v, b = 2) #named list
+l2
+l2[['x']] #access elements in list with [[]]
+l2$x #access elements in named list with $
+```
+
+Data frames and tibbles are special types of named lists. Each element must be a vector, the vectors must have the same length, but they can be different types. Each of these vectors are variables in the data set.
+
+You could have a list of data frames/tibbles.
+
+### Map {.unnumbered}
+
+When you want to apply a function to each element in a list or vector of values, you can use `map` which is a function in the purrr package.
+
+```{r}
+# Silly example: add 2 to every value in x
+a <- 1:10
+map(a, ~ .x + 2 ) # short hand for code below
+# map(x, function(x) x + 2 )
+
+# Real example: fit the same model to 5 different data sets
+
+#simulate data
+x <- runif(500,0,10) #500 x values randomly from uniform distribution [0,10]
+df <- data.frame(x = x, 
+                 y = 2*x + rnorm(500), #500 y values equal to 2*x + random value from Normal(0,1)
+                 s = sample(size = 500, 1:5, replace=TRUE)) %>% #500 random values from 1 to 5 (strata/groups)
+  group_by(s) %>%
+  tidyr::nest() # data frame with variable data that is 5 data sets, one for each group
+
+
+map(df$data, ~ lm(y ~ x, data = .x)) # short hand for code below
+# map(df$data, function(data) lm(y ~ x, data = data))
+
+```
+
+## Tidymodels Functions {.unnumbered}
+
+```{r}
+library(tidymodels)  # Includes the workflows package
+tidymodels_prefer() # Resolves conflicts, prefers tidymodel functions
+```
+
+### Model Specification {.unnumbered}
+
+For more information, see the documentation for the parsnip package (part of the tidymodels package): <https://www.tidymodels.org/find/parsnip/>
+
+#### Types of Models {.unnumbered}
+
+For this course, we will only use the following models:
+
+`linear_reg()`, `gen_additive_model()`, `logistic_reg()`
+
+`nearest_neighbor()`, `decision_tree()`, `rand_forest()`
+
+#### Engines (Estimation Methods) {.unnumbered}
+
+For this course, we will primarily use the following estimation methods/engines.
+
+`lm`, `glm`, `glmnet`, `kknn`, `rpart`, `ranger`
+
+#### Usage {.unnumbered}
+
+##### Regression Models {.unnumbered}
+
+```{r}
+# Linear Regression Model
+lm_spec <- 
+  linear_reg() %>%
+  set_engine(engine = 'lm') %>%
+  set_mode('regression') 
+
+# Lasso Regression Model
+lm_lasso_spec <- 
+  linear_reg() %>%
+  set_args(mixture = 1, penalty = lambda) %>% # we could let penalty = tune()
+  set_engine(engine = 'glmnet') %>%
+  set_mode('regression') 
+
+# Ridge Regression Model
+lm_ridge_spec <- 
+  linear_reg() %>%
+  set_args(mixture = 0, penalty = lambda) %>% # we could let penalty = tune()
+  set_engine(engine = 'glmnet') %>%
+  set_mode('regression') 
+
+# K Nearest Neighbors Regression Model
+knn_spec <- 
+  nearest_neighbor() %>%
+  set_args(neighbors = k) %>% # we could let neighbors = tune()
+  set_engine(engine = 'kknn') %>%
+  set_mode('regression')
+
+# Generalized Additive Models (with smoothing splines)
+gam_spec <- 
+  gen_additive_mod() %>%
+  set_engine(engine = 'mgcv') %>%
+  set_mode('regression') 
+
+# Regression Tree Model
+rt_spec <- 
+  decision_tree() %>%
+  set_args(tree_depth, min_n, cost_complexity) %>% # we could let any of these = tune()
+  set_engine(engine = 'rpart') %>%
+  set_mode('regression') 
+
+# Random Forest Model for Regression
+rf_spec <- 
+  rand_forest() %>%
+  set_args(mtry, min_n, trees) %>% # we could let any of these = tune()
+  set_engine(engine = 'ranger') %>%
+  set_mode('regression')
+```
+
+##### Classification Models {.unnumbered}
+
+```{r}
+# Logistic Regression Model
+logistic_spec <- 
+  logistic_reg() %>%
+  set_engine(engine = 'glm') %>%
+  set_mode('classification') 
+
+# Lasso Logistic Regression Model
+logistic_lasso_spec <- 
+  logistic_reg() %>%
+  set_args(mixture = 1, penalty = lambda) %>% #we could let penalty = tune()
+  set_engine(engine = 'glmnet') %>%
+  set_mode('classification') 
+
+# K Nearest Neighbors Regression Model
+knn_spec <- 
+  nearest_neighbor() %>%
+  set_args(neighbors = k) %>% # we could let neighbors = tune()
+  set_engine(engine = 'kknn') %>%
+  set_mode('classification') 
+
+# Classification Tree Model
+ct_spec <- 
+  decision_tree() %>%
+  set_args(tree_depth, min_n, cost_complexity) %>%
+  set_engine(engine = 'rpart') %>%
+  set_mode('classification') 
+
+# Random Forest Model for Classification
+rf_class_spec <- 
+  rand_forest() %>%
+  set_args(mtry, min_n, trees) %>% # we could let any of these = tune()
+  set_engine(engine = 'ranger') %>%
+  set_mode('classification') 
+```
+
+### Preprocessing Data {.unnumbered}
+
+For more information and many examples, see the documentation for the recipes package (part of the tidymodels package): <https://recipes.tidymodels.org/>
+
+#### Recipes {.unnumbered}
+
+To facilitate transparency, organization, and consistency of process, we create a recipe of the steps taken for preprocessing the data prior to modeling.
+
+```{r}
+rec <- recipe(formula, data) %>%
+  step_{FILLIN}() %>%
+  step_{FILLIN}() # continue to add preprocessing steps; note that the order matters! 
+```
+
+Make sure to include the steps in the same order as they listed below.
+
+-   Row Operations
+-   Imputation
+-   Factor Levels
+-   Univariate Quant. Transformations
+-   Discretization
+-   Dummy Variables
+-   Interactions
+-   Normalization
+-   Multivariate Transformations
+-   Down/Up Sampling (we won't talk about this very much)
+
+##### Row Operations {.unnumbered}
+
+The step functions available for row operations are below.
+
+```{r}
+step_filter(condition) # use rows that satisfy a condition
+
+step_sample(size) # use randomly select rows
+
+step_shuffle(var) # randomly change the order of rows for selected variables (not needed for most circumstances)
+
+step_slice(index) # use rows with the index (row numbers) provided
+
+step_arrange(var) # sort rows according to the values of selected variables
+
+step_corr() # removes predictors with high correlation with other predictors
+
+step_lincomb() # removes predictors that are linear combinations of others
+
+step_zv() # removes predictors with zero variability
+
+step_nzv() # removes predictors with near zero variability
+```
+
+##### Imputation {.unnumbered}
+
+The step functions available for imputing values for missing values are below.
+
+```{r}
+step_impute_bag(impute_with) # imputation via bagged trees
+
+step_impute_knn(impute_with) # imputation via K-nearest neighbors
+
+step_impute_mode() # imputation of most common value
+
+step_unknown() # assign missing to "unknown" category
+```
+
+##### Factor Levels {.unnumbered}
+
+The step functions available for changing the levels for factors are below.
+
+```{r}
+step_relevel(ref_level) # change reference level of factor 
+```
+
+##### Univariate Quant. Transformations {.unnumbered}
+
+The step functions available for transforming quantitative variables are below.
+
+```{r}
+step_BoxCox() # box cox transformation
+
+step_log() # log transformation
+
+step_bs() # basis spline
+
+step_ns() # natural spline
+
+step_poly() # polynomial transformation
+
+step_mutate() # mutate a variable in the way you specify
+```
+
+##### Discretization {.unnumbered}
+
+The step functions available for transforming quantitative variables into categorical variables are below.
+
+```{r}
+step_discretize(num_breaks)
+
+step_cut(breaks)
+```
+
+##### Dummy Variables {.unnumbered}
+
+The step functions available for transforming categorical variables into quantitative variables (dummy/indicator variables) and dealing with categorical levels are below.
+
+```{r}
+step_novel() # create category for new levels in test set
+
+step_other(threshold) # collapse small categories into an "other" category
+
+step_date(features = c('dow','month','year')) # create features based on date variables
+
+step_dummy() # create indicators based on nominal variables
+
+step_regex() # create indicators using regular expressions
+```
+
+##### Interactions {.unnumbered}
+
+The step functions available for creating interaction terms are below.
+
+```{r}
+step_interact(~ A:B)
+
+step_interact(~ starts_with("CatA"):starts_with("CatB"))
+```
+
+##### Normalization {.unnumbered}
+
+The step functions available for centering, scaling, and standardizing/normalizing are below.
+
+```{r}
+step_center() # subtracts mean
+step_scale() # divides by sd
+step_normalize() # both center and scale
+```
+
+##### Multivariate Transformations {.unnumbered}
+
+The step functions available for combining/transforming many quantitative variables are below.
+
+```{r}
+step_pca()
+```
+
+#### Variable Roles {.unnumbered}
+
+In a recipe, each variable has a role. Typical roles are:
+
+-   Outcome
+-   Predictor
+
+```{r}
+# Use summary to see the roles of the variables
+recipe() %>%  
+  summary() 
+
+# in the steps of the recipe, you can refer to variables based on their roles
+all_predictors()
+all_outcomes()
+
+# in the recipe, you can refer to variables based on their type (quantitative: numeric, categorical: nominal)
+all_numeric()
+all_nominal()
+
+# in the recipe, you can refer to variables based on their type and role
+all_numeric_predictors()
+all_nominal_predictors()
+
+# roles can help you select groups of variables
+has_role() 
+has_type()
+```
+
+Roles to consider adding if you want to keep variables in the data set but do not want to use them in the model:
+
+-   ID (to exclude from modeling)
+-   Locations
+-   Date/Times
+-   General Categories of Predictors
+
+```{r}
+rec <- recipe() %>%
+  update_role() 
+
+rec <- recipe() %>%
+  add_role() %>% # variables can have multiple roles
+  remove_role() 
+```
+
+#### Prep Data {.unnumbered}
+
+If you aren't ready to fit the model but want to see the pre-processed data, you can use these functions.
+
+*Note: The prep and bake steps are done for you when you fit models*
+
+```{r}
+recipe() %>%
+  prep(training = train_data) %>%
+  juice() # returns preprocessed training data
+  
+recipe() %>%
+  prep(training = train_data) %>%
+  bake(new_data = test_data) # returns preprocessed test data using values from train data
+```
+
+### Data Subsets {.unnumbered}
+
+For more information and many examples, see the documentation for the rsample package (part of the tidymodels package): <https://rsample.tidymodels.org/>
+
+#### Random Splits {.unnumbered}
+
+To randomly split your data set into a training and test set, use `initial_split()`. You can change `prop` to 0.8 for a training set equal to 80% of the rows. You can specify a variable for the `strata` argument to make the random sampling to be conducted within the stratification variable; this can help ensure that the number of data points in the training data is equivalent to the proportions in the original data set.
+
+```{r}
+set.seed(123) # to reproduce your random split, set a seed  - pick an integer
+
+data_split <- initial_split(data, prop = 3/4) # saves minimal information about the split (which rows are in the training set and which are in the testing set)
+
+data_train <- training(data_split)
+
+data_test <- testing(data_split)
+```
+
+#### Cross-Validation/Resamples {.unnumbered}
+
+To complete cross-validation, use `vfold_cv()`. This function saves information about the folds (which rows are in which fold) and which rows should be used for training and testing for each iteration.
+
+```{r}
+data_cv <- vfold_cv(data, v = 10)
+
+# In practice, you don't need to use the following functions but it is useful to know what is going on behind the scenes
+training(data_cv$splits[[1]]) # pulls training data for the 1st split (1st fold is testing set)
+testing(data_cv$splits[[1]]) # pulls testing data for the 1st split (1st fold is testing set)
+```
+
+### Workflows {.unnumbered}
+
+A machine learning workflow (the "black box") = model specification + preprocessing recipe/formula
+
+```{r}
+model_wf <- workflow() %>%
+  add_recipe(rec) %>% # add_formula(formula) if no recipe
+  add_model(mod_spec)
+  
+model_wf %>%
+  update_recipe(rec_new)
+  
+model_wf %>%
+  update_formula(formula_new)
+  
+model_wf %>%
+  update_model(model_spec_new)
+```
+
+### Fit Model {.unnumbered}
+
+```{r}
+# Fit model to given training data
+fit_model <- fit(model_spec, formula, data_train) # fit model using a formula (no recipe) and model_spec
+
+fit_model <- fit(model_wf, data_train) # fit model using a workflow
+
+# Fit model using CV
+fit_model_cv <- fit_resamples(model_wf, # fit and evaluate model with CV
+  resamples = data_cv, 
+  metrics = metric_set()
+  ) # from tune package
+
+# Fit model on one training and evaluate on one test data
+fit_model_traintest <- last_fit(model_wf, # fit model on training and evaluate model on test data
+  split = data_split,
+  metrics = metric_set()
+  ) # from tune package
+```
+
+### Evaluate Model: Metrics {.unnumbered}
+
+For documentation and examples about metrics, see the yardstick package, <https://yardstick.tidymodels.org/index.html>.
+
+```{r}
+metric_set(rmse, rsq, mae) # typical regression metrics
+
+metric_set(sens, spec, accuracy, roc_auc) # typical classification metrics
+```
+
+For documentation and examples about collecting metrics from train/testing or cross validation, see the workflowsets package, <https://workflowsets.tidymodels.org/>
+
+```{r}
+# Using one training and testing split
+last_fit(model_wf, 
+  split = data_split, 
+  metrics = metric_set(rmse, rsq, mae)
+  )  %>%
+  collect_metrics()
+
+# Using CV 
+fit_resamples(model_wf, 
+  resamples = data_cv, 
+  metrics = metric_set(rmse, rsq, mae)
+  )  %>%
+  collect_metrics(summarize = TRUE)
+```
+
+### Tune Model: Choosing tuning parameters {.unnumbered}
+
+For documentation and examples about tuning a model by selecting tuning parameters, see the tune package, <https://tune.tidymodels.org/>
+
+Use `tune()` for tuning parameters in model and recipe and `tune_grid()` to fit models with an array of values for the tuning parameters.
+
+```{r}
+# Regularized Regression (LASSO, Ridge)
+lm_lasso_spec_tune <- lm_lasso_spec %>%
+    set_args(mixture = 1, penalty = tune('lambda'))
+
+lm_ridge_spec_tune <- lm_ridge_spec %>%
+    set_args(mixture = 0, penalty = tune('lambda'))
+```
+
+```{r}
+# Number of neighbors in KNN
+knn_spec_tune <- knn_spec %>%
+    set_args(neighbors = tune('k'))
+```
+
+```{r}
+# Decision Trees
+rt_spec_tune <- rt_spec %>% 
+    set_args(cost_complexity = tune('cost'), min_n = tune('n'))
+
+ct_spec_tune <- ct_spec %>% 
+    set_args(cost_complexity = tune('cost'), min_n = tune('n'))
+```
+
+```{r}
+# Number of Components in PCA
+recipe() %>%
+    step_pca(num_comp = tune('n'))
+```
+
+Once you've included tune() as the input for the parameter in the model or recipe, you need to fit the model for a variety of values. You may provide a grid of values or you can let the function create a grid of a specified number of values.
+
+```{r}
+tune_results <- tune_grid(model_wf,
+  resamples = data_cv,
+  grid = 10, #creates grid of 10 values
+  metrics = metric_set())
+  
+  
+tune_results<- tune_grid(model_wf,
+  resamples = data_cv,
+  grid = expand_grid(k = seq(0,15,by = 1)), #you provide grid, use name in tune() for variable name
+  metrics = metric_set())  
+
+tune_results %>% show_best()
+  
+tune_results %>% autoplot()
+
+final_model <- select_best(tune_results, metric) # or select_by_one_std_err(tune_results, metric, desc(penalty))
+
+final_model_wf <- finalize_workflow(model_wf, final_model)
+```
+
+### Use Final Model: Predictions {.unnumbered}
+
+```{r}
+# Fit final model on training data and then predict for any new data set
+final_model_wf %>% 
+  fit(data = data_train) %>%
+  predict(new_data = data_test) # get .pred only
+
+# Fit final model on training data and then predict for test set
+final_model_wf %>% 
+  last_fit( 
+    split = data_split, 
+    metrics = metric_set(rmse, rsq, mae)
+  ) %>%
+  collect_predictions() # get .pred and true values in test set
+```
+
+### Extraction {.unnumbered}
+
+For some models (LASSO, decision trees), you'll want to pull out the original fit object to make visualizations.
+
+```{r}
+fit_model %>% extract_fit_engine() # gives you the original fit object by the engine (useful for specific purposes)
+
+pluck(list, 'fit') # gives you the element in the list associated with the name 'fit'
+```
+
+### Variable Importance {.unnumbered}
+
+#### Model Agnostic Importance - Permutation Approach {.unnumbered}
+
+Permutation technique - Train model - Evaluate model
+
+For each variable,
+
+1.  Randomly shuffle the variable and reevaluate model
+2.  Compare the original model evaluation metric to the value when the variable is reshuffled
+
+Reshuffling the values of a variable breaks or removes any predictive relationships that may exist with that variable and the outcome variable. So if a variable is highly predictive of the outcome, there should be a large change in the model evaluation metric when it is "removed" through reshuffling.
+
+```{r}
+library(vip)
+conflicted::conflict_prefer("vi", "vip")
+
+train_prep <- train %>% prep() %>% juice() # Pre-process the training data
+
+mod <- fit_model %>% extract_fit_engine()  # Pull the fit model
+
+# Calculate Variable Importance using Permutation approach
+vi(mod, method = 'permute', target = 'outcomename', metric = 'metricname', train = train_prep, pred_wrapper = predict)
+
+# use vip instead of vi for plot
+```
+
+#### Model Specific Importance {.unnumbered}
+
+```{r}
+## LASSO Var Importance
+glmnet_output <- final_fit_se %>% extract_fit_engine()
+    
+# Create a boolean matrix (predictors x lambdas) of variable exclusion
+bool_predictor_exclude <- glmnet_output$beta==0
+
+# Loop over each variable
+var_imp <- sapply(seq_len(nrow(bool_predictor_exclude)), function(row) {
+    this_coeff_path <- bool_predictor_exclude[row,]
+    if(sum(this_coeff_path) == ncol(bool_predictor_exclude)){ return(0)}else{
+    return(ncol(bool_predictor_exclude) - which.min(this_coeff_path) + 1)}
+})
+
+# Create a dataset of this information and sort
+var_imp_data <- tibble(
+    var_name = rownames(bool_predictor_exclude),
+    var_imp = var_imp
+)
+var_imp_data %>% arrange(desc(var_imp))
+```
+
+```{r}
+## Tree and Forest Var Importance
+library(vip)
+conflicted::conflict_prefer("vi", "vip")
+
+tree <- fit_tree_model %>% extract_fit_engine() # fit_tree_model would come from fitting a decision_tree() model
+vi(tree)
+
+rf <- fit_rf_model %>% extract_fit_engine() # fit_rf_model would come from fitting a rand_forest() model
+vi(rf)
+
+# use vip instead of vi for plot
+```
+
+### Comparing Models: Workflow Sets {.unnumbered}
+
+For documentation and examples about comparing models, see the workflowsets package, <https://workflowsets.tidymodels.org/>
+
+```{r}
+wf_set <- workflow_set(
+  preproc = list(rec1 = recipe1, rec2 = recipe2, rec3 = recipe3),
+  models = list(mod1 = model_spec1, mod2 = model_spec2, mod3 = model_spec3),
+  cross = TRUE) %>%
+  workflow_map(
+    "fit_resamples", 
+    resamples,
+    metrics) 
+    
+wf_set %>% autoplot()
+
+wf_set %>% rank_results(rank_metric)
+```
+
+## Visualizing Fit Models {.unnumbered}
+
+### Visualize Coefficients {.unnumbered}
+
+```{r}
+# For Linear Regression
+fit_model %>% 
+  tidy() %>%
+  slice(-1) %>%
+  mutate(lower = estimate - 1.96*std.error, upper = estimate + 1.96*std.error) %>%
+  ggplot() +
+    geom_vline(xintercept=0, linetype=4) +
+    geom_point(aes(x=estimate, y=term)) +
+    geom_segment(aes(y=term, yend=term, x=lower, xend=upper), arrow = arrow(angle=90, ends='both', length = unit(0.1, 'cm'))) +
+    labs(x = 'Coefficient estimate (95% CI)', y = 'Feature') + 
+    theme_classic()
+
+
+# For Logistic Regression
+fit_model %>% 
+  tidy() %>%
+  slice(-1) %>%
+  mutate(OR.conf.low = exp(estimate - 1.96*std.error), OR.conf.high = exp(estimate + 1.96*std.error)) %>% # do this first
+  mutate(OR = exp(estimate)) %>%
+  ggplot() +
+    geom_vline(xintercept=1, linetype=4) +
+    geom_point(aes(x=OR, y=term)) +
+    geom_segment(aes(y=term, yend=term, x=OR.conf.lower, xend=OR.conf.upper), arrow = arrow(angle=90, ends='both', length = unit(0.1, 'cm'))) +
+    labs(x = 'Coefficient estimate (95% CI)', y = 'Feature') + 
+    theme_classic()
+
+```
+
+### Visualize Effects {.unnumbered}
+
+```{r}
+# Linear Regression
+data %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(-c(outcome,id), names_to = 'key', values_to = 'value') %>%
+  right_join(
+    (lm_fit_model %>% 
+      tidy() %>%
+      slice(-1) %>%
+      select(term, estimate)),
+    by = c('key'='term')
+  ) %>%
+  mutate(effect = value * estimate) %>%
+  ggplot(aes(x = effect, y = key)) +
+    geom_boxplot() +
+    geom_vline(xintercept = 0, color = 'grey') +
+    labs(x = 'Effect', y = 'Feature') + 
+    theme_classic()
+
+
+# Logistic Regression
+data %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(-c(outcome,id), names_to = 'key', values_to = 'value') %>%
+  right_join(
+    (glm_fit_model %>% 
+      tidy() %>%
+      slice(-1) %>%
+      select(term, estimate)),
+    by = c('key'='term')
+  ) %>%
+  mutate(effect = value * estimate) %>%
+  ggplot(aes(x = effect, y = key)) +
+    geom_boxplot() +
+    geom_vline(xintercept = 0, color = 'grey') +
+    labs(x = 'Effect (Log Odds units)', y = 'Feature') + 
+    theme_classic()
+```
+
+### Visualize Residuals {.unnumbered}
+
+```{r}
+# For Any Regression Model
+
+#Predicted vs. Residual
+fit_model %>% 
+  predict(new_data = data_train) %>%
+  bind_cols(data_train) %>%
+  mutate(resid = outcome - .pred) %>%
+  ggplot(aes(x = .pred, y = resid)) + 
+  geom_point() +
+  geom_smooth() +
+  theme_classic()
+
+
+#Variable vs. Residual
+fit_model %>% 
+  predict(new_data = data_train) %>%
+  bind_cols(data_train) %>%
+  mutate(resid = outcome - .pred) %>%
+  ggplot(aes(x = var, y = resid)) + 
+  geom_point() +
+  geom_smooth() +
+  theme_classic()
+```
+
+### Visualize Predictions {.unnumbered}
+
+```{r}
+# For Any Regression Model
+
+# Create a data_grid (fixing all other variables at some value, sequence of values for the variable of interest)
+data_grid <- data.frame(x1 = value1, x2 = value2, x3 = value3, x4 = seq(0,100,by = 1)) #example where x4 is variable of interest
+
+# Get Predicted Values for test values in data_grid
+predicted_lines <- data_grid %>% 
+  bind_cols(
+    predict(fit_model, new_data = data_grid),
+    predict(fit_model, new_data = data_grid, type='conf_int')
+    ) 
+
+train_data %>%
+  ggplot(aes(x = x4, y = outcome)) + 
+  geom_point() +
+  geom_line(aes(y = .pred, x = x4), data = predicted_lines) +
+  geom_line(aes(y = .pred_lower, x = x4), data = predicted_lines) +
+  geom_line(aes(y = .pred_upper, x = x4), data = predicted_lines) +
+  theme_classic()
+```
+
+### Visualize LASSO Coefficients
+
+```{r}
+glmnet_output <- final_fit_se %>% extract_fit_engine() # get the original glmnet output
+
+lambdas <- glmnet_output$lambda
+coefs_lambdas <- 
+  coefficients(glmnet_output, s = lambdas )  %>% 
+  as.matrix() %>%  
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(lambda = lambdas ) %>% 
+  select(lambda, everything(), -`(Intercept)`) %>% 
+  pivot_longer(cols = -lambda, 
+               names_to = "term", 
+               values_to = "coef") %>%
+  mutate(var = purrr::map_chr(stringr::str_split(term,"_"),~.[1]))
+
+coefs_lambdas %>%
+  ggplot(aes(x = lambda, y = coef, group = term, color = var)) +
+  geom_line() +
+  geom_vline(xintercept = best_se_penalty %>% pull(penalty), linetype = 'dashed') + 
+  theme_classic() + 
+  theme(legend.position = "bottom", legend.text=element_text(size=8))
+```
+
+
+## Real Data Example: Regression {.unnumbered}
+
+```{r}
+library(tidymodels)
+tidymodels_prefer() 
+
+data(ames)
+
+set.seed(123)
+
+ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
+
+# If you do one train/test split 
+data_split <- initial_split(ames, strata = "Sale_Price", prop = 0.75) #Create Train/Test set
+ames_train <- training(data_split) # Fit model to this
+ames_test  <- testing(data_split) # Don't use until evaluating final model
+```
+
+### Linear Regression {.unnumbered}
+
+```{r}
+lm_spec <- 
+  linear_reg() %>%  # Specify Model and Engine
+  set_engine( engine = 'lm') %>%
+  set_mode('regression') 
+
+lm_rec <- recipe(Sale_Price ~ Lot_Area + Year_Built +  House_Style + Gr_Liv_Area + Fireplaces, data = ames_train) %>%
+  step_lincomb(all_numeric_predictors()) %>% # Specify Formula and Preprocessing Recipe
+  step_zv(all_numeric_predictors()) %>%
+  step_mutate(Gr_Liv_Area = Gr_Liv_Area/100, Lot_Area = Lot_Area/100) %>%
+  step_mutate(Fireplaces = Fireplaces > 0) %>%
+  step_cut(Year_Built, breaks = c(0, 1950, 1990, 2020)) %>%
+  step_other(House_Style,threshold = .1) %>%
+  step_dummy(all_nominal_predictors())
+
+train_prep <- lm_rec %>% 
+  prep() %>%
+  juice() # Pre-process Training Data
+
+
+ames_wf <- workflow() %>% # Create Workflow (Recipe + Model Spec)
+  add_recipe(lm_rec) %>%
+  add_model(lm_spec)  
+
+lm_fit_train <- ames_wf %>%
+  fit(data = ames_train)  # Fit Model to Training Data
+
+train_prep %>%
+  select(Sale_Price) %>%
+  bind_cols( predict(lm_fit_train, ames_train) ) %>% 
+  metrics(estimate = .pred, truth = Sale_Price)  # Calculate Training metrics
+
+lm_fit_train %>%
+  tidy() # Model Coefficients from Trained Model
+
+library(dotwhisker)
+tidy(lm_fit_train) %>%  # Viz of Trained Model Coef
+  dwplot(dot_args = list(size = 2, color = "black"),
+         whisker_args = list(color = "black"),
+         vline = geom_vline(xintercept = 0, color = "grey50", linetype = 2))
+
+
+ames_cv <- vfold_cv(ames_train, v = 10, strata = Sale_Price) # Create 10 Folds of Training Data for CV
+
+lm_fit_cv <- fit_resamples(ames_wf, # Fit Model to 10 Folds of Training Data
+              resamples = ames_cv,
+              metrics = metric_set(rmse, mae, rsq))
+
+lm_fit_cv %>% collect_metrics() # Evaluate Trained Model using CV
+
+lm_fit_test <- last_fit(ames_wf,
+         split = data_split) 
+
+lm_fit_test %>%
+  collect_metrics() #Evaluation on Test Data
+
+
+
+library(vip)
+conflicted::conflict_prefer("vi", "vip")
+
+mod <- lm_fit_train %>% extract_fit_engine() 
+vi(mod, method = 'permute', target = 'Sale_Price', metric = 'rmse', train = train_prep, pred_wrapper = predict)
+vip(mod, method = 'permute', target = 'Sale_Price', metric = 'rmse', train = train_prep, pred_wrapper = predict) + theme_classic()
+```
+
+### Regularized Regression {.unnumbered}
+
+```{r}
+lm_lasso_spec <- 
+  linear_reg() %>%
+  set_args(mixture = 1, penalty = tune()) %>% 
+  set_engine(engine = 'glmnet') %>%
+  set_mode('regression') 
+
+# Update Workflow (Recipe + Model Spec)
+ames_wf <- ames_wf %>% 
+  update_model(lm_lasso_spec)  
+
+# Tune Model by Fitting Model to 10 Folds of Training Data
+lasso_fit_cv <- tune_grid(ames_wf, 
+              resamples = ames_cv,
+              grid = 10,
+              metrics = metric_set(rmse, mae, rsq))
+
+lasso_fit_cv %>% autoplot() + theme_classic() # Evaluate Trained Model using CV
+
+# Select penalty value
+lasso_fit_cv %>% show_best(metric = 'rmse')
+best_penalty <- lasso_fit_cv %>% 
+  select_by_one_std_err(metric = 'rmse',desc(penalty))
+
+tuned_ames_wf <-  finalize_workflow(ames_wf,best_penalty)
+
+lm_lasso_spec <- tuned_ames_wf %>% pull_workflow_spec() # Save final tuned model spec
+
+# CV metrics
+lasso_fit_cv %>% 
+  collect_metrics() %>%
+  filter(penalty == (best_penalty %>% pull(penalty))) 
+
+# Fit Tuned Lasso Model to Training Data
+lasso_fit_train <- tuned_ames_wf %>%
+  fit(data = ames_train)  
+
+# Training metrics
+train_prep %>%
+  select(Sale_Price) %>%
+  bind_cols( predict(lasso_fit_train, ames_train) ) %>% 
+  metrics(estimate = .pred, truth = Sale_Price)  
+
+# Model Coefficients from Trained Model
+lasso_fit_train %>%
+  tidy() 
+
+
+# Var Importance
+glmnet_output <- lasso_fit_train %>% extract_fit_engine()
+    
+# Create a boolean matrix (predictors x lambdas) of variable exclusion
+bool_predictor_exclude <- glmnet_output$beta==0
+
+# Loop over each variable
+var_imp <- sapply(seq_len(nrow(bool_predictor_exclude)), function(row) {
+    this_coeff_path <- bool_predictor_exclude[row,]
+    if(sum(this_coeff_path) == ncol(bool_predictor_exclude)){ return(0)}else{
+    return(ncol(bool_predictor_exclude) - which.min(this_coeff_path) + 1)}
+})
+
+# Create a dataset of this information and sort
+var_imp_data <- tibble(
+    var_name = rownames(bool_predictor_exclude),
+    var_imp = var_imp
+)
+var_imp_data %>% arrange(desc(var_imp))
+```
+
+### Nearest Neighbors {.unnumbered}
+
+```{r}
+knn_spec <- 
+  nearest_neighbor() %>%
+  set_args(neighbors = tune()) %>%
+  set_engine(engine = 'kknn') %>%
+  set_mode('regression') 
+
+# Update Workflow (Recipe + Model Spec)
+ames_wf <- ames_wf %>% 
+  update_model(knn_spec)  
+
+# Tune Model by Fitting Model to 10 Folds of Training Data
+knn_fit_cv <- tune_grid(ames_wf, 
+              resamples = ames_cv,
+              grid = 20,
+              metrics = metric_set(rmse, mae, rsq))
+
+knn_fit_cv %>% autoplot() # Evaluate Trained Model using CV
+
+
+# Select penalty value
+knn_fit_cv %>% show_best(metric = 'rmse')
+
+best_neighbor <- knn_fit_cv %>% 
+  select_by_one_std_err(metric = 'rmse', neighbors)
+
+tuned_ames_wf <-  finalize_workflow(ames_wf, best_neighbor)
+
+knn_spec <- tuned_ames_wf %>% pull_workflow_spec() # Save final tuned model spec
+
+
+# CV Metrics
+knn_fit_cv %>%
+  collect_metrics() %>%
+  filter(neighbors == (best_neighbor %>% pull(neighbors)))
+
+
+# Fit KNN Model to Training Data
+knn_fit_train <- tuned_ames_wf %>%
+  fit(data = ames_train)  
+
+train_prep %>%
+  select(Sale_Price) %>%
+  bind_cols( predict(knn_fit_train, ames_train) ) %>% 
+  metrics(estimate = .pred, truth = Sale_Price)  # Training metrics
+
+
+# Visualize Predictions
+data_grid <- data.frame(Lot_Area = median(ames_train$Lot_Area),Year_Built = median(ames_train$Year_Built), House_Style = 'One_Story', Fireplaces = 1, Gr_Liv_Area = seq(300,5000,by = 100)) 
+
+# Get Predicted Values for test values in data_grid
+predicted_lines <- data_grid %>% 
+  bind_cols(
+    predict(knn_fit_train , new_data = data_grid)
+    ) 
+
+ames_train %>%
+  ggplot(aes(x = Gr_Liv_Area, y = Sale_Price)) + 
+  geom_point() +
+  geom_line(aes(y = .pred, x = Gr_Liv_Area), data = predicted_lines, color = 'red') +
+  theme_classic()
+```
+
+### GAMs - Splines and Local Regression {.unnumbered}
+
+```{r}
+spline_rec <- lm_rec %>%
+  step_ns(Gr_Liv_Area, deg_free = 4)
+
+ames_wf <- ames_wf %>% # Update Workflow (Recipe + Model Spec)
+  update_recipe(spline_rec) %>%
+  update_model(lm_spec)  
+
+spline_fit_train <- ames_wf %>%
+  fit(data = ames_train)  # Fit Spline Model to Training Data
+
+train_prep %>%
+  select(Sale_Price) %>%
+  bind_cols( predict(spline_fit_train, ames_train) ) %>% 
+  metrics(estimate = .pred, truth = Sale_Price)  # Training metrics
+
+spline_fit_cv <- ames_wf %>%
+  fit_resamples(resamples = ames_cv,
+                metrics = metric_set(rmse, mae, rsq))
+
+# CV Metrics
+spline_fit_cv %>%
+  collect_metrics()
+
+
+
+# Visualize Predictions (Non-Linear Functions)
+data_grid <- data.frame(Lot_Area = median(ames_train$Lot_Area),Year_Built = median(ames_train$Year_Built), House_Style = 'One_Story', Fireplaces = 1, Gr_Liv_Area = seq(300,5000,by = 100)) 
+
+# Get Predicted Values for test values in data_grid
+predicted_lines <- data_grid %>% 
+  bind_cols(
+    predict(spline_fit_train , new_data = data_grid)
+    ) 
+
+ames_train %>%
+  ggplot(aes(x = Gr_Liv_Area, y = Sale_Price)) + 
+  geom_point() +
+  geom_line(aes(y = .pred, x = Gr_Liv_Area), data = predicted_lines, color = 'red') +
+  theme_classic()
+```
+
+### GAM - Smoothing Splines {.unnumbered}
+
+
+```{r}
+gam_spec <- 
+  gen_additive_mod() %>%
+  set_engine(engine = 'mgcv') %>%
+  set_mode('regression') 
+
+fit_gam_model <- gam_spec %>% 
+  fit(Sale_Price ~ Lot_Area + Year_Built +  House_Style + s(Gr_Liv_Area, k = 15) + Fireplaces, data = ames_train) 
+
+# Summary: Parameter (linear) estimates and then Smooth Terms (H0: no relationship)
+fit_gam_model %>% pluck('fit') %>% summary() 
+
+# Diagnostics: Check to see if the number of knots is large enough (if p-value is low, increase number of knots)
+par(mfrow=c(2,2))
+fit_gam_model %>% pluck('fit') %>% mgcv::gam.check() 
+
+# Visualize Non-Linear Functions
+fit_gam_model %>% pluck('fit') %>% plot() 
+```
+
+### Regression Trees {.unnumbered}
+
+```{r}
+tree_rec <- recipe(Sale_Price ~ Lot_Area + Year_Built +  House_Style + Gr_Liv_Area + Fireplaces, data = ames_train) %>%
+  step_zv(all_numeric_predictors())
+
+tree_spec <- 
+  decision_tree() %>%
+  set_engine(engine = 'rpart') %>%
+  set_mode('regression') 
+
+
+ames_wf <- ames_wf %>% # Update Workflow (Recipe + Model Spec)
+  update_recipe(tree_rec) %>%
+  update_model(tree_spec)  
+
+tree_fit_train <- ames_wf %>%
+  fit(data = ames_train)  # Fit Reg Tree Model to Training Data
+
+train_prep %>%
+  select(Sale_Price) %>%
+  bind_cols( predict(tree_fit_train, ames_train) ) %>% 
+  metrics(estimate = .pred, truth = Sale_Price)  # Training metrics
+
+tree_fit_train %>% 
+  extract_fit_engine() %>% 
+  rpart.plot::rpart.plot(roundint = FALSE)
+
+tree_fit_cv <- ames_wf %>%
+  fit_resamples(resamples = ames_cv,
+                metrics = metric_set(rmse, mae, rsq))
+
+tree_fit_cv %>%
+  collect_metrics()
+
+
+```
+
+### Comparison of Methods {.unnumbered}
+
+```{r}
+wf_set <- workflow_set(
+  preproc = list(lm = lm_rec, spline = spline_rec, tree = tree_rec),
+  models = list(lm = lm_spec, lasso = lm_lasso_spec, knn = knn_spec, tree = tree_spec),
+  cross = TRUE) %>% 
+   anti_join(tibble(wflow_id = c("lm_tree","spline_lasso", "spline_knn","spline_tree","tree_lm","tree_lasso","tree_knn")), 
+             by = "wflow_id")
+
+ames_wf_set <- wf_set %>%
+  workflow_map(
+    "fit_resamples", 
+    resamples = ames_cv, # Compare Methods via CV
+    metrics = metric_set(rmse, rsq, mae)) 
+    
+ames_wf_set %>% autoplot()
+ames_wf_set %>% rank_results(rank_metric = 'rmse')
+```
+
+```{r}
+list(lm = lm_fit_test, lasso =  lasso_fit_test, knn = knn_fit_test, spline = spline_fit_test, tree = tree_fit_test) %>%  # Comparison of Methods fit to Test Data
+  map_df(collect_metrics, .id = 'Model') %>%
+  ggplot(aes(x = Model, y = .estimate)) +
+  geom_point() +
+  facet_grid(.metric ~ ., scales = 'free') + 
+  theme_classic()
+```
+
+```{r}
+new_ames <- crossing(Fireplaces = 0:1, Lot_Area = seq(1500, 15000, length = 10), Gr_Liv_Area = seq(500, 5000, length = 10), Year_Built = c(1900,1950, 1975,2000), House_Style = c('One_Story', 'Two_Story','SLvl')) %>%
+  filter(!(Gr_Liv_Area > Lot_Area))
+
+all_preds <- new_ames %>%
+  bind_cols(predict(lm_fit_train,new_ames)) %>%
+  rename(.lm.pred = .pred) %>%
+  bind_cols(predict(lasso_fit_train,new_ames)) %>%
+  rename(.lasso.pred = .pred) %>%
+  bind_cols(predict(knn_fit_train,new_ames)) %>%
+  rename(.knn.pred = .pred) %>%
+  bind_cols(predict(spline_fit_train,new_ames)) %>%
+  rename(.spline.pred = .pred) %>%
+  bind_cols(predict(tree_fit_train,new_ames)) %>%
+  rename(.tree.pred = .pred) 
+
+# Visualize Predictions from these Models
+
+all_preds %>%
+  filter(Year_Built == 1975 & Fireplaces == 0) %>%
+  ggplot(aes(x = Gr_Liv_Area, y = .spline.pred, color = House_Style )) +
+  geom_point() + 
+  geom_line() + 
+  facet_wrap(~Lot_Area) + 
+  theme_classic()
+
+```
+
+## Real Data Example: Classification {.unnumbered}
+
+```{r}
+library(tidymodels)
+tidymodels_prefer() 
+
+data(ames)
+
+set.seed(123)
+
+ames <- ames %>% mutate(High_Sale_Price = factor(Sale_Price > quantile(Sale_Price,.75)))
+
+data_split <- initial_split(ames, strata = "High_Sale_Price", prop = 0.75) #Create Train/Test set
+
+ames_train <- training(data_split) # Fit model to this
+ames_test  <- testing(data_split) # Don't use until evaluating final model
+```
+
+### Logistic Regression {.unnumbered}
+
+```{r}
+logistic_spec <- 
+  logistic_reg() %>%  # Specify Model and Engine
+  set_engine( engine = 'glm') %>%
+  set_mode('classification') 
+
+glm_rec <- recipe(High_Sale_Price ~ Lot_Area + Year_Built +  House_Style + Gr_Liv_Area + Fireplaces, data = ames_train) %>%
+  step_lincomb(all_numeric_predictors()) %>% # Specify Formula and Preprocessing Recipe
+  step_zv(all_numeric_predictors()) %>%
+  step_mutate(Gr_Liv_Area = Gr_Liv_Area/100, Lot_Area = Lot_Area/100) %>%
+  step_mutate(Fireplaces = Fireplaces > 0) %>%
+  step_cut(Year_Built, breaks = c(0, 1950, 1990, 2020)) %>%
+  step_other(House_Style,threshold = .1) %>%
+  step_dummy(all_nominal_predictors())
+
+train_prep <- glm_rec %>% 
+  prep() %>%
+  juice()  # Create Prepped Training Data
+
+
+ames_wf <- workflow() %>% # Create Workflow (Recipe + Model Spec)
+  add_recipe(glm_rec) %>%
+  add_model(logistic_spec)  
+
+logistic_fit_train <- ames_wf %>%
+  fit(data = ames_train)  # Fit Model to Training Data
+
+predict(logistic_fit_train, ames_train) %>%
+  bind_cols(train_prep %>% select(High_Sale_Price)) %>% 
+  metrics(estimate = .pred_class, truth = High_Sale_Price)  # Training metrics
+
+logistic_fit_train %>%
+  tidy() # Model Coefficients from Trained Model
+
+library(dotwhisker)
+tidy(logistic_fit_train) %>%  # Viz of Trained Model Odds Ratios
+  mutate(conf.low = exp(estimate - 1.96*std.error),conf.high = exp(estimate + 1.96*std.error)) %>% # do this first
+  mutate(estimate = exp(estimate)) %>% # this second
+  dwplot(dot_args = list(size = 2, color = "black"),
+         whisker_args = list(color = "black"),
+         vline = geom_vline(xintercept = 1, color = "grey50", linetype = 2)) + labs(x = 'Odds Ratio') + theme_classic()
+
+
+ames_cv <- vfold_cv(ames_train, v = 10, strata = Sale_Price) # Create 10 Folds of Training Data for CV
+
+logistic_fit_cv <- fit_resamples(ames_wf, # Fit Model to 10 Folds of Training Data
+              resamples = ames_cv,
+              metrics = metric_set(sens, spec, accuracy, roc_auc))
+
+logistic_fit_cv %>% collect_metrics() # Evaluate Model using CV
+
+logistic_fit_test <- last_fit(ames_wf,
+         split = data_split,
+         metrics = metric_set(sens, spec, accuracy, roc_auc)) 
+
+logistic_fit_test %>%
+  collect_metrics() #Evaluation on Test Data
+```
+
+### Regularized Logistic Regression {.unnumbered}
+
+```{r}
+logistic_lasso_spec <- 
+  logistic_reg() %>%
+  set_args(mixture = 1, penalty = tune()) %>% 
+  set_engine(engine = 'glmnet') %>%
+  set_mode('classification') 
+
+
+ames_wf <- ames_wf %>% # Update Workflow (Recipe + Model Spec)
+  update_model(logistic_lasso_spec)  
+
+
+logistic_lasso_fit_cv <- tune_grid(ames_wf, # Fit Model to 10 Folds of Training Data
+              resamples = ames_cv,
+              grid = 10,
+              metrics = metric_set(sens, spec, accuracy, roc_auc))
+
+logistic_lasso_fit_cv %>% autoplot() # Evaluate Trained Model using CV
+
+logistic_lasso_fit_cv %>% show_best(metric = 'roc_auc')
+
+tuned_ames_wf <- logistic_lasso_fit_cv %>% 
+  select_best(metric = 'roc_auc') %>% 
+  finalize_workflow(ames_wf,.) #set penalty based on best fit
+
+logistic_lasso_spec <- tuned_ames_wf %>% pull_workflow_spec() # Save final tuned model spec
+
+logistic_lasso_fit_train <- tuned_ames_wf %>%
+  fit(data = ames_train)  # Fit Lasso Model to Training Data (penalty is now set)
+
+logistic_lasso_fit_train %>%
+  predict(new_data = ames_train) %>%
+  bind_cols(train_prep %>% select(High_Sale_Price)) %>% 
+  metrics(estimate = .pred_class, truth = High_Sale_Price)  # Training metrics
+
+logistic_lasso_fit_train %>%
+  tidy() # Model Coefficients from Trained Model
+
+lasso_fit_test <- last_fit(tuned_ames_wf,
+         split = data_split,
+         metrics = metric_set(sens, spec, accuracy, roc_auc)) 
+
+lasso_fit_test %>%
+  collect_metrics() #Evaluation on Test Data
+```
+
+### Classification Trees {.unnumbered}
+
+```{r}
+ctree_spec <- 
+  decision_tree() %>%
+  set_engine(engine = 'rpart') %>%
+  set_mode('classification') 
+
+ames_wf <- ames_wf %>% # Update Workflow (Recipe + Model Spec)
+  update_model(ctree_spec)  
+
+ctree_fit_train <- ames_wf %>%
+  fit(data = ames_train)  # Fit Reg Tree Model to Training Data
+
+ctree_fit_train %>%
+  predict(ames_train)  %>%
+  bind_cols(train_prep %>% select(High_Sale_Price)  ) %>% 
+  metrics(estimate = .pred_class, truth = High_Sale_Price)  # Training metrics
+
+ctree_fit_train %>% 
+  pull_workflow_fit() %>% 
+  pluck('fit') %>% 
+  rpart.plot::rpart.plot(roundint = FALSE)
+
+ctree_fit_cv <- ames_wf %>%
+  fit_resamples(resamples = ames_cv,
+                metrics = metric_set(sens,spec,accuracy,roc_auc))
+
+ctree_fit_cv %>%
+  collect_metrics()
+
+
+last_fit(ames_wf,
+         split = data_split,
+         metrics = metric_set(sens,spec,accuracy,roc_auc)
+         ) %>%
+  collect_metrics() # Evaluation on Test Data
+```
+
+### Random Forest {.unnumbered}
+
+```{r}
+rf_spec <- 
+  rand_forest() %>%
+  set_engine(engine = 'ranger') %>%
+  set_mode('classification') 
+
+ames_wf <- ames_wf %>% # Update Workflow (Recipe + Model Spec)
+  update_model(rf_spec)  
+
+rf_fit_train <- ames_wf %>%
+  fit(data = ames_train)  # Fit Reg Tree Model to Training Data
+
+rf_fit_train %>%
+  predict(ames_train)  %>%
+  bind_cols(train_prep %>% select(High_Sale_Price)  ) %>% 
+  metrics(estimate = .pred_class, truth = High_Sale_Price)  # Training metrics
+
+rf_fit_cv <- ames_wf %>%
+  fit_resamples(resamples = ames_cv,
+                metrics = metric_set(sens,spec,accuracy,roc_auc))
+
+rf_fit_cv %>%
+  collect_metrics()
+
+
+last_fit(ames_wf,
+         split = data_split,
+         metrics = metric_set(sens,spec,accuracy,roc_auc)
+         ) %>%
+  collect_metrics() # Evaluation on Test Data
+```
+
+### Comparison of Methods {.unnumbered}
+
+```{r}
+wf_set <- workflow_set(
+  preproc = list(glm_rec),
+  models = list(logistic = logistic_spec, lasso = logistic_lasso_spec, tree = ctree_spec, rf = rf_spec),
+  cross = TRUE)
+
+
+ames_wf_set <- wf_set %>%
+  workflow_map(
+    "fit_resamples", 
+    resamples = ames_cv, # Compare Methods via CV
+    metrics = metric_set(accuracy, sens, spec, roc_auc )) 
+    
+ames_wf_set %>% autoplot()
+ames_wf_set %>% rank_results(rank_metric = 'roc_auc ')
+```
+
+
+## Real Data Example: Clustering {.unnumbered}
+
+
+## Real Data Example: Dimension Reduction {.unnumbered}
+
+
