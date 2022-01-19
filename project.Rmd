@@ -12,7 +12,7 @@ You will be analyzing a dataset using a regression analysis, a classification an
 
 **Collaboration:**
 
--   You will work in teams of 2-3 members.
+-   You will work in teams of 2-4 members.
 -   The weekly homework assignments will note whether work for that week should be submitted individually or if just one team member should submit work.
 -   There will be a required synthesis of the weekly homework investigations at the end of the course that will be done in your group.
 
@@ -20,7 +20,7 @@ You will be analyzing a dataset using a regression analysis, a classification an
 
 **Final deliverables:**
 
-Only one team member has to submit these materials to [Moodle](https://moodle.macalester.edu/course/view.php?id=2089). **A draft of the html file is due on December 9th and the final html code appendix file and video presentation due date is Thursday, December 16 at midnight CST.**
+Only one team member has to submit these materials to [Moodle](https://moodle.macalester.edu/course/view.php?id=1260). **Deadline for final files: TBD**
 
 -   Submit a final knitted HTML file of a CODE APPENDIX (must knit without errors) that is CLEARLY organized and easy to navigate plus the corresponding Rmd file used to create the html file.
 
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE
 
 -   A 10-15 minute video presentation of your project that addresses the items in the Expectations below. (Recording the presentation over Zoom is a good option for creating the video. You can record to your computer or to the cloud.)
 
-    -   Upload the video to [Google Drive](https://drive.google.com/drive/folders/12OElnY7y361stKE7g3ruXP3iSqD6IZqm?usp=sharing) & share a link in Moodle (with Mac Viewer sharing)
+    -   Upload the video to [Google Drive](https://drive.google.com/drive/folders/1dxirIXHkhaWIMrLU6VL2jDqJfBqJ_RxE?usp=sharing) & share a link in Moodle (with Mac Viewer sharing)
     -   All team members should have an equal speaking role in the presentation.
     
 In order to record your presentation, 
@@ -43,7 +43,7 @@ In order to record your presentation,
 5. Start presenting! 
 6. You can Pause the recording, as needed, and then press start recording again. 
 7. When you have finished recording, you can press Stop Recording. When you end the meeting, the recording (an mp4 file) will be downloaded to the computer of the individual who pressed Record.
-8. Upload the video to [Google Drive](https://drive.google.com/drive/folders/12OElnY7y361stKE7g3ruXP3iSqD6IZqm?usp=sharing) & share a link in Moodle
+8. Upload the video to [Google Drive](https://drive.google.com/drive/folders/1dxirIXHkhaWIMrLU6VL2jDqJfBqJ_RxE?usp=sharing) & share a link in Moodle
 
 <br><br>
 

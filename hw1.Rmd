@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
 # Homework 1 {-}
 
 <center>
-**Due Thursday, September 16 at midnight CST on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=27979)**
+**Due Friday, February 4th at 9:00 CST on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=30150)**
 
 Please turn in a **single PDF document** containing (1) your responses for the Project Work and Reflection sections and (2) a LINK to the Google Doc with your responses for the Portfolio Work section.
 </center>
@@ -25,7 +25,7 @@ Your dataset(s) should allow you to perform a (1) regression, (2) classification
 - [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets.php)
 - [Harvard Dataverse](https://dataverse.harvard.edu/)
 
-You'll end up working in a group of 2-3 people on the project, but please complete this initial work individually. It's fine if you and a potential/future group member end up using the same dataset for this homework and collaborate on the finding of data, but complete the short bit of writing (below) individually.
+You'll end up working in a group of 2-4 people on the project, but please complete this initial work individually. It's fine if you and a potential/future group member end up using the same dataset for this homework and collaborate on the finding of data, but complete the short bit of writing (below) individually.
 
 Check in with the instructor *early* if you need help.
 

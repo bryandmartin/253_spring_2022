@@ -2,7 +2,9 @@ book_filename: "stat253_manual"
 output_dir: docs
 rmd_files: ["index.Rmd", "schedule.Rmd", "learning_objectives.Rmd", 
   "r_rstudio.Rmd","r_resources.Rmd","cheatsheet.Rmd",
-  "01-introductions.Rmd", "02-evaluating-regression.Rmd" , "03-overfitting.Rmd"]
+  "01-introductions.Rmd", "02-evaluating-regression.Rmd" , "03-overfitting.Rmd",
+  "hw1.Rmd",
+  "project.Rmd"]
 language:
   ui:
     chapter_name: "Topic "
@@ -23,9 +25,7 @@ language:
 # , "16-hclust.Rmd"]
 # , "17-catch-up-clustering.Rmd"]
 # , "18-pca.Rmd"]
-# , "hw1.Rmd"]
 # , "hw2.Rmd"]
 # , "hw3.Rmd"]
 # , "hw4.Rmd"]
 # , "hw5.Rmd"]
-# , "project.Rmd"]
