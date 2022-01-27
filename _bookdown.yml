@@ -3,6 +3,7 @@ output_dir: docs
 rmd_files: ["index.Rmd", "schedule.Rmd", "learning_objectives.Rmd", 
   "r_rstudio.Rmd","r_resources.Rmd","cheatsheet.Rmd",
   "01-introductions.Rmd", "02-evaluating-regression.Rmd" , "03-overfitting.Rmd",
+  "04-cv.Rmd", "05-subset-selection.Rmd",
   "hw1.Rmd",
   "project.Rmd"]
 language:
@@ -10,8 +11,7 @@ language:
     chapter_name: "Topic "
 
 
-# , "04-cv.Rmd"]
-# , "05-subset-selection.Rmd"]
+
 # , "06-lasso-shrinkage.Rmd"]
 # , "07-knn-bvt.Rmd"]
 # , "08-catch-up.Rmd"]

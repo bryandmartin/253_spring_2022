@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
 
 <br>
 
-Slides from today are available [here](https://docs.google.com/presentation/d/11BhjA-k3qMOPFnOr4PNXJVb9pNZeUHFtyzyvouDIDig/edit?usp=sharing).
+Slides from today are available [here (not yet)](LINK).
 
 <br><br><br>
 
@@ -34,7 +34,7 @@ From Chapter 9 of *Communicating with Data*:
 
 ### Instructions {.unnumbered}
 
-1.  One person from the group makes a copy of [this document](https://docs.google.com/document/d/1kWGCyKkuFaU2qAxDRowgOzwlol_zWWLa-fwSaHbcFLU/edit?usp=sharing) and then shares that copy with everyone in the group and the instructor.
+1.  One person from the group makes a copy of [this document](https://docs.google.com/document/d/1U905_Brwzf_TdhwClUafc6ImQWGiRTVfQC0iH4pwCJo/edit?usp=sharing) and then shares that copy with everyone in the group and the instructor.
 2.  Change "editing" (look for the pencil at the top right of document) to "suggesting"
 3.  Each person focuses on one sentence (2,3,8 or 9) in the document to revise.
 4.  Spend 3 minutes working to revise the sentence.
