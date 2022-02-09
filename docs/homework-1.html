@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="knn-regression-and-the-bias-variance-tradeoff.html"/>
+<link rel="prev" href="splines.html"/>
 <link rel="next" href="homework-2.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -303,16 +303,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-5-curse-of-dimensionality"><i class="fa fa-check"></i>Exercise 5: Curse of dimensionality</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="catch-up-day.html"><a href="catch-up-day.html"><i class="fa fa-check"></i><b>8</b> Catch up Day</a>
+<ul>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#learning-goals-7"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#content-conversation-1-prompts"><i class="fa fa-check"></i>Content Conversation 1 Prompts</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#peer-review"><i class="fa fa-check"></i>Peer Review</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="splines.html"><a href="splines.html"><i class="fa fa-check"></i><b>9</b> Splines</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#learning-goals-8"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#splines-1"><i class="fa fa-check"></i>Splines</a></li>
+<li><a href="splines.html#splines-in-tidymodels">Splines in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercises-6"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-1-evaluating-a-fully-linear-model"><i class="fa fa-check"></i>Exercise 1: Evaluating a fully linear model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-2-evaluating-a-spline-model"><i class="fa fa-check"></i>Exercise 2: Evaluating a spline model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#extra-variable-scaling"><i class="fa fa-check"></i>Extra! Variable scaling</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>VI Homework</b></span></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
 <ul>
-<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work-1"><i class="fa fa-check"></i>Project Work</a></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#portfolio-work"><i class="fa fa-check"></i>Portfolio Work</a></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#reflection"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i>Homework 2</a>
 <ul>
-<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-1"><i class="fa fa-check"></i>Project Work</a>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-2"><i class="fa fa-check"></i>Project Work</a>
 <ul>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#instructions-1"><i class="fa fa-check"></i>Instructions</a></li>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#required-analyses"><i class="fa fa-check"></i>Required Analyses</a></li>
@@ -352,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Due Friday, February 4th at 9:00 CST on <a href="https://moodle.macalester.edu/mod/assign/view.php?id=30150">Moodle</a></strong></p>
 Please turn in a <strong>single PDF document</strong> containing (1) your responses for the Project Work and Reflection sections and (2) a LINK to the Google Doc with your responses for the Portfolio Work section.
 </center>
-<div id="project-work" class="section level2 unnumbered">
+<div id="project-work-1" class="section level2 unnumbered">
 <h2>Project Work</h2>
 <p><strong>Goal:</strong> Find a dataset (or datasets) to use for your <a href="final-project.html">final project</a>, and start to get to know the data.</p>
 <p><strong>Details:</strong></p>
@@ -418,7 +437,7 @@ Please turn in a <strong>single PDF document</strong> containing (1) your respon
           </div>
         </div>
       </div>
-<a href="knn-regression-and-the-bias-variance-tradeoff.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="splines.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="homework-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

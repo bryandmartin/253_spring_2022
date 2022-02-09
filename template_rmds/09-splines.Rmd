@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
 
 <br>
 
-Slides from today are available [here](https://docs.google.com/presentation/d/1Cmn-ffsBUoEClhNiSQnibBN37zWZnqZgB-sSb-TO1uQ/edit?usp=sharing).
+Slides from today are available [here](https://docs.google.com/presentation/d/1aq18jMs6aTqyE6xp4rIW1xLHxiIN4p-xgsiIWea3KGo/edit#slide=id.gf50f52ea18_0_0).
 
 
 

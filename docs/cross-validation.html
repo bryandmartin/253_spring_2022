@@ -303,16 +303,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-5-curse-of-dimensionality"><i class="fa fa-check"></i>Exercise 5: Curse of dimensionality</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="catch-up-day.html"><a href="catch-up-day.html"><i class="fa fa-check"></i><b>8</b> Catch up Day</a>
+<ul>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#learning-goals-7"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#content-conversation-1-prompts"><i class="fa fa-check"></i>Content Conversation 1 Prompts</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#peer-review"><i class="fa fa-check"></i>Peer Review</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="splines.html"><a href="splines.html"><i class="fa fa-check"></i><b>9</b> Splines</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#learning-goals-8"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#splines-1"><i class="fa fa-check"></i>Splines</a></li>
+<li><a href="splines.html#splines-in-tidymodels">Splines in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercises-6"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-1-evaluating-a-fully-linear-model"><i class="fa fa-check"></i>Exercise 1: Evaluating a fully linear model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-2-evaluating-a-spline-model"><i class="fa fa-check"></i>Exercise 2: Evaluating a spline model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#extra-variable-scaling"><i class="fa fa-check"></i>Extra! Variable scaling</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>VI Homework</b></span></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
 <ul>
-<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work-1"><i class="fa fa-check"></i>Project Work</a></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#portfolio-work"><i class="fa fa-check"></i>Portfolio Work</a></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#reflection"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i>Homework 2</a>
 <ul>
-<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-1"><i class="fa fa-check"></i>Project Work</a>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-2"><i class="fa fa-check"></i>Project Work</a>
 <ul>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#instructions-1"><i class="fa fa-check"></i>Instructions</a></li>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#required-analyses"><i class="fa fa-check"></i>Required Analyses</a></li>
@@ -416,38 +435,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>wrist</code>: Wrist circumference (cm)</li>
 </ul>
 <p>It takes a lot of effort to estimate body fat percentage accurately through underwater weighing. The goal is to build the best predictive model for <code>fatSiri</code> using just circumference measurements, which are more easily attainable. (We won’t use <code>fatBrozek</code> or <code>density</code> as predictors because they’re other outcome variables.)</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="cross-validation.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb109-2"><a href="cross-validation.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb109-3"><a href="cross-validation.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb109-4"><a href="cross-validation.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb109-5"><a href="cross-validation.html#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb109-6"><a href="cross-validation.html#cb109-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-7"><a href="cross-validation.html#cb109-7" aria-hidden="true" tabindex="-1"></a>bodyfat_train <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://www.dropbox.com/s/js2gxnazybokbzh/bodyfat_train.csv?dl=1&quot;</span>)</span>
-<span id="cb109-8"><a href="cross-validation.html#cb109-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-9"><a href="cross-validation.html#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the fatBrozek and density variables</span></span>
-<span id="cb109-10"><a href="cross-validation.html#cb109-10" aria-hidden="true" tabindex="-1"></a>bodyfat_train <span class="ot">&lt;-</span> bodyfat_train <span class="sc">%&gt;%</span></span>
-<span id="cb109-11"><a href="cross-validation.html#cb109-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>fatBrozek, <span class="sc">-</span>density, <span class="sc">-</span>hipin)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="cross-validation.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb112-2"><a href="cross-validation.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb112-3"><a href="cross-validation.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb112-4"><a href="cross-validation.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb112-5"><a href="cross-validation.html#cb112-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb112-6"><a href="cross-validation.html#cb112-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-7"><a href="cross-validation.html#cb112-7" aria-hidden="true" tabindex="-1"></a>bodyfat_train <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://www.dropbox.com/s/js2gxnazybokbzh/bodyfat_train.csv?dl=1&quot;</span>)</span>
+<span id="cb112-8"><a href="cross-validation.html#cb112-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-9"><a href="cross-validation.html#cb112-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the fatBrozek and density variables</span></span>
+<span id="cb112-10"><a href="cross-validation.html#cb112-10" aria-hidden="true" tabindex="-1"></a>bodyfat_train <span class="ot">&lt;-</span> bodyfat_train <span class="sc">%&gt;%</span></span>
+<span id="cb112-11"><a href="cross-validation.html#cb112-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>fatBrozek, <span class="sc">-</span>density, <span class="sc">-</span>hipin)</span></code></pre></div>
 <p>Consider the 4 models you’ve used before:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="cross-validation.html#cb110-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span></span>
-<span id="cb110-2"><a href="cross-validation.html#cb110-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb110-3"><a href="cross-validation.html#cb110-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb110-4"><a href="cross-validation.html#cb110-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>)</span>
-<span id="cb110-5"><a href="cross-validation.html#cb110-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-6"><a href="cross-validation.html#cb110-6" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
-<span id="cb110-7"><a href="cross-validation.html#cb110-7" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> age<span class="sc">+</span>weight<span class="sc">+</span>neck<span class="sc">+</span>abdomen<span class="sc">+</span>thigh<span class="sc">+</span>forearm, </span>
-<span id="cb110-8"><a href="cross-validation.html#cb110-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train)</span>
-<span id="cb110-9"><a href="cross-validation.html#cb110-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-10"><a href="cross-validation.html#cb110-10" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
-<span id="cb110-11"><a href="cross-validation.html#cb110-11" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> age<span class="sc">+</span>weight<span class="sc">+</span>neck<span class="sc">+</span>abdomen<span class="sc">+</span>thigh<span class="sc">+</span>forearm<span class="sc">+</span>biceps, </span>
-<span id="cb110-12"><a href="cross-validation.html#cb110-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train)</span>
-<span id="cb110-13"><a href="cross-validation.html#cb110-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-14"><a href="cross-validation.html#cb110-14" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
-<span id="cb110-15"><a href="cross-validation.html#cb110-15" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> age<span class="sc">+</span>weight<span class="sc">+</span>neck<span class="sc">+</span>abdomen<span class="sc">+</span>thigh<span class="sc">+</span>forearm<span class="sc">+</span>biceps<span class="sc">+</span>chest<span class="sc">+</span>hip, </span>
-<span id="cb110-16"><a href="cross-validation.html#cb110-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train)</span>
-<span id="cb110-17"><a href="cross-validation.html#cb110-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-18"><a href="cross-validation.html#cb110-18" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
-<span id="cb110-19"><a href="cross-validation.html#cb110-19" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> .,  <span class="co"># The . means all predictors</span></span>
-<span id="cb110-20"><a href="cross-validation.html#cb110-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train) </span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="cross-validation.html#cb113-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span></span>
+<span id="cb113-2"><a href="cross-validation.html#cb113-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb113-3"><a href="cross-validation.html#cb113-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb113-4"><a href="cross-validation.html#cb113-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>)</span>
+<span id="cb113-5"><a href="cross-validation.html#cb113-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-6"><a href="cross-validation.html#cb113-6" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
+<span id="cb113-7"><a href="cross-validation.html#cb113-7" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> age<span class="sc">+</span>weight<span class="sc">+</span>neck<span class="sc">+</span>abdomen<span class="sc">+</span>thigh<span class="sc">+</span>forearm, </span>
+<span id="cb113-8"><a href="cross-validation.html#cb113-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train)</span>
+<span id="cb113-9"><a href="cross-validation.html#cb113-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-10"><a href="cross-validation.html#cb113-10" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
+<span id="cb113-11"><a href="cross-validation.html#cb113-11" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> age<span class="sc">+</span>weight<span class="sc">+</span>neck<span class="sc">+</span>abdomen<span class="sc">+</span>thigh<span class="sc">+</span>forearm<span class="sc">+</span>biceps, </span>
+<span id="cb113-12"><a href="cross-validation.html#cb113-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train)</span>
+<span id="cb113-13"><a href="cross-validation.html#cb113-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-14"><a href="cross-validation.html#cb113-14" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
+<span id="cb113-15"><a href="cross-validation.html#cb113-15" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> age<span class="sc">+</span>weight<span class="sc">+</span>neck<span class="sc">+</span>abdomen<span class="sc">+</span>thigh<span class="sc">+</span>forearm<span class="sc">+</span>biceps<span class="sc">+</span>chest<span class="sc">+</span>hip, </span>
+<span id="cb113-16"><a href="cross-validation.html#cb113-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train)</span>
+<span id="cb113-17"><a href="cross-validation.html#cb113-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-18"><a href="cross-validation.html#cb113-18" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
+<span id="cb113-19"><a href="cross-validation.html#cb113-19" aria-hidden="true" tabindex="-1"></a>            fatSiri <span class="sc">~</span> .,  <span class="co"># The . means all predictors</span></span>
+<span id="cb113-20"><a href="cross-validation.html#cb113-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bodyfat_train) </span></code></pre></div>
 </div>
 <div id="exercise-1-cross-validation-in-concept" class="section level3 unnumbered">
 <h3>Exercise 1: Cross-validation in Concept</h3>
@@ -461,18 +480,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: lower-alpha">
 <li>Complete the code below to perform 10-fold cross-validation for <code>mod1</code> to estimate the test RMSE (<span class="math inline">\(\text{CV}_{(10)}\)</span>). Do we need to use <code>set.seed()</code>? Why or why not? (Is there a number of folds for which we would not need to set the seed?)</li>
 </ol>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="cross-validation.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do we need to use set.seed()?</span></span>
-<span id="cb111-2"><a href="cross-validation.html#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-3"><a href="cross-validation.html#cb111-3" aria-hidden="true" tabindex="-1"></a>bodyfat_cv <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(??, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb111-4"><a href="cross-validation.html#cb111-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-5"><a href="cross-validation.html#cb111-5" aria-hidden="true" tabindex="-1"></a>model_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb111-6"><a href="cross-validation.html#cb111-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(??) <span class="sc">%&gt;%</span></span>
-<span id="cb111-7"><a href="cross-validation.html#cb111-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_spec)</span>
-<span id="cb111-8"><a href="cross-validation.html#cb111-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-9"><a href="cross-validation.html#cb111-9" aria-hidden="true" tabindex="-1"></a>mod1_cv <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(model_wf,</span>
-<span id="cb111-10"><a href="cross-validation.html#cb111-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> bodyfat_cv, </span>
-<span id="cb111-11"><a href="cross-validation.html#cb111-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, rsq, mae)</span>
-<span id="cb111-12"><a href="cross-validation.html#cb111-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="cross-validation.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do we need to use set.seed()?</span></span>
+<span id="cb114-2"><a href="cross-validation.html#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-3"><a href="cross-validation.html#cb114-3" aria-hidden="true" tabindex="-1"></a>bodyfat_cv <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(??, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb114-4"><a href="cross-validation.html#cb114-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-5"><a href="cross-validation.html#cb114-5" aria-hidden="true" tabindex="-1"></a>model_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb114-6"><a href="cross-validation.html#cb114-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(??) <span class="sc">%&gt;%</span></span>
+<span id="cb114-7"><a href="cross-validation.html#cb114-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_spec)</span>
+<span id="cb114-8"><a href="cross-validation.html#cb114-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-9"><a href="cross-validation.html#cb114-9" aria-hidden="true" tabindex="-1"></a>mod1_cv <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(model_wf,</span>
+<span id="cb114-10"><a href="cross-validation.html#cb114-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> bodyfat_cv, </span>
+<span id="cb114-11"><a href="cross-validation.html#cb114-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, rsq, mae)</span>
+<span id="cb114-12"><a href="cross-validation.html#cb114-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>Look at <code>mod1_cv %&gt;% unnest(.metrics)</code>, and use this to calculate the 10-fold cross-validated RMSE by hand. (Note: We haven’t done this together, but how can you adapt code that we’ve used before?)</p></li>
 <li><p>Check your answer to part c by directly printing out the CV metrics: <code>mod1_cv %&gt;% collect_metrics()</code>. Interpret this metric.</p></li>

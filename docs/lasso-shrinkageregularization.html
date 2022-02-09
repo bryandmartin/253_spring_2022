@@ -303,16 +303,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="knn-regression-and-the-bias-variance-tradeoff.html"><a href="knn-regression-and-the-bias-variance-tradeoff.html#exercise-5-curse-of-dimensionality"><i class="fa fa-check"></i>Exercise 5: Curse of dimensionality</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="catch-up-day.html"><a href="catch-up-day.html"><i class="fa fa-check"></i><b>8</b> Catch up Day</a>
+<ul>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#learning-goals-7"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#content-conversation-1-prompts"><i class="fa fa-check"></i>Content Conversation 1 Prompts</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#peer-review"><i class="fa fa-check"></i>Peer Review</a></li>
+<li class="chapter" data-level="" data-path="catch-up-day.html"><a href="catch-up-day.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="splines.html"><a href="splines.html"><i class="fa fa-check"></i><b>9</b> Splines</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#learning-goals-8"><i class="fa fa-check"></i>Learning Goals</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#splines-1"><i class="fa fa-check"></i>Splines</a></li>
+<li><a href="splines.html#splines-in-tidymodels">Splines in <code>tidymodels</code></a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercises-6"><i class="fa fa-check"></i>Exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-1-evaluating-a-fully-linear-model"><i class="fa fa-check"></i>Exercise 1: Evaluating a fully linear model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#exercise-2-evaluating-a-spline-model"><i class="fa fa-check"></i>Exercise 2: Evaluating a spline model</a></li>
+<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#extra-variable-scaling"><i class="fa fa-check"></i>Extra! Variable scaling</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>VI Homework</b></span></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
 <ul>
-<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work"><i class="fa fa-check"></i>Project Work</a></li>
+<li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work-1"><i class="fa fa-check"></i>Project Work</a></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#portfolio-work"><i class="fa fa-check"></i>Portfolio Work</a></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#reflection"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html"><i class="fa fa-check"></i>Homework 2</a>
 <ul>
-<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-1"><i class="fa fa-check"></i>Project Work</a>
+<li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#project-work-2"><i class="fa fa-check"></i>Project Work</a>
 <ul>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#instructions-1"><i class="fa fa-check"></i>Instructions</a></li>
 <li class="chapter" data-level="" data-path="homework-2.html"><a href="homework-2.html#required-analyses"><i class="fa fa-check"></i>Required Analyses</a></li>
@@ -386,85 +405,85 @@ LASSO (the <code>glmnet</code> engine) finds <span class="math inline">\(\hat{\b
 <div id="lasso-models-in-tidymodels" class="section level2 unnumbered">
 <h2>LASSO models in <code>tidymodels</code></h2>
 <p>To build LASSO models in <code>tidymodels</code>, first load the package and set the seed for the random number generator to ensure reproducible results:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lasso-shrinkageregularization.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb114-2"><a href="lasso-shrinkageregularization.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb114-3"><a href="lasso-shrinkageregularization.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb114-4"><a href="lasso-shrinkageregularization.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb114-5"><a href="lasso-shrinkageregularization.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) </span>
-<span id="cb114-6"><a href="lasso-shrinkageregularization.html#cb114-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>() <span class="co"># Resolves conflicts, prefers tidymodel functions</span></span>
-<span id="cb114-7"><a href="lasso-shrinkageregularization.html#cb114-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___) <span class="co"># Pick your favorite number to fill in the parentheses</span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="lasso-shrinkageregularization.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb117-2"><a href="lasso-shrinkageregularization.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb117-3"><a href="lasso-shrinkageregularization.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb117-4"><a href="lasso-shrinkageregularization.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb117-5"><a href="lasso-shrinkageregularization.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) </span>
+<span id="cb117-6"><a href="lasso-shrinkageregularization.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>() <span class="co"># Resolves conflicts, prefers tidymodel functions</span></span>
+<span id="cb117-7"><a href="lasso-shrinkageregularization.html#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___) <span class="co"># Pick your favorite number to fill in the parentheses</span></span></code></pre></div>
 <p>Then adapt the following code to fit a Lasso Model to a data set:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="lasso-shrinkageregularization.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasso Model Spec</span></span>
-<span id="cb115-2"><a href="lasso-shrinkageregularization.html#cb115-2" aria-hidden="true" tabindex="-1"></a>lm_lasso_spec <span class="ot">&lt;-</span> </span>
-<span id="cb115-3"><a href="lasso-shrinkageregularization.html#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb115-4"><a href="lasso-shrinkageregularization.html#cb115-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">mixture =</span> <span class="dv">1</span>, <span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="do">## mixture = 1 indicates Lasso, we&#39;ll choose penalty later</span></span>
-<span id="cb115-5"><a href="lasso-shrinkageregularization.html#cb115-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;glmnet&#39;</span>) <span class="sc">%&gt;%</span> <span class="co">#note we are using a different engine</span></span>
-<span id="cb115-6"><a href="lasso-shrinkageregularization.html#cb115-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>) </span>
-<span id="cb115-7"><a href="lasso-shrinkageregularization.html#cb115-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-8"><a href="lasso-shrinkageregularization.html#cb115-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Recipe with standardization (!)</span></span>
-<span id="cb115-9"><a href="lasso-shrinkageregularization.html#cb115-9" aria-hidden="true" tabindex="-1"></a>data_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>( ___ <span class="sc">~</span> ___ , <span class="at">data =</span> ___) <span class="sc">%&gt;%</span></span>
-<span id="cb115-10"><a href="lasso-shrinkageregularization.html#cb115-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_nzv</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># removes variables with the same value</span></span>
-<span id="cb115-11"><a href="lasso-shrinkageregularization.html#cb115-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># important if you have rare categorical variables </span></span>
-<span id="cb115-12"><a href="lasso-shrinkageregularization.html#cb115-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span>  <span class="co"># important standardization step for LASSO</span></span>
-<span id="cb115-13"><a href="lasso-shrinkageregularization.html#cb115-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())  <span class="co"># creates indicator variables for categorical variables</span></span>
-<span id="cb115-14"><a href="lasso-shrinkageregularization.html#cb115-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-15"><a href="lasso-shrinkageregularization.html#cb115-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
-<span id="cb115-16"><a href="lasso-shrinkageregularization.html#cb115-16" aria-hidden="true" tabindex="-1"></a>lasso_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb115-17"><a href="lasso-shrinkageregularization.html#cb115-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb115-18"><a href="lasso-shrinkageregularization.html#cb115-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_lasso_spec)</span>
-<span id="cb115-19"><a href="lasso-shrinkageregularization.html#cb115-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-20"><a href="lasso-shrinkageregularization.html#cb115-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model</span></span>
-<span id="cb115-21"><a href="lasso-shrinkageregularization.html#cb115-21" aria-hidden="true" tabindex="-1"></a>lasso_fit <span class="ot">&lt;-</span> lasso_wf <span class="sc">%&gt;%</span> </span>
-<span id="cb115-22"><a href="lasso-shrinkageregularization.html#cb115-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> ___) <span class="co"># Fit to data</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="lasso-shrinkageregularization.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasso Model Spec</span></span>
+<span id="cb118-2"><a href="lasso-shrinkageregularization.html#cb118-2" aria-hidden="true" tabindex="-1"></a>lm_lasso_spec <span class="ot">&lt;-</span> </span>
+<span id="cb118-3"><a href="lasso-shrinkageregularization.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb118-4"><a href="lasso-shrinkageregularization.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">mixture =</span> <span class="dv">1</span>, <span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="do">## mixture = 1 indicates Lasso, we&#39;ll choose penalty later</span></span>
+<span id="cb118-5"><a href="lasso-shrinkageregularization.html#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;glmnet&#39;</span>) <span class="sc">%&gt;%</span> <span class="co">#note we are using a different engine</span></span>
+<span id="cb118-6"><a href="lasso-shrinkageregularization.html#cb118-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>) </span>
+<span id="cb118-7"><a href="lasso-shrinkageregularization.html#cb118-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-8"><a href="lasso-shrinkageregularization.html#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Recipe with standardization (!)</span></span>
+<span id="cb118-9"><a href="lasso-shrinkageregularization.html#cb118-9" aria-hidden="true" tabindex="-1"></a>data_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>( ___ <span class="sc">~</span> ___ , <span class="at">data =</span> ___) <span class="sc">%&gt;%</span></span>
+<span id="cb118-10"><a href="lasso-shrinkageregularization.html#cb118-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_nzv</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># removes variables with the same value</span></span>
+<span id="cb118-11"><a href="lasso-shrinkageregularization.html#cb118-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># important if you have rare categorical variables </span></span>
+<span id="cb118-12"><a href="lasso-shrinkageregularization.html#cb118-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span>  <span class="co"># important standardization step for LASSO</span></span>
+<span id="cb118-13"><a href="lasso-shrinkageregularization.html#cb118-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())  <span class="co"># creates indicator variables for categorical variables</span></span>
+<span id="cb118-14"><a href="lasso-shrinkageregularization.html#cb118-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-15"><a href="lasso-shrinkageregularization.html#cb118-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
+<span id="cb118-16"><a href="lasso-shrinkageregularization.html#cb118-16" aria-hidden="true" tabindex="-1"></a>lasso_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb118-17"><a href="lasso-shrinkageregularization.html#cb118-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb118-18"><a href="lasso-shrinkageregularization.html#cb118-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_lasso_spec)</span>
+<span id="cb118-19"><a href="lasso-shrinkageregularization.html#cb118-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-20"><a href="lasso-shrinkageregularization.html#cb118-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model</span></span>
+<span id="cb118-21"><a href="lasso-shrinkageregularization.html#cb118-21" aria-hidden="true" tabindex="-1"></a>lasso_fit <span class="ot">&lt;-</span> lasso_wf <span class="sc">%&gt;%</span> </span>
+<span id="cb118-22"><a href="lasso-shrinkageregularization.html#cb118-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> ___) <span class="co"># Fit to data</span></span></code></pre></div>
 <p><strong>Examining the LASSO model for each <span class="math inline">\(\lambda\)</span></strong></p>
 <p>The <code>glmnet</code> engine fits models for each <span class="math inline">\(\lambda\)</span> automatically, so we can visualize the estimates for each penalty value.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="lasso-shrinkageregularization.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso_fit <span class="sc">%&gt;%</span> <span class="fu">extract_fit_parsnip</span>() <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;fit&#39;</span>), <span class="co"># way to get the original glmnet output</span></span>
-<span id="cb116-2"><a href="lasso-shrinkageregularization.html#cb116-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>) <span class="co"># glmnet fits the model with a variety of lambda penalty values</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lasso-shrinkageregularization.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso_fit <span class="sc">%&gt;%</span> <span class="fu">extract_fit_parsnip</span>() <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;fit&#39;</span>), <span class="co"># way to get the original glmnet output</span></span>
+<span id="cb119-2"><a href="lasso-shrinkageregularization.html#cb119-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>) <span class="co"># glmnet fits the model with a variety of lambda penalty values</span></span></code></pre></div>
 <p><strong>Identifying the “best” LASSO model</strong></p>
 <p>To identify the best model, we need to tune the model using cross validation. Adapt the following code to tune a Lasso Model to choose Lambda:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="lasso-shrinkageregularization.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CV folds</span></span>
-<span id="cb117-2"><a href="lasso-shrinkageregularization.html#cb117-2" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(___, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb117-3"><a href="lasso-shrinkageregularization.html#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-4"><a href="lasso-shrinkageregularization.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasso Model Spec with tune</span></span>
-<span id="cb117-5"><a href="lasso-shrinkageregularization.html#cb117-5" aria-hidden="true" tabindex="-1"></a>lm_lasso_spec_tune <span class="ot">&lt;-</span> </span>
-<span id="cb117-6"><a href="lasso-shrinkageregularization.html#cb117-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb117-7"><a href="lasso-shrinkageregularization.html#cb117-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">mixture =</span> <span class="dv">1</span>, <span class="at">penalty =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="do">## mixture = 1 indicates Lasso</span></span>
-<span id="cb117-8"><a href="lasso-shrinkageregularization.html#cb117-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;glmnet&#39;</span>) <span class="sc">%&gt;%</span> <span class="co">#note we are using a different engine</span></span>
-<span id="cb117-9"><a href="lasso-shrinkageregularization.html#cb117-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>) </span>
-<span id="cb117-10"><a href="lasso-shrinkageregularization.html#cb117-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-11"><a href="lasso-shrinkageregularization.html#cb117-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
-<span id="cb117-12"><a href="lasso-shrinkageregularization.html#cb117-12" aria-hidden="true" tabindex="-1"></a>lasso_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb117-13"><a href="lasso-shrinkageregularization.html#cb117-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb117-14"><a href="lasso-shrinkageregularization.html#cb117-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_lasso_spec_tune) </span>
-<span id="cb117-15"><a href="lasso-shrinkageregularization.html#cb117-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-16"><a href="lasso-shrinkageregularization.html#cb117-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune Model (trying a variety of values of Lambda penalty)</span></span>
-<span id="cb117-17"><a href="lasso-shrinkageregularization.html#cb117-17" aria-hidden="true" tabindex="-1"></a>penalty_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
-<span id="cb117-18"><a href="lasso-shrinkageregularization.html#cb117-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">penalty</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">3</span>)), <span class="co">#log10 transformed 10^-5 to 10^3</span></span>
-<span id="cb117-19"><a href="lasso-shrinkageregularization.html#cb117-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">30</span>)</span>
-<span id="cb117-20"><a href="lasso-shrinkageregularization.html#cb117-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-21"><a href="lasso-shrinkageregularization.html#cb117-21" aria-hidden="true" tabindex="-1"></a>tune_res <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>( <span class="co"># new function for tuning parameters</span></span>
-<span id="cb117-22"><a href="lasso-shrinkageregularization.html#cb117-22" aria-hidden="true" tabindex="-1"></a>  lasso_wf_tune, <span class="co"># workflow</span></span>
-<span id="cb117-23"><a href="lasso-shrinkageregularization.html#cb117-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> data_cv10, <span class="co"># cv folds</span></span>
-<span id="cb117-24"><a href="lasso-shrinkageregularization.html#cb117-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae),</span>
-<span id="cb117-25"><a href="lasso-shrinkageregularization.html#cb117-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> penalty_grid <span class="co"># penalty grid defined above</span></span>
-<span id="cb117-26"><a href="lasso-shrinkageregularization.html#cb117-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb117-27"><a href="lasso-shrinkageregularization.html#cb117-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-28"><a href="lasso-shrinkageregularization.html#cb117-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Model Evaluation Metrics from Tuning</span></span>
-<span id="cb117-29"><a href="lasso-shrinkageregularization.html#cb117-29" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(tune_res) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
-<span id="cb117-30"><a href="lasso-shrinkageregularization.html#cb117-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-31"><a href="lasso-shrinkageregularization.html#cb117-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize Model Evaluation Metrics (CV)</span></span>
-<span id="cb117-32"><a href="lasso-shrinkageregularization.html#cb117-32" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(tune_res) <span class="sc">%&gt;%</span></span>
-<span id="cb117-33"><a href="lasso-shrinkageregularization.html#cb117-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span> <span class="co"># or choose mae</span></span>
-<span id="cb117-34"><a href="lasso-shrinkageregularization.html#cb117-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(penalty, <span class="at">rmse =</span> mean) </span>
-<span id="cb117-35"><a href="lasso-shrinkageregularization.html#cb117-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-36"><a href="lasso-shrinkageregularization.html#cb117-36" aria-hidden="true" tabindex="-1"></a>best_penalty <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tune_res, <span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span>) <span class="co"># choose penalty value based on lowest mae or rmse</span></span>
-<span id="cb117-37"><a href="lasso-shrinkageregularization.html#cb117-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-38"><a href="lasso-shrinkageregularization.html#cb117-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Final Model</span></span>
-<span id="cb117-39"><a href="lasso-shrinkageregularization.html#cb117-39" aria-hidden="true" tabindex="-1"></a>final_wf <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lasso_wf_tune, best_penalty) <span class="co"># incorporates penalty value to workflow</span></span>
-<span id="cb117-40"><a href="lasso-shrinkageregularization.html#cb117-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-41"><a href="lasso-shrinkageregularization.html#cb117-41" aria-hidden="true" tabindex="-1"></a>final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_wf, <span class="at">data =</span> ___)</span>
-<span id="cb117-42"><a href="lasso-shrinkageregularization.html#cb117-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-43"><a href="lasso-shrinkageregularization.html#cb117-43" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lasso-shrinkageregularization.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CV folds</span></span>
+<span id="cb120-2"><a href="lasso-shrinkageregularization.html#cb120-2" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(___, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb120-3"><a href="lasso-shrinkageregularization.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="lasso-shrinkageregularization.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasso Model Spec with tune</span></span>
+<span id="cb120-5"><a href="lasso-shrinkageregularization.html#cb120-5" aria-hidden="true" tabindex="-1"></a>lm_lasso_spec_tune <span class="ot">&lt;-</span> </span>
+<span id="cb120-6"><a href="lasso-shrinkageregularization.html#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb120-7"><a href="lasso-shrinkageregularization.html#cb120-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">mixture =</span> <span class="dv">1</span>, <span class="at">penalty =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="do">## mixture = 1 indicates Lasso</span></span>
+<span id="cb120-8"><a href="lasso-shrinkageregularization.html#cb120-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;glmnet&#39;</span>) <span class="sc">%&gt;%</span> <span class="co">#note we are using a different engine</span></span>
+<span id="cb120-9"><a href="lasso-shrinkageregularization.html#cb120-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>) </span>
+<span id="cb120-10"><a href="lasso-shrinkageregularization.html#cb120-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-11"><a href="lasso-shrinkageregularization.html#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
+<span id="cb120-12"><a href="lasso-shrinkageregularization.html#cb120-12" aria-hidden="true" tabindex="-1"></a>lasso_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb120-13"><a href="lasso-shrinkageregularization.html#cb120-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb120-14"><a href="lasso-shrinkageregularization.html#cb120-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_lasso_spec_tune) </span>
+<span id="cb120-15"><a href="lasso-shrinkageregularization.html#cb120-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-16"><a href="lasso-shrinkageregularization.html#cb120-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune Model (trying a variety of values of Lambda penalty)</span></span>
+<span id="cb120-17"><a href="lasso-shrinkageregularization.html#cb120-17" aria-hidden="true" tabindex="-1"></a>penalty_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
+<span id="cb120-18"><a href="lasso-shrinkageregularization.html#cb120-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">penalty</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">3</span>)), <span class="co">#log10 transformed 10^-5 to 10^3</span></span>
+<span id="cb120-19"><a href="lasso-shrinkageregularization.html#cb120-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">30</span>)</span>
+<span id="cb120-20"><a href="lasso-shrinkageregularization.html#cb120-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-21"><a href="lasso-shrinkageregularization.html#cb120-21" aria-hidden="true" tabindex="-1"></a>tune_res <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>( <span class="co"># new function for tuning parameters</span></span>
+<span id="cb120-22"><a href="lasso-shrinkageregularization.html#cb120-22" aria-hidden="true" tabindex="-1"></a>  lasso_wf_tune, <span class="co"># workflow</span></span>
+<span id="cb120-23"><a href="lasso-shrinkageregularization.html#cb120-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> data_cv10, <span class="co"># cv folds</span></span>
+<span id="cb120-24"><a href="lasso-shrinkageregularization.html#cb120-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae),</span>
+<span id="cb120-25"><a href="lasso-shrinkageregularization.html#cb120-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> penalty_grid <span class="co"># penalty grid defined above</span></span>
+<span id="cb120-26"><a href="lasso-shrinkageregularization.html#cb120-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb120-27"><a href="lasso-shrinkageregularization.html#cb120-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-28"><a href="lasso-shrinkageregularization.html#cb120-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Model Evaluation Metrics from Tuning</span></span>
+<span id="cb120-29"><a href="lasso-shrinkageregularization.html#cb120-29" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(tune_res) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
+<span id="cb120-30"><a href="lasso-shrinkageregularization.html#cb120-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-31"><a href="lasso-shrinkageregularization.html#cb120-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize Model Evaluation Metrics (CV)</span></span>
+<span id="cb120-32"><a href="lasso-shrinkageregularization.html#cb120-32" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(tune_res) <span class="sc">%&gt;%</span></span>
+<span id="cb120-33"><a href="lasso-shrinkageregularization.html#cb120-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;rmse&#39;</span>) <span class="sc">%&gt;%</span> <span class="co"># or choose mae</span></span>
+<span id="cb120-34"><a href="lasso-shrinkageregularization.html#cb120-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(penalty, <span class="at">rmse =</span> mean) </span>
+<span id="cb120-35"><a href="lasso-shrinkageregularization.html#cb120-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-36"><a href="lasso-shrinkageregularization.html#cb120-36" aria-hidden="true" tabindex="-1"></a>best_penalty <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tune_res, <span class="at">metric =</span> <span class="st">&#39;rmse&#39;</span>) <span class="co"># choose penalty value based on lowest mae or rmse</span></span>
+<span id="cb120-37"><a href="lasso-shrinkageregularization.html#cb120-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-38"><a href="lasso-shrinkageregularization.html#cb120-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Final Model</span></span>
+<span id="cb120-39"><a href="lasso-shrinkageregularization.html#cb120-39" aria-hidden="true" tabindex="-1"></a>final_wf <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lasso_wf_tune, best_penalty) <span class="co"># incorporates penalty value to workflow</span></span>
+<span id="cb120-40"><a href="lasso-shrinkageregularization.html#cb120-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-41"><a href="lasso-shrinkageregularization.html#cb120-41" aria-hidden="true" tabindex="-1"></a>final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_wf, <span class="at">data =</span> ___)</span>
+<span id="cb120-42"><a href="lasso-shrinkageregularization.html#cb120-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-43"><a href="lasso-shrinkageregularization.html#cb120-43" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_fit)</span></code></pre></div>
 <p><br></p>
 <p><br><br><br></p>
 </div>
@@ -472,43 +491,43 @@ LASSO (the <code>glmnet</code> engine) finds <span class="math inline">\(\hat{\b
 <h2>Exercises</h2>
 <p><strong>You can download a template RMarkdown file to start from <a href="template_rmds/06-lasso-shrinkage.Rmd">here</a>.</strong></p>
 <p>We’ll use a new data set to explore LASSO modeling. This data comes from the US Department of Energy. You will predict the fuel efficiency of modern cars from characteristics of these cars, like transmission and engine displacement. Fuel efficiency is a numeric value that ranges smoothly from about 15 to 40 miles per gallon.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="lasso-shrinkageregularization.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb118-2"><a href="lasso-shrinkageregularization.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb118-3"><a href="lasso-shrinkageregularization.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb118-4"><a href="lasso-shrinkageregularization.html#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb118-5"><a href="lasso-shrinkageregularization.html#cb118-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) </span>
-<span id="cb118-6"><a href="lasso-shrinkageregularization.html#cb118-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>() <span class="co"># Resolves conflicts, prefers tidymodel functions</span></span>
-<span id="cb118-7"><a href="lasso-shrinkageregularization.html#cb118-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-8"><a href="lasso-shrinkageregularization.html#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb118-9"><a href="lasso-shrinkageregularization.html#cb118-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-10"><a href="lasso-shrinkageregularization.html#cb118-10" aria-hidden="true" tabindex="-1"></a>cars2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/juliasilge/supervised-ML-case-studies-course/master/data/cars2018.csv&quot;</span>)</span>
-<span id="cb118-11"><a href="lasso-shrinkageregularization.html#cb118-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-12"><a href="lasso-shrinkageregularization.html#cb118-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars2018)</span>
-<span id="cb118-13"><a href="lasso-shrinkageregularization.html#cb118-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-14"><a href="lasso-shrinkageregularization.html#cb118-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning</span></span>
-<span id="cb118-15"><a href="lasso-shrinkageregularization.html#cb118-15" aria-hidden="true" tabindex="-1"></a>cars2018 <span class="ot">&lt;-</span> cars2018 <span class="sc">%&gt;%</span></span>
-<span id="cb118-16"><a href="lasso-shrinkageregularization.html#cb118-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model_index)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="lasso-shrinkageregularization.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb121-2"><a href="lasso-shrinkageregularization.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb121-3"><a href="lasso-shrinkageregularization.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb121-4"><a href="lasso-shrinkageregularization.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb121-5"><a href="lasso-shrinkageregularization.html#cb121-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) </span>
+<span id="cb121-6"><a href="lasso-shrinkageregularization.html#cb121-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>() <span class="co"># Resolves conflicts, prefers tidymodel functions</span></span>
+<span id="cb121-7"><a href="lasso-shrinkageregularization.html#cb121-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-8"><a href="lasso-shrinkageregularization.html#cb121-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb121-9"><a href="lasso-shrinkageregularization.html#cb121-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-10"><a href="lasso-shrinkageregularization.html#cb121-10" aria-hidden="true" tabindex="-1"></a>cars2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/juliasilge/supervised-ML-case-studies-course/master/data/cars2018.csv&quot;</span>)</span>
+<span id="cb121-11"><a href="lasso-shrinkageregularization.html#cb121-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-12"><a href="lasso-shrinkageregularization.html#cb121-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars2018)</span>
+<span id="cb121-13"><a href="lasso-shrinkageregularization.html#cb121-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-14"><a href="lasso-shrinkageregularization.html#cb121-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning</span></span>
+<span id="cb121-15"><a href="lasso-shrinkageregularization.html#cb121-15" aria-hidden="true" tabindex="-1"></a>cars2018 <span class="ot">&lt;-</span> cars2018 <span class="sc">%&gt;%</span></span>
+<span id="cb121-16"><a href="lasso-shrinkageregularization.html#cb121-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model_index)</span></code></pre></div>
 <div id="exercise-1-a-least-squares-model" class="section level3 unnumbered">
 <h3>Exercise 1: A least squares model</h3>
 <p>Let’s start by building an ordinary (not penalized) least squares model to review important concepts. We’ll fit a model to predict fuel efficiency measured in miles per gallon (<code>mpg</code>) with all possible predictors.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lasso-shrinkageregularization.html#cb119-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span></span>
-<span id="cb119-2"><a href="lasso-shrinkageregularization.html#cb119-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb119-3"><a href="lasso-shrinkageregularization.html#cb119-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb119-4"><a href="lasso-shrinkageregularization.html#cb119-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>)</span>
-<span id="cb119-5"><a href="lasso-shrinkageregularization.html#cb119-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-6"><a href="lasso-shrinkageregularization.html#cb119-6" aria-hidden="true" tabindex="-1"></a>full_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> cars2018) <span class="sc">%&gt;%</span></span>
-<span id="cb119-7"><a href="lasso-shrinkageregularization.html#cb119-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">update_role</span>(model, <span class="at">new_role =</span> <span class="st">&#39;ID&#39;</span>) <span class="sc">%&gt;%</span> <span class="co"># we want to keep the name of the car model but not as a predictor or outcome</span></span>
-<span id="cb119-8"><a href="lasso-shrinkageregularization.html#cb119-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_nzv</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># removes variables with the same value</span></span>
-<span id="cb119-9"><a href="lasso-shrinkageregularization.html#cb119-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># important standardization step for LASSO</span></span>
-<span id="cb119-10"><a href="lasso-shrinkageregularization.html#cb119-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())  <span class="co"># creates indicator variables for categorical variables</span></span>
-<span id="cb119-11"><a href="lasso-shrinkageregularization.html#cb119-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-12"><a href="lasso-shrinkageregularization.html#cb119-12" aria-hidden="true" tabindex="-1"></a>full_lm_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb119-13"><a href="lasso-shrinkageregularization.html#cb119-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_recipe</span>(full_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb119-14"><a href="lasso-shrinkageregularization.html#cb119-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_model</span>(lm_spec)</span>
-<span id="cb119-15"><a href="lasso-shrinkageregularization.html#cb119-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb119-16"><a href="lasso-shrinkageregularization.html#cb119-16" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">fit</span>(full_lm_wf, <span class="at">data =</span> cars2018) </span>
-<span id="cb119-17"><a href="lasso-shrinkageregularization.html#cb119-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-18"><a href="lasso-shrinkageregularization.html#cb119-18" aria-hidden="true" tabindex="-1"></a>full_model <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lasso-shrinkageregularization.html#cb122-1" aria-hidden="true" tabindex="-1"></a>lm_spec <span class="ot">&lt;-</span></span>
+<span id="cb122-2"><a href="lasso-shrinkageregularization.html#cb122-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb122-3"><a href="lasso-shrinkageregularization.html#cb122-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb122-4"><a href="lasso-shrinkageregularization.html#cb122-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>)</span>
+<span id="cb122-5"><a href="lasso-shrinkageregularization.html#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-6"><a href="lasso-shrinkageregularization.html#cb122-6" aria-hidden="true" tabindex="-1"></a>full_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> cars2018) <span class="sc">%&gt;%</span></span>
+<span id="cb122-7"><a href="lasso-shrinkageregularization.html#cb122-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">update_role</span>(model, <span class="at">new_role =</span> <span class="st">&#39;ID&#39;</span>) <span class="sc">%&gt;%</span> <span class="co"># we want to keep the name of the car model but not as a predictor or outcome</span></span>
+<span id="cb122-8"><a href="lasso-shrinkageregularization.html#cb122-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_nzv</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># removes variables with the same value</span></span>
+<span id="cb122-9"><a href="lasso-shrinkageregularization.html#cb122-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span> <span class="co"># important standardization step for LASSO</span></span>
+<span id="cb122-10"><a href="lasso-shrinkageregularization.html#cb122-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())  <span class="co"># creates indicator variables for categorical variables</span></span>
+<span id="cb122-11"><a href="lasso-shrinkageregularization.html#cb122-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-12"><a href="lasso-shrinkageregularization.html#cb122-12" aria-hidden="true" tabindex="-1"></a>full_lm_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb122-13"><a href="lasso-shrinkageregularization.html#cb122-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_recipe</span>(full_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb122-14"><a href="lasso-shrinkageregularization.html#cb122-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_model</span>(lm_spec)</span>
+<span id="cb122-15"><a href="lasso-shrinkageregularization.html#cb122-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb122-16"><a href="lasso-shrinkageregularization.html#cb122-16" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">fit</span>(full_lm_wf, <span class="at">data =</span> cars2018) </span>
+<span id="cb122-17"><a href="lasso-shrinkageregularization.html#cb122-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-18"><a href="lasso-shrinkageregularization.html#cb122-18" aria-hidden="true" tabindex="-1"></a>full_model <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li><p>Use <code>tidymodels</code> to perform 10-fold cross-validation to estimate test MAE for this model.</p></li>
 <li><p>How do you think the estimated test error would change with fewer predictors?</p></li>
@@ -530,43 +549,43 @@ LASSO (the <code>glmnet</code> engine) finds <span class="math inline">\(\hat{\b
 </ul>
 <p>Before running the code, run <code>install.packages("glmnet")</code> in the Console.</p>
 <p>Save the CV-fit models from <code>tune_grid()</code> as <code>tune_output</code>.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lasso-shrinkageregularization.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune and fit a LASSO model to the data (with CV)</span></span>
-<span id="cb120-2"><a href="lasso-shrinkageregularization.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">74</span>)</span>
-<span id="cb120-3"><a href="lasso-shrinkageregularization.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-4"><a href="lasso-shrinkageregularization.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CV folds</span></span>
-<span id="cb120-5"><a href="lasso-shrinkageregularization.html#cb120-5" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(??, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb120-6"><a href="lasso-shrinkageregularization.html#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-7"><a href="lasso-shrinkageregularization.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasso Model Spec with tune</span></span>
-<span id="cb120-8"><a href="lasso-shrinkageregularization.html#cb120-8" aria-hidden="true" tabindex="-1"></a>lm_lasso_spec_tune <span class="ot">&lt;-</span> </span>
-<span id="cb120-9"><a href="lasso-shrinkageregularization.html#cb120-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb120-10"><a href="lasso-shrinkageregularization.html#cb120-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">mixture =</span> <span class="dv">1</span>, <span class="at">penalty =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="do">## mixture = 1 indicates Lasso</span></span>
-<span id="cb120-11"><a href="lasso-shrinkageregularization.html#cb120-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;glmnet&#39;</span>) <span class="sc">%&gt;%</span> <span class="co">#note we are using a different engine</span></span>
-<span id="cb120-12"><a href="lasso-shrinkageregularization.html#cb120-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>) </span>
-<span id="cb120-13"><a href="lasso-shrinkageregularization.html#cb120-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-14"><a href="lasso-shrinkageregularization.html#cb120-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
-<span id="cb120-15"><a href="lasso-shrinkageregularization.html#cb120-15" aria-hidden="true" tabindex="-1"></a>lasso_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb120-16"><a href="lasso-shrinkageregularization.html#cb120-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(full_rec) <span class="sc">%&gt;%</span> <span class="co"># recipe defined above</span></span>
-<span id="cb120-17"><a href="lasso-shrinkageregularization.html#cb120-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_lasso_spec_tune) </span>
-<span id="cb120-18"><a href="lasso-shrinkageregularization.html#cb120-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-19"><a href="lasso-shrinkageregularization.html#cb120-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune Model (trying a variety of values of Lambda penalty)</span></span>
-<span id="cb120-20"><a href="lasso-shrinkageregularization.html#cb120-20" aria-hidden="true" tabindex="-1"></a>penalty_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
-<span id="cb120-21"><a href="lasso-shrinkageregularization.html#cb120-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">penalty</span>(<span class="at">range =</span> <span class="fu">c</span>(??, ??)), <span class="co">#log10 transformed </span></span>
-<span id="cb120-22"><a href="lasso-shrinkageregularization.html#cb120-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> ??)</span>
-<span id="cb120-23"><a href="lasso-shrinkageregularization.html#cb120-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-24"><a href="lasso-shrinkageregularization.html#cb120-24" aria-hidden="true" tabindex="-1"></a>tune_output <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>( <span class="co"># new function for tuning parameters</span></span>
-<span id="cb120-25"><a href="lasso-shrinkageregularization.html#cb120-25" aria-hidden="true" tabindex="-1"></a>  lasso_wf_tune, <span class="co"># workflow</span></span>
-<span id="cb120-26"><a href="lasso-shrinkageregularization.html#cb120-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> data_cv10, <span class="co"># cv folds</span></span>
-<span id="cb120-27"><a href="lasso-shrinkageregularization.html#cb120-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae),</span>
-<span id="cb120-28"><a href="lasso-shrinkageregularization.html#cb120-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> penalty_grid <span class="co"># penalty grid defined above</span></span>
-<span id="cb120-29"><a href="lasso-shrinkageregularization.html#cb120-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="lasso-shrinkageregularization.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune and fit a LASSO model to the data (with CV)</span></span>
+<span id="cb123-2"><a href="lasso-shrinkageregularization.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">74</span>)</span>
+<span id="cb123-3"><a href="lasso-shrinkageregularization.html#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="lasso-shrinkageregularization.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CV folds</span></span>
+<span id="cb123-5"><a href="lasso-shrinkageregularization.html#cb123-5" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(??, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb123-6"><a href="lasso-shrinkageregularization.html#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="lasso-shrinkageregularization.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasso Model Spec with tune</span></span>
+<span id="cb123-8"><a href="lasso-shrinkageregularization.html#cb123-8" aria-hidden="true" tabindex="-1"></a>lm_lasso_spec_tune <span class="ot">&lt;-</span> </span>
+<span id="cb123-9"><a href="lasso-shrinkageregularization.html#cb123-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb123-10"><a href="lasso-shrinkageregularization.html#cb123-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">mixture =</span> <span class="dv">1</span>, <span class="at">penalty =</span> <span class="fu">tune</span>()) <span class="sc">%&gt;%</span> <span class="do">## mixture = 1 indicates Lasso</span></span>
+<span id="cb123-11"><a href="lasso-shrinkageregularization.html#cb123-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;glmnet&#39;</span>) <span class="sc">%&gt;%</span> <span class="co">#note we are using a different engine</span></span>
+<span id="cb123-12"><a href="lasso-shrinkageregularization.html#cb123-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;regression&#39;</span>) </span>
+<span id="cb123-13"><a href="lasso-shrinkageregularization.html#cb123-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-14"><a href="lasso-shrinkageregularization.html#cb123-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
+<span id="cb123-15"><a href="lasso-shrinkageregularization.html#cb123-15" aria-hidden="true" tabindex="-1"></a>lasso_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb123-16"><a href="lasso-shrinkageregularization.html#cb123-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(full_rec) <span class="sc">%&gt;%</span> <span class="co"># recipe defined above</span></span>
+<span id="cb123-17"><a href="lasso-shrinkageregularization.html#cb123-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_lasso_spec_tune) </span>
+<span id="cb123-18"><a href="lasso-shrinkageregularization.html#cb123-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-19"><a href="lasso-shrinkageregularization.html#cb123-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune Model (trying a variety of values of Lambda penalty)</span></span>
+<span id="cb123-20"><a href="lasso-shrinkageregularization.html#cb123-20" aria-hidden="true" tabindex="-1"></a>penalty_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
+<span id="cb123-21"><a href="lasso-shrinkageregularization.html#cb123-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">penalty</span>(<span class="at">range =</span> <span class="fu">c</span>(??, ??)), <span class="co">#log10 transformed </span></span>
+<span id="cb123-22"><a href="lasso-shrinkageregularization.html#cb123-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> ??)</span>
+<span id="cb123-23"><a href="lasso-shrinkageregularization.html#cb123-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-24"><a href="lasso-shrinkageregularization.html#cb123-24" aria-hidden="true" tabindex="-1"></a>tune_output <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>( <span class="co"># new function for tuning parameters</span></span>
+<span id="cb123-25"><a href="lasso-shrinkageregularization.html#cb123-25" aria-hidden="true" tabindex="-1"></a>  lasso_wf_tune, <span class="co"># workflow</span></span>
+<span id="cb123-26"><a href="lasso-shrinkageregularization.html#cb123-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> data_cv10, <span class="co"># cv folds</span></span>
+<span id="cb123-27"><a href="lasso-shrinkageregularization.html#cb123-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae),</span>
+<span id="cb123-28"><a href="lasso-shrinkageregularization.html#cb123-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> penalty_grid <span class="co"># penalty grid defined above</span></span>
+<span id="cb123-29"><a href="lasso-shrinkageregularization.html#cb123-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Let’s visualize the model evaluation metrics from tuning. We can use <code>autoplot()</code>.</li>
 </ol>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="lasso-shrinkageregularization.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Model Evaluation Metrics from Tuning</span></span>
-<span id="cb121-2"><a href="lasso-shrinkageregularization.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(tune_output) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lasso-shrinkageregularization.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Model Evaluation Metrics from Tuning</span></span>
+<span id="cb124-2"><a href="lasso-shrinkageregularization.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(tune_output) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p>Try replicating that MAE plot with the data below using <code>ggplot</code>. Use <code>scale_x_log10()</code>.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lasso-shrinkageregularization.html#cb122-1" aria-hidden="true" tabindex="-1"></a>metrics_output <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(tune_output) <span class="sc">%&gt;%</span></span>
-<span id="cb122-2"><a href="lasso-shrinkageregularization.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;mae&#39;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lasso-shrinkageregularization.html#cb125-1" aria-hidden="true" tabindex="-1"></a>metrics_output <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(tune_output) <span class="sc">%&gt;%</span></span>
+<span id="cb125-2"><a href="lasso-shrinkageregularization.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">&#39;mae&#39;</span>) </span></code></pre></div>
 <ul>
 <li><strong>CHALLENGE</strong>: Update the plot above to limit the y-axis to only focus on the lowest values of cv MAE.<br />
 </li>
@@ -578,51 +597,51 @@ LASSO (the <code>glmnet</code> engine) finds <span class="math inline">\(\hat{\b
 <li><p>Inspect the shape of the plot. The errors go down at the very beginning then start going back up. Based on this, what are the consequences of picking a <span class="math inline">\(\lambda\)</span> that is too small or too large? (This is an example of a very important idea that we’ll see shortly: the <strong>bias-variance tradeoff</strong>.)</p></li>
 <li><p>Next, we need to choose the lambda that leads to the best model. We can choose the lambda penalty value that leads to the lowest cv MAE or we can take into account the variation of the cv MAE and choose the largest lambda penalty value that is within 1 standard error of the lowest cv MAE. How might the models that result from these two penalties differ?</p></li>
 </ol>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="lasso-shrinkageregularization.html#cb123-1" aria-hidden="true" tabindex="-1"></a>best_penalty <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tune_output, <span class="at">metric =</span> <span class="st">&#39;mae&#39;</span>) <span class="co"># choose penalty value based on lowest cv mae</span></span>
-<span id="cb123-2"><a href="lasso-shrinkageregularization.html#cb123-2" aria-hidden="true" tabindex="-1"></a>best_penalty</span>
-<span id="cb123-3"><a href="lasso-shrinkageregularization.html#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-4"><a href="lasso-shrinkageregularization.html#cb123-4" aria-hidden="true" tabindex="-1"></a>best_se_penalty <span class="ot">&lt;-</span> <span class="fu">select_by_one_std_err</span>(tune_output, <span class="at">metric =</span> <span class="st">&#39;mae&#39;</span>, <span class="fu">desc</span>(penalty)) <span class="co"># choose largest penalty value within 1 se of the lowest cv mae</span></span>
-<span id="cb123-5"><a href="lasso-shrinkageregularization.html#cb123-5" aria-hidden="true" tabindex="-1"></a>best_se_penalty</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lasso-shrinkageregularization.html#cb126-1" aria-hidden="true" tabindex="-1"></a>best_penalty <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tune_output, <span class="at">metric =</span> <span class="st">&#39;mae&#39;</span>) <span class="co"># choose penalty value based on lowest cv mae</span></span>
+<span id="cb126-2"><a href="lasso-shrinkageregularization.html#cb126-2" aria-hidden="true" tabindex="-1"></a>best_penalty</span>
+<span id="cb126-3"><a href="lasso-shrinkageregularization.html#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="lasso-shrinkageregularization.html#cb126-4" aria-hidden="true" tabindex="-1"></a>best_se_penalty <span class="ot">&lt;-</span> <span class="fu">select_by_one_std_err</span>(tune_output, <span class="at">metric =</span> <span class="st">&#39;mae&#39;</span>, <span class="fu">desc</span>(penalty)) <span class="co"># choose largest penalty value within 1 se of the lowest cv mae</span></span>
+<span id="cb126-5"><a href="lasso-shrinkageregularization.html#cb126-5" aria-hidden="true" tabindex="-1"></a>best_se_penalty</span></code></pre></div>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Now check your understanding by fitting both “final” models and comparing the coefficients. How are these two models different?</li>
 </ol>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lasso-shrinkageregularization.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Final Model</span></span>
-<span id="cb124-2"><a href="lasso-shrinkageregularization.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-3"><a href="lasso-shrinkageregularization.html#cb124-3" aria-hidden="true" tabindex="-1"></a>final_wf <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lasso_wf_tune, best_penalty) <span class="co"># incorporates penalty value to workflow</span></span>
-<span id="cb124-4"><a href="lasso-shrinkageregularization.html#cb124-4" aria-hidden="true" tabindex="-1"></a>final_wf_se <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lasso_wf_tune, best_se_penalty) <span class="co"># incorporates penalty value to workflow</span></span>
-<span id="cb124-5"><a href="lasso-shrinkageregularization.html#cb124-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-6"><a href="lasso-shrinkageregularization.html#cb124-6" aria-hidden="true" tabindex="-1"></a>final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_wf, <span class="at">data =</span> cars2018)</span>
-<span id="cb124-7"><a href="lasso-shrinkageregularization.html#cb124-7" aria-hidden="true" tabindex="-1"></a>final_fit_se <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_wf_se, <span class="at">data =</span> cars2018)</span>
-<span id="cb124-8"><a href="lasso-shrinkageregularization.html#cb124-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-9"><a href="lasso-shrinkageregularization.html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_fit)</span>
-<span id="cb124-10"><a href="lasso-shrinkageregularization.html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_fit_se)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lasso-shrinkageregularization.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Final Model</span></span>
+<span id="cb127-2"><a href="lasso-shrinkageregularization.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="lasso-shrinkageregularization.html#cb127-3" aria-hidden="true" tabindex="-1"></a>final_wf <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lasso_wf_tune, best_penalty) <span class="co"># incorporates penalty value to workflow</span></span>
+<span id="cb127-4"><a href="lasso-shrinkageregularization.html#cb127-4" aria-hidden="true" tabindex="-1"></a>final_wf_se <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lasso_wf_tune, best_se_penalty) <span class="co"># incorporates penalty value to workflow</span></span>
+<span id="cb127-5"><a href="lasso-shrinkageregularization.html#cb127-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-6"><a href="lasso-shrinkageregularization.html#cb127-6" aria-hidden="true" tabindex="-1"></a>final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_wf, <span class="at">data =</span> cars2018)</span>
+<span id="cb127-7"><a href="lasso-shrinkageregularization.html#cb127-7" aria-hidden="true" tabindex="-1"></a>final_fit_se <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_wf_se, <span class="at">data =</span> cars2018)</span>
+<span id="cb127-8"><a href="lasso-shrinkageregularization.html#cb127-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-9"><a href="lasso-shrinkageregularization.html#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_fit)</span>
+<span id="cb127-10"><a href="lasso-shrinkageregularization.html#cb127-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_fit_se)</span></code></pre></div>
 <p><br><br></p>
 </div>
 <div id="exercise-3-examining-output-plot-of-coefficient-paths" class="section level3 unnumbered">
 <h3>Exercise 3: Examining output: plot of coefficient paths</h3>
 <p>Once we’ved used cross validation, a useful plot allows us to examine <strong>coefficient paths</strong> resulting from the final fitted LASSO models: coefficient estimates as a function of <span class="math inline">\(\lambda\)</span>.</p>
 <p>Before running the code, run <code>install.packages("stringr")</code> and <code>install.packages("purrr")</code> in the Console.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lasso-shrinkageregularization.html#cb125-1" aria-hidden="true" tabindex="-1"></a>glmnet_output <span class="ot">&lt;-</span> final_fit_se <span class="sc">%&gt;%</span> <span class="fu">extract_fit_parsnip</span>() <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;fit&#39;</span>) <span class="co"># get the original glmnet output</span></span>
-<span id="cb125-2"><a href="lasso-shrinkageregularization.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-3"><a href="lasso-shrinkageregularization.html#cb125-3" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> glmnet_output<span class="sc">$</span>lambda</span>
-<span id="cb125-4"><a href="lasso-shrinkageregularization.html#cb125-4" aria-hidden="true" tabindex="-1"></a>coefs_lambdas <span class="ot">&lt;-</span> </span>
-<span id="cb125-5"><a href="lasso-shrinkageregularization.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coefficients</span>(glmnet_output, <span class="at">s =</span> lambdas )  <span class="sc">%&gt;%</span> </span>
-<span id="cb125-6"><a href="lasso-shrinkageregularization.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span>  </span>
-<span id="cb125-7"><a href="lasso-shrinkageregularization.html#cb125-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb125-8"><a href="lasso-shrinkageregularization.html#cb125-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb125-9"><a href="lasso-shrinkageregularization.html#cb125-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lambda =</span> lambdas ) <span class="sc">%&gt;%</span> </span>
-<span id="cb125-10"><a href="lasso-shrinkageregularization.html#cb125-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lambda, <span class="fu">everything</span>(), <span class="sc">-</span><span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb125-11"><a href="lasso-shrinkageregularization.html#cb125-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>lambda, </span>
-<span id="cb125-12"><a href="lasso-shrinkageregularization.html#cb125-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;term&quot;</span>, </span>
-<span id="cb125-13"><a href="lasso-shrinkageregularization.html#cb125-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;coef&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb125-14"><a href="lasso-shrinkageregularization.html#cb125-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var =</span> purrr<span class="sc">::</span><span class="fu">map_chr</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(term,<span class="st">&quot;_&quot;</span>),<span class="sc">~</span>.[<span class="dv">1</span>]))</span>
-<span id="cb125-15"><a href="lasso-shrinkageregularization.html#cb125-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-16"><a href="lasso-shrinkageregularization.html#cb125-16" aria-hidden="true" tabindex="-1"></a>coefs_lambdas <span class="sc">%&gt;%</span></span>
-<span id="cb125-17"><a href="lasso-shrinkageregularization.html#cb125-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> coef, <span class="at">group =</span> term, <span class="at">color =</span> var)) <span class="sc">+</span></span>
-<span id="cb125-18"><a href="lasso-shrinkageregularization.html#cb125-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb125-19"><a href="lasso-shrinkageregularization.html#cb125-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> best_se_penalty <span class="sc">%&gt;%</span> <span class="fu">pull</span>(penalty), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb125-20"><a href="lasso-shrinkageregularization.html#cb125-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb125-21"><a href="lasso-shrinkageregularization.html#cb125-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lasso-shrinkageregularization.html#cb128-1" aria-hidden="true" tabindex="-1"></a>glmnet_output <span class="ot">&lt;-</span> final_fit_se <span class="sc">%&gt;%</span> <span class="fu">extract_fit_parsnip</span>() <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;fit&#39;</span>) <span class="co"># get the original glmnet output</span></span>
+<span id="cb128-2"><a href="lasso-shrinkageregularization.html#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-3"><a href="lasso-shrinkageregularization.html#cb128-3" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> glmnet_output<span class="sc">$</span>lambda</span>
+<span id="cb128-4"><a href="lasso-shrinkageregularization.html#cb128-4" aria-hidden="true" tabindex="-1"></a>coefs_lambdas <span class="ot">&lt;-</span> </span>
+<span id="cb128-5"><a href="lasso-shrinkageregularization.html#cb128-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coefficients</span>(glmnet_output, <span class="at">s =</span> lambdas )  <span class="sc">%&gt;%</span> </span>
+<span id="cb128-6"><a href="lasso-shrinkageregularization.html#cb128-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span>  </span>
+<span id="cb128-7"><a href="lasso-shrinkageregularization.html#cb128-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb128-8"><a href="lasso-shrinkageregularization.html#cb128-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb128-9"><a href="lasso-shrinkageregularization.html#cb128-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lambda =</span> lambdas ) <span class="sc">%&gt;%</span> </span>
+<span id="cb128-10"><a href="lasso-shrinkageregularization.html#cb128-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lambda, <span class="fu">everything</span>(), <span class="sc">-</span><span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb128-11"><a href="lasso-shrinkageregularization.html#cb128-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>lambda, </span>
+<span id="cb128-12"><a href="lasso-shrinkageregularization.html#cb128-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;term&quot;</span>, </span>
+<span id="cb128-13"><a href="lasso-shrinkageregularization.html#cb128-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;coef&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb128-14"><a href="lasso-shrinkageregularization.html#cb128-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var =</span> purrr<span class="sc">::</span><span class="fu">map_chr</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(term,<span class="st">&quot;_&quot;</span>),<span class="sc">~</span>.[<span class="dv">1</span>]))</span>
+<span id="cb128-15"><a href="lasso-shrinkageregularization.html#cb128-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-16"><a href="lasso-shrinkageregularization.html#cb128-16" aria-hidden="true" tabindex="-1"></a>coefs_lambdas <span class="sc">%&gt;%</span></span>
+<span id="cb128-17"><a href="lasso-shrinkageregularization.html#cb128-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> coef, <span class="at">group =</span> term, <span class="at">color =</span> var)) <span class="sc">+</span></span>
+<span id="cb128-18"><a href="lasso-shrinkageregularization.html#cb128-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb128-19"><a href="lasso-shrinkageregularization.html#cb128-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> best_se_penalty <span class="sc">%&gt;%</span> <span class="fu">pull</span>(penalty), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb128-20"><a href="lasso-shrinkageregularization.html#cb128-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb128-21"><a href="lasso-shrinkageregularization.html#cb128-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>))</span></code></pre></div>
 <p>There’s a lot of information in this plot!</p>
 <ul>
 <li>Each line corresponds to a different predictor (colors correspond to overall variable).</li>
@@ -646,9 +665,9 @@ LASSO (the <code>glmnet</code> engine) finds <span class="math inline">\(\hat{\b
 <ol style="list-style-type: lower-alpha">
 <li>Take a look at the predictors and coefficients for the “best” LASSO model. Are the predictors that remain in the model sensible? Do the coefficient signs make sense?</li>
 </ol>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lasso-shrinkageregularization.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the predictors and coefficients of the &quot;best&quot; model</span></span>
-<span id="cb126-2"><a href="lasso-shrinkageregularization.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out the coefficient are 0</span></span>
-<span id="cb126-3"><a href="lasso-shrinkageregularization.html#cb126-3" aria-hidden="true" tabindex="-1"></a>final_fit_se <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(estimate <span class="sc">!=</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lasso-shrinkageregularization.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the predictors and coefficients of the &quot;best&quot; model</span></span>
+<span id="cb129-2"><a href="lasso-shrinkageregularization.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out the coefficient are 0</span></span>
+<span id="cb129-3"><a href="lasso-shrinkageregularization.html#cb129-3" aria-hidden="true" tabindex="-1"></a>final_fit_se <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(estimate <span class="sc">!=</span> <span class="dv">0</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Evaluate the best LASSO model:
 <ul>
@@ -656,34 +675,34 @@ LASSO (the <code>glmnet</code> engine) finds <span class="math inline">\(\hat{\b
 <li>Make residual plots for the model by creating a dataset called <code>lasso_mod_out</code> which contains the original data as well as predicted values and residuals (<code>.pred</code> and <code>resid</code>).</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lasso-shrinkageregularization.html#cb127-1" aria-hidden="true" tabindex="-1"></a>lasso_mod_out <span class="ot">&lt;-</span> final_fit_se <span class="sc">%&gt;%</span></span>
-<span id="cb127-2"><a href="lasso-shrinkageregularization.html#cb127-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict</span>(<span class="at">new_data =</span> cars2018) <span class="sc">%&gt;%</span></span>
-<span id="cb127-3"><a href="lasso-shrinkageregularization.html#cb127-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>(cars2018) <span class="sc">%&gt;%</span></span>
-<span id="cb127-4"><a href="lasso-shrinkageregularization.html#cb127-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">resid =</span> mpg <span class="sc">-</span> .pred)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="lasso-shrinkageregularization.html#cb130-1" aria-hidden="true" tabindex="-1"></a>lasso_mod_out <span class="ot">&lt;-</span> final_fit_se <span class="sc">%&gt;%</span></span>
+<span id="cb130-2"><a href="lasso-shrinkageregularization.html#cb130-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict</span>(<span class="at">new_data =</span> cars2018) <span class="sc">%&gt;%</span></span>
+<span id="cb130-3"><a href="lasso-shrinkageregularization.html#cb130-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>(cars2018) <span class="sc">%&gt;%</span></span>
+<span id="cb130-4"><a href="lasso-shrinkageregularization.html#cb130-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">resid =</span> mpg <span class="sc">-</span> .pred)</span></code></pre></div>
 <p><br><br></p>
 </div>
 <div id="digging-deeper-1" class="section level3 unnumbered">
 <h3>Digging deeper</h3>
 <p>These exercises are recommended for further exploring code useful in an applied analysis.</p>
 <p>We used the plot of coefficient paths to evaluate the <em>variable importance</em> of our predictors. The code below does this systematically for each predictor so that we don’t have to eyeball. Step through and work out what each part is doing. It may help to look up function documentation with <code>?function_name</code> in the Console.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lasso-shrinkageregularization.html#cb128-1" aria-hidden="true" tabindex="-1"></a>glmnet_output <span class="ot">&lt;-</span> final_fit_se <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>()</span>
-<span id="cb128-2"><a href="lasso-shrinkageregularization.html#cb128-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb128-3"><a href="lasso-shrinkageregularization.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boolean matrix (predictors x lambdas) of variable exclusion</span></span>
-<span id="cb128-4"><a href="lasso-shrinkageregularization.html#cb128-4" aria-hidden="true" tabindex="-1"></a>bool_predictor_exclude <span class="ot">&lt;-</span> glmnet_output<span class="sc">$</span>beta<span class="sc">==</span><span class="dv">0</span></span>
-<span id="cb128-5"><a href="lasso-shrinkageregularization.html#cb128-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-6"><a href="lasso-shrinkageregularization.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over each variable</span></span>
-<span id="cb128-7"><a href="lasso-shrinkageregularization.html#cb128-7" aria-hidden="true" tabindex="-1"></a>var_imp <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(bool_predictor_exclude)), <span class="cf">function</span>(row) {</span>
-<span id="cb128-8"><a href="lasso-shrinkageregularization.html#cb128-8" aria-hidden="true" tabindex="-1"></a>    this_coeff_path <span class="ot">&lt;-</span> bool_predictor_exclude[row,]</span>
-<span id="cb128-9"><a href="lasso-shrinkageregularization.html#cb128-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">sum</span>(this_coeff_path) <span class="sc">==</span> <span class="fu">ncol</span>(bool_predictor_exclude)){ <span class="fu">return</span>(<span class="dv">0</span>)}<span class="cf">else</span>{</span>
-<span id="cb128-10"><a href="lasso-shrinkageregularization.html#cb128-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">ncol</span>(bool_predictor_exclude) <span class="sc">-</span> <span class="fu">which.min</span>(this_coeff_path) <span class="sc">+</span> <span class="dv">1</span>)}</span>
-<span id="cb128-11"><a href="lasso-shrinkageregularization.html#cb128-11" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb128-12"><a href="lasso-shrinkageregularization.html#cb128-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-13"><a href="lasso-shrinkageregularization.html#cb128-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset of this information and sort</span></span>
-<span id="cb128-14"><a href="lasso-shrinkageregularization.html#cb128-14" aria-hidden="true" tabindex="-1"></a>var_imp_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb128-15"><a href="lasso-shrinkageregularization.html#cb128-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_name =</span> <span class="fu">rownames</span>(bool_predictor_exclude),</span>
-<span id="cb128-16"><a href="lasso-shrinkageregularization.html#cb128-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_imp =</span> var_imp</span>
-<span id="cb128-17"><a href="lasso-shrinkageregularization.html#cb128-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb128-18"><a href="lasso-shrinkageregularization.html#cb128-18" aria-hidden="true" tabindex="-1"></a>var_imp_data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(var_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="lasso-shrinkageregularization.html#cb131-1" aria-hidden="true" tabindex="-1"></a>glmnet_output <span class="ot">&lt;-</span> final_fit_se <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>()</span>
+<span id="cb131-2"><a href="lasso-shrinkageregularization.html#cb131-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb131-3"><a href="lasso-shrinkageregularization.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boolean matrix (predictors x lambdas) of variable exclusion</span></span>
+<span id="cb131-4"><a href="lasso-shrinkageregularization.html#cb131-4" aria-hidden="true" tabindex="-1"></a>bool_predictor_exclude <span class="ot">&lt;-</span> glmnet_output<span class="sc">$</span>beta<span class="sc">==</span><span class="dv">0</span></span>
+<span id="cb131-5"><a href="lasso-shrinkageregularization.html#cb131-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-6"><a href="lasso-shrinkageregularization.html#cb131-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over each variable</span></span>
+<span id="cb131-7"><a href="lasso-shrinkageregularization.html#cb131-7" aria-hidden="true" tabindex="-1"></a>var_imp <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(bool_predictor_exclude)), <span class="cf">function</span>(row) {</span>
+<span id="cb131-8"><a href="lasso-shrinkageregularization.html#cb131-8" aria-hidden="true" tabindex="-1"></a>    this_coeff_path <span class="ot">&lt;-</span> bool_predictor_exclude[row,]</span>
+<span id="cb131-9"><a href="lasso-shrinkageregularization.html#cb131-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">sum</span>(this_coeff_path) <span class="sc">==</span> <span class="fu">ncol</span>(bool_predictor_exclude)){ <span class="fu">return</span>(<span class="dv">0</span>)}<span class="cf">else</span>{</span>
+<span id="cb131-10"><a href="lasso-shrinkageregularization.html#cb131-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">ncol</span>(bool_predictor_exclude) <span class="sc">-</span> <span class="fu">which.min</span>(this_coeff_path) <span class="sc">+</span> <span class="dv">1</span>)}</span>
+<span id="cb131-11"><a href="lasso-shrinkageregularization.html#cb131-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb131-12"><a href="lasso-shrinkageregularization.html#cb131-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-13"><a href="lasso-shrinkageregularization.html#cb131-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset of this information and sort</span></span>
+<span id="cb131-14"><a href="lasso-shrinkageregularization.html#cb131-14" aria-hidden="true" tabindex="-1"></a>var_imp_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb131-15"><a href="lasso-shrinkageregularization.html#cb131-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_name =</span> <span class="fu">rownames</span>(bool_predictor_exclude),</span>
+<span id="cb131-16"><a href="lasso-shrinkageregularization.html#cb131-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_imp =</span> var_imp</span>
+<span id="cb131-17"><a href="lasso-shrinkageregularization.html#cb131-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb131-18"><a href="lasso-shrinkageregularization.html#cb131-18" aria-hidden="true" tabindex="-1"></a>var_imp_data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(var_imp))</span></code></pre></div>
 <p>If you want more practice, the <code>Hitters</code> data in the <code>ISLR</code> package (be sure to to install and load) contains the salaries and performance measures for 322 Major League Baseball players. Use LASSO to determine the “best” predictive model of <code>Salary</code>.</p>
 
 </div>
