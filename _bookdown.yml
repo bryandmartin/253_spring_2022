@@ -5,8 +5,9 @@ rmd_files: ["index.Rmd", "schedule.Rmd", "learning_objectives.Rmd",
   "01-introductions.Rmd", "02-evaluating-regression.Rmd" , "03-overfitting.Rmd",
   "04-cv.Rmd", "05-subset-selection.Rmd", 
   "06-lasso-shrinkage.Rmd", "07-knn-bvt.Rmd",
-  "08-catch-up.Rmd", "09-splines.Rmd",
-  "hw1.Rmd", "hw2.Rmd",
+  "08-catch-up.Rmd", "09-splines.Rmd", 
+  "10-loess-gams.Rmd",
+  "hw1.Rmd", "hw2.Rmd", "hw3.Rmd",
   "project.Rmd"]
 language:
   ui:
@@ -15,8 +16,6 @@ language:
 
 
 
-# 
-# , "10-loess-gams.Rmd"]
 # , "11-logistic-regression.Rmd"]
 # , "12-lasso-logistic.Rmd"]
 # , "13-trees.Rmd"]
@@ -25,6 +24,5 @@ language:
 # , "16-hclust.Rmd"]
 # , "17-catch-up-clustering.Rmd"]
 # , "18-pca.Rmd"]
-# , "hw3.Rmd"]
 # , "hw4.Rmd"]
 # , "hw5.Rmd"]

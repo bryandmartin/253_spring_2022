@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
 # Homework 3 {-}
 
 <center>
-**Due Wednesday, October 20th at 11:59pm on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=27981)**
+**Due Friday, March 11th at 9:00am on Moodle**
 </center>
 
 **Deliverables:** Please use [this template](template_rmds/hw3.Rmd) to knit an HTML document. Convert this HTML document to a PDF by opening the HTML document in your web browser. *Print* the document (Ctrl/Cmd-P) and change the destination to "Save as PDF". Submit this one PDF to Moodle.
