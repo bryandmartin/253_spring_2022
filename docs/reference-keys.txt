@@ -9,3 +9,5 @@ knn-regression-and-the-bias-variance-tradeoff
 catch-up-day
 splines
 local-regression-gams
+logistic-regression-evaluation
+lasso-logistic-regression

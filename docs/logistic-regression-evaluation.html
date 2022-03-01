@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topic 11 Logistic Regression &amp; Evaluation | STAT 253: Statistical Machine Learning</title>
   <meta name="description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Topic 11 Logistic Regression &amp; Evaluation | STAT 253: Statistical Machine Learning" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/253_fall_2021" />
+  <meta name="github-repo" content="bryandmartin/253_spring_2022" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Topic 11 Logistic Regression &amp; Evaluation | STAT 253: Statistical Machine Learning" />
@@ -33,6 +33,7 @@
 <link rel="next" href="lasso-logistic-regression.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -372,87 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lasso-logistic-regression.html"><a href="lasso-logistic-regression.html#exercise-6-algorithmic-understanding-for-evaluation-metrics"><i class="fa fa-check"></i>Exercise 6: Algorithmic understanding for evaluation metrics</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="trees.html"><a href="trees.html"><i class="fa fa-check"></i><b>13</b> Trees</a>
-<ul>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#learning-goals-12"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li><a href="trees.html#trees-in-tidymodels">Trees in <code>tidymodels</code></a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercises-10"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#context-5"><i class="fa fa-check"></i>Context</a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-1-core-theme-parametricnonparametric"><i class="fa fa-check"></i>Exercise 1: Core theme: parametric/nonparametric</a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-2-core-theme-tuning-parameters-and-the-bvt"><i class="fa fa-check"></i>Exercise 2: Core theme: Tuning parameters and the BVT</a></li>
-<li><a href="trees.html#exercise-3-building-tuning-trees-in-tidymodels">Exercise 3: Building &amp; tuning trees in <code>tidymodels</code></a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-4-visualizing-trees"><i class="fa fa-check"></i>Exercise 4: Visualizing trees</a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-5-predictions-from-trees"><i class="fa fa-check"></i>Exercise 5: Predictions from trees</a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#exercise-6-variable-importance-in-trees"><i class="fa fa-check"></i>Exercise 6: Variable importance in trees</a></li>
-<li class="chapter" data-level="" data-path="trees.html"><a href="trees.html#extra-regression-trees"><i class="fa fa-check"></i>Extra! Regression Trees!</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html"><i class="fa fa-check"></i><b>14</b> Bagging and Random Forests</a>
-<ul>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#learning-goals-13"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercises-11"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#hello-how-are-things-1"><i class="fa fa-check"></i>Hello, how are things?</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-1-bagging-bootstrap-aggregation"><i class="fa fa-check"></i>Exercise 1: Bagging: Bootstrap Aggregation</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-2-preparation-to-build-a-random-forest"><i class="fa fa-check"></i>Exercise 2: Preparation to build a random forest</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-3-building-the-random-forest"><i class="fa fa-check"></i>Exercise 3: Building the random forest</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-4-preliminary-interpretation"><i class="fa fa-check"></i>Exercise 4: Preliminary interpretation</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-5-evaluating-the-forest"><i class="fa fa-check"></i>Exercise 5: Evaluating the forest</a></li>
-<li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-6-variable-importance-measures"><i class="fa fa-check"></i>Exercise 6: Variable importance measures</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>VII Unsupervised Learning</b></span></li>
-<li class="chapter" data-level="15" data-path="k-means-clustering.html"><a href="k-means-clustering.html"><i class="fa fa-check"></i><b>15</b> K-Means Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#learning-goals-14"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercises-12"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-1-visual-explorations"><i class="fa fa-check"></i>Exercise 1: Visual explorations</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-2-k-means-clustering-on-bill-length-and-depth"><i class="fa fa-check"></i>Exercise 2: K-means clustering on bill length and depth</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-3-addressing-variable-scale"><i class="fa fa-check"></i>Exercise 3: Addressing variable scale</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-4-clustering-on-more-variables"><i class="fa fa-check"></i>Exercise 4: Clustering on more variables</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-5-interpreting-the-clusters"><i class="fa fa-check"></i>Exercise 5: Interpreting the clusters</a></li>
-<li><a href="k-means-clustering.html#exercise-6-picking-k">Exercise 6: Picking <span class="math inline">\(k\)</span></a></li>
-<li><a href="k-means-clustering.html#go-deeper-picking-k">Go Deeper: Picking <span class="math inline">\(k\)</span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html"><i class="fa fa-check"></i><b>16</b> Hierarchical Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#learning-goals-15"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercises-13"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-1-hierarchical-clustering-by-hand"><i class="fa fa-check"></i>Exercise 1: Hierarchical clustering by hand</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-2-exploring-penguin-dendrograms"><i class="fa fa-check"></i>Exercise 2: Exploring penguin dendrograms</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-3-interpreting-the-clusters-visually"><i class="fa fa-check"></i>Exercise 3: Interpreting the clusters visually</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-4-tree-cutting-and-interpretation"><i class="fa fa-check"></i>Exercise 4: Tree-cutting and interpretation</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-5-k-means-vs.-hierarchical"><i class="fa fa-check"></i>Exercise 5: K-means vs. hierarchical</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#dig-into-dendrograms"><i class="fa fa-check"></i>Dig into Dendrograms</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html"><i class="fa fa-check"></i><b>17</b> Catch up Clustering Day</a>
-<ul>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#learning-goals-16"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#real-data-clustering"><i class="fa fa-check"></i>Real Data Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#your-goal"><i class="fa fa-check"></i>Your Goal</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#clustering-in-the-wild"><i class="fa fa-check"></i>Clustering in the Wild</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#r-coding-challenges"><i class="fa fa-check"></i>R Coding Challenges</a></li>
-</ul></li>
-<li class="chapter" data-level="18" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>18</b> Principal Components Analysis</a>
-<ul>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#learning-goals-17"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercises-14"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-1-core-concepts"><i class="fa fa-check"></i>Exercise 1: Core concepts</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-2-exploring-pc-loadings"><i class="fa fa-check"></i>Exercise 2: Exploring PC loadings</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-3-exploring-pc-scores"><i class="fa fa-check"></i>Exercise 3: Exploring PC scores</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-4-scree-plots-and-dimension-reduction"><i class="fa fa-check"></i>Exercise 4: Scree plots and dimension reduction</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-5-variable-scaling"><i class="fa fa-check"></i>Exercise 5: Variable scaling</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>VIII Homework</b></span></li>
+<li class="part"><span><b>VII Homework</b></span></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
 <ul>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work-1"><i class="fa fa-check"></i>Project Work</a></li>
@@ -475,24 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="homework-3.html"><a href="homework-3.html#portfolio-work-2"><i class="fa fa-check"></i>Portfolio Work</a></li>
 <li class="chapter" data-level="" data-path="homework-3.html"><a href="homework-3.html#reflection-2"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html"><i class="fa fa-check"></i>Homework 4</a>
-<ul>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#project-work-4"><i class="fa fa-check"></i>Project Work</a>
-<ul>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#open-communication-about-expectations-and-goals"><i class="fa fa-check"></i>Open Communication about Expectations and Goals</a></li>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#delegation-of-analysis"><i class="fa fa-check"></i>Delegation of Analysis</a></li>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#required-analysis"><i class="fa fa-check"></i>Required Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#portfolio-work-3"><i class="fa fa-check"></i>Portfolio Work</a></li>
-<li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#reflection-3"><i class="fa fa-check"></i>Reflection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html"><i class="fa fa-check"></i>Homework 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#project-work-5"><i class="fa fa-check"></i>Project Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#portfolio-work-4"><i class="fa fa-check"></i>Portfolio Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#reflection-4"><i class="fa fa-check"></i>Reflection</a></li>
-</ul></li>
-<li class="part"><span><b>IX Project</b></span></li>
+<li class="part"><span><b>VIII Project</b></span></li>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i>Final Project</a>
 <ul>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html#requirements"><i class="fa fa-check"></i>Requirements</a></li>
@@ -531,104 +434,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Appropriately use and interpret the no-information rate (largest proportion of the observed classes) to evaluate accuracy metrics</li>
 </ul>
 <p><br></p>
-<p>Slides from today are available <a href="https://docs.google.com/presentation/d/13Eobn2We9rU4dmFQsQF3ThbdW4cjs42NmF9jvOt2ZvM/edit?usp=sharing">here</a>.</p>
+<p>Slides from today are available <a href="xyz">here (to come)</a>.</p>
 <p><br><br><br></p>
 </div>
 <div id="logistic-regression-in-tidymodels" class="section level2 unnumbered">
 <h2>Logistic regression in <code>tidymodels</code></h2>
 <p>To build logistic regression models in <code>tidymodels</code>, first load the package and set the seed for the random number generator to ensure reproducible results:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="logistic-regression-evaluation.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb159-2"><a href="logistic-regression-evaluation.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb159-3"><a href="logistic-regression-evaluation.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb159-4"><a href="logistic-regression-evaluation.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(probably) <span class="co">#install.packages(&#39;probably&#39;)</span></span>
-<span id="cb159-5"><a href="logistic-regression-evaluation.html#cb159-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb159-6"><a href="logistic-regression-evaluation.html#cb159-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-7"><a href="logistic-regression-evaluation.html#cb159-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___) <span class="co"># Pick your favorite number to fill in the parentheses</span></span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="logistic-regression-evaluation.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb162-2"><a href="logistic-regression-evaluation.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb162-3"><a href="logistic-regression-evaluation.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb162-4"><a href="logistic-regression-evaluation.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(probably) <span class="co">#install.packages(&#39;probably&#39;)</span></span>
+<span id="cb162-5"><a href="logistic-regression-evaluation.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb162-6"><a href="logistic-regression-evaluation.html#cb162-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-7"><a href="logistic-regression-evaluation.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___) <span class="co"># Pick your favorite number to fill in the parentheses</span></span></code></pre></div>
 <p>Then adapt the following code to fit a logistic regression model:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="logistic-regression-evaluation.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you set reference level (the outcome you are NOT interested in)</span></span>
-<span id="cb160-2"><a href="logistic-regression-evaluation.html#cb160-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb160-3"><a href="logistic-regression-evaluation.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outcome =</span> <span class="fu">relevel</span>(outcome, <span class="at">ref=</span><span class="st">&#39;failure&#39;</span>)) <span class="co">#set reference level</span></span>
-<span id="cb160-4"><a href="logistic-regression-evaluation.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-5"><a href="logistic-regression-evaluation.html#cb160-5" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(data, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb160-6"><a href="logistic-regression-evaluation.html#cb160-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-7"><a href="logistic-regression-evaluation.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression Model Spec</span></span>
-<span id="cb160-8"><a href="logistic-regression-evaluation.html#cb160-8" aria-hidden="true" tabindex="-1"></a>logistic_spec <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb160-9"><a href="logistic-regression-evaluation.html#cb160-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb160-10"><a href="logistic-regression-evaluation.html#cb160-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>)</span>
-<span id="cb160-11"><a href="logistic-regression-evaluation.html#cb160-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-12"><a href="logistic-regression-evaluation.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Recipe</span></span>
-<span id="cb160-13"><a href="logistic-regression-evaluation.html#cb160-13" aria-hidden="true" tabindex="-1"></a>logistic_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(outcome <span class="sc">~</span> ., <span class="at">data =</span> data) <span class="sc">%&gt;%</span></span>
-<span id="cb160-14"><a href="logistic-regression-evaluation.html#cb160-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb160-15"><a href="logistic-regression-evaluation.html#cb160-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
-<span id="cb160-16"><a href="logistic-regression-evaluation.html#cb160-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-17"><a href="logistic-regression-evaluation.html#cb160-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
-<span id="cb160-18"><a href="logistic-regression-evaluation.html#cb160-18" aria-hidden="true" tabindex="-1"></a>log_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb160-19"><a href="logistic-regression-evaluation.html#cb160-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_recipe</span>(logistic_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb160-20"><a href="logistic-regression-evaluation.html#cb160-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_model</span>(logistic_spec) </span>
-<span id="cb160-21"><a href="logistic-regression-evaluation.html#cb160-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-22"><a href="logistic-regression-evaluation.html#cb160-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model to Training Data</span></span>
-<span id="cb160-23"><a href="logistic-regression-evaluation.html#cb160-23" aria-hidden="true" tabindex="-1"></a>log_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(log_wf, <span class="at">data =</span> data)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="logistic-regression-evaluation.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you set reference level (the outcome you are NOT interested in)</span></span>
+<span id="cb163-2"><a href="logistic-regression-evaluation.html#cb163-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb163-3"><a href="logistic-regression-evaluation.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outcome =</span> <span class="fu">relevel</span>(outcome, <span class="at">ref=</span><span class="st">&#39;failure&#39;</span>)) <span class="co">#set reference level</span></span>
+<span id="cb163-4"><a href="logistic-regression-evaluation.html#cb163-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-5"><a href="logistic-regression-evaluation.html#cb163-5" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(data, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb163-6"><a href="logistic-regression-evaluation.html#cb163-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-7"><a href="logistic-regression-evaluation.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression Model Spec</span></span>
+<span id="cb163-8"><a href="logistic-regression-evaluation.html#cb163-8" aria-hidden="true" tabindex="-1"></a>logistic_spec <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb163-9"><a href="logistic-regression-evaluation.html#cb163-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb163-10"><a href="logistic-regression-evaluation.html#cb163-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>)</span>
+<span id="cb163-11"><a href="logistic-regression-evaluation.html#cb163-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-12"><a href="logistic-regression-evaluation.html#cb163-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Recipe</span></span>
+<span id="cb163-13"><a href="logistic-regression-evaluation.html#cb163-13" aria-hidden="true" tabindex="-1"></a>logistic_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(outcome <span class="sc">~</span> ., <span class="at">data =</span> data) <span class="sc">%&gt;%</span></span>
+<span id="cb163-14"><a href="logistic-regression-evaluation.html#cb163-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb163-15"><a href="logistic-regression-evaluation.html#cb163-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
+<span id="cb163-16"><a href="logistic-regression-evaluation.html#cb163-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-17"><a href="logistic-regression-evaluation.html#cb163-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
+<span id="cb163-18"><a href="logistic-regression-evaluation.html#cb163-18" aria-hidden="true" tabindex="-1"></a>log_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb163-19"><a href="logistic-regression-evaluation.html#cb163-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_recipe</span>(logistic_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb163-20"><a href="logistic-regression-evaluation.html#cb163-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_model</span>(logistic_spec) </span>
+<span id="cb163-21"><a href="logistic-regression-evaluation.html#cb163-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-22"><a href="logistic-regression-evaluation.html#cb163-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model to Training Data</span></span>
+<span id="cb163-23"><a href="logistic-regression-evaluation.html#cb163-23" aria-hidden="true" tabindex="-1"></a>log_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(log_wf, <span class="at">data =</span> data)</span></code></pre></div>
 <p><br></p>
 <p><strong>Examining the logistic model</strong></p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="logistic-regression-evaluation.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out Coefficients</span></span>
-<span id="cb161-2"><a href="logistic-regression-evaluation.html#cb161-2" aria-hidden="true" tabindex="-1"></a>log_fit <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span>
-<span id="cb161-3"><a href="logistic-regression-evaluation.html#cb161-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb161-4"><a href="logistic-regression-evaluation.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Exponentiated coefficients + CI</span></span>
-<span id="cb161-5"><a href="logistic-regression-evaluation.html#cb161-5" aria-hidden="true" tabindex="-1"></a>log_fit <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb161-6"><a href="logistic-regression-evaluation.html#cb161-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR.conf.low =</span> <span class="fu">exp</span>(estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error), <span class="at">OR.conf.high =</span> <span class="fu">exp</span>(estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error)) <span class="sc">%&gt;%</span> <span class="co"># do this first</span></span>
-<span id="cb161-7"><a href="logistic-regression-evaluation.html#cb161-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR =</span> <span class="fu">exp</span>(estimate))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="logistic-regression-evaluation.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out Coefficients</span></span>
+<span id="cb164-2"><a href="logistic-regression-evaluation.html#cb164-2" aria-hidden="true" tabindex="-1"></a>log_fit <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span>
+<span id="cb164-3"><a href="logistic-regression-evaluation.html#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-4"><a href="logistic-regression-evaluation.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Exponentiated coefficients + CI</span></span>
+<span id="cb164-5"><a href="logistic-regression-evaluation.html#cb164-5" aria-hidden="true" tabindex="-1"></a>log_fit <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb164-6"><a href="logistic-regression-evaluation.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR.conf.low =</span> <span class="fu">exp</span>(estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error), <span class="at">OR.conf.high =</span> <span class="fu">exp</span>(estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error)) <span class="sc">%&gt;%</span> <span class="co"># do this first</span></span>
+<span id="cb164-7"><a href="logistic-regression-evaluation.html#cb164-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OR =</span> <span class="fu">exp</span>(estimate))</span></code></pre></div>
 <p><strong>Making predictions from the logistic model</strong></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="logistic-regression-evaluation.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make soft (probability) predictions</span></span>
-<span id="cb162-2"><a href="logistic-regression-evaluation.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> ___, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span>
-<span id="cb162-3"><a href="logistic-regression-evaluation.html#cb162-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-4"><a href="logistic-regression-evaluation.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make hard (class) predictions (using a default 0.5 probability threshold)</span></span>
-<span id="cb162-5"><a href="logistic-regression-evaluation.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> ___, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="logistic-regression-evaluation.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make soft (probability) predictions</span></span>
+<span id="cb165-2"><a href="logistic-regression-evaluation.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> ___, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span>
+<span id="cb165-3"><a href="logistic-regression-evaluation.html#cb165-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-4"><a href="logistic-regression-evaluation.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make hard (class) predictions (using a default 0.5 probability threshold)</span></span>
+<span id="cb165-5"><a href="logistic-regression-evaluation.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> ___, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
 <p><strong>Evaluating the logistic model on training data</strong></p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="logistic-regression-evaluation.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soft predictions</span></span>
-<span id="cb163-2"><a href="logistic-regression-evaluation.html#cb163-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span>  data <span class="sc">%&gt;%</span></span>
-<span id="cb163-3"><a href="logistic-regression-evaluation.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> data, <span class="at">type =</span> <span class="st">&#39;prob&#39;</span>)) </span>
-<span id="cb163-4"><a href="logistic-regression-evaluation.html#cb163-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-5"><a href="logistic-regression-evaluation.html#cb163-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard predictions (you pick threshold)</span></span>
-<span id="cb163-6"><a href="logistic-regression-evaluation.html#cb163-6" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span></span>
-<span id="cb163-7"><a href="logistic-regression-evaluation.html#cb163-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.pred_class =</span> <span class="fu">make_two_class_pred</span>(.pred_REFLEVEL, <span class="fu">levels</span>(outcome), <span class="at">threshold =</span> .<span class="dv">8</span>)) <span class="co">#Try changing threshold (.5, 0, 1, .2, .8)</span></span>
-<span id="cb163-8"><a href="logistic-regression-evaluation.html#cb163-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-9"><a href="logistic-regression-evaluation.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Soft Predictions</span></span>
-<span id="cb163-10"><a href="logistic-regression-evaluation.html#cb163-10" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span></span>
-<span id="cb163-11"><a href="logistic-regression-evaluation.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> outcome, <span class="at">y =</span> .pred_OUTCOME)) <span class="sc">+</span></span>
-<span id="cb163-12"><a href="logistic-regression-evaluation.html#cb163-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb163-13"><a href="logistic-regression-evaluation.html#cb163-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&#39;red&#39;</span>) <span class="sc">+</span>  <span class="co"># try changing threshold</span></span>
-<span id="cb163-14"><a href="logistic-regression-evaluation.html#cb163-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&#39;Predicted Probability of Outcome&#39;</span>, <span class="at">x =</span> <span class="st">&#39;Observed Outcome&#39;</span>) <span class="sc">+</span></span>
-<span id="cb163-15"><a href="logistic-regression-evaluation.html#cb163-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="logistic-regression-evaluation.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soft predictions</span></span>
+<span id="cb166-2"><a href="logistic-regression-evaluation.html#cb166-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span>  data <span class="sc">%&gt;%</span></span>
+<span id="cb166-3"><a href="logistic-regression-evaluation.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> data, <span class="at">type =</span> <span class="st">&#39;prob&#39;</span>)) </span>
+<span id="cb166-4"><a href="logistic-regression-evaluation.html#cb166-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-5"><a href="logistic-regression-evaluation.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard predictions (you pick threshold)</span></span>
+<span id="cb166-6"><a href="logistic-regression-evaluation.html#cb166-6" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span></span>
+<span id="cb166-7"><a href="logistic-regression-evaluation.html#cb166-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.pred_class =</span> <span class="fu">make_two_class_pred</span>(.pred_REFLEVEL, <span class="fu">levels</span>(outcome), <span class="at">threshold =</span> .<span class="dv">8</span>)) <span class="co">#Try changing threshold (.5, 0, 1, .2, .8)</span></span>
+<span id="cb166-8"><a href="logistic-regression-evaluation.html#cb166-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-9"><a href="logistic-regression-evaluation.html#cb166-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Soft Predictions</span></span>
+<span id="cb166-10"><a href="logistic-regression-evaluation.html#cb166-10" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span></span>
+<span id="cb166-11"><a href="logistic-regression-evaluation.html#cb166-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> outcome, <span class="at">y =</span> .pred_OUTCOME)) <span class="sc">+</span></span>
+<span id="cb166-12"><a href="logistic-regression-evaluation.html#cb166-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb166-13"><a href="logistic-regression-evaluation.html#cb166-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&#39;red&#39;</span>) <span class="sc">+</span>  <span class="co"># try changing threshold</span></span>
+<span id="cb166-14"><a href="logistic-regression-evaluation.html#cb166-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&#39;Predicted Probability of Outcome&#39;</span>, <span class="at">x =</span> <span class="st">&#39;Observed Outcome&#39;</span>) <span class="sc">+</span></span>
+<span id="cb166-15"><a href="logistic-regression-evaluation.html#cb166-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><strong>Calculate evaluation metrics of the logistic model on training data</strong></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="logistic-regression-evaluation.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
-<span id="cb164-2"><a href="logistic-regression-evaluation.html#cb164-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span></span>
-<span id="cb164-3"><a href="logistic-regression-evaluation.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> outcome, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb164-4"><a href="logistic-regression-evaluation.html#cb164-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-5"><a href="logistic-regression-evaluation.html#cb164-5" aria-hidden="true" tabindex="-1"></a>log_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy) <span class="co"># these metrics are based on hard predictions</span></span>
-<span id="cb164-6"><a href="logistic-regression-evaluation.html#cb164-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-7"><a href="logistic-regression-evaluation.html#cb164-7" aria-hidden="true" tabindex="-1"></a><span class="co">#sens: sensitivity = chance of correctly predicting second level, given second level (Yes)</span></span>
-<span id="cb164-8"><a href="logistic-regression-evaluation.html#cb164-8" aria-hidden="true" tabindex="-1"></a><span class="co">#spec: specificity = chance of correctly predicting first level, given first level (No)</span></span>
-<span id="cb164-9"><a href="logistic-regression-evaluation.html#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy: accuracy = chance of correctly predicting outcome</span></span>
-<span id="cb164-10"><a href="logistic-regression-evaluation.html#cb164-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-11"><a href="logistic-regression-evaluation.html#cb164-11" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span> </span>
-<span id="cb164-12"><a href="logistic-regression-evaluation.html#cb164-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log_metrics</span>(<span class="at">estimate =</span> .pred_class, <span class="at">truth =</span> outcome, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) <span class="co"># set second level of outcome as &quot;success&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="logistic-regression-evaluation.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
+<span id="cb167-2"><a href="logistic-regression-evaluation.html#cb167-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span></span>
+<span id="cb167-3"><a href="logistic-regression-evaluation.html#cb167-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> outcome, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb167-4"><a href="logistic-regression-evaluation.html#cb167-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-5"><a href="logistic-regression-evaluation.html#cb167-5" aria-hidden="true" tabindex="-1"></a>log_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy) <span class="co"># these metrics are based on hard predictions</span></span>
+<span id="cb167-6"><a href="logistic-regression-evaluation.html#cb167-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-7"><a href="logistic-regression-evaluation.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="co">#sens: sensitivity = chance of correctly predicting second level, given second level (Yes)</span></span>
+<span id="cb167-8"><a href="logistic-regression-evaluation.html#cb167-8" aria-hidden="true" tabindex="-1"></a><span class="co">#spec: specificity = chance of correctly predicting first level, given first level (No)</span></span>
+<span id="cb167-9"><a href="logistic-regression-evaluation.html#cb167-9" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy: accuracy = chance of correctly predicting outcome</span></span>
+<span id="cb167-10"><a href="logistic-regression-evaluation.html#cb167-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-11"><a href="logistic-regression-evaluation.html#cb167-11" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span> </span>
+<span id="cb167-12"><a href="logistic-regression-evaluation.html#cb167-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log_metrics</span>(<span class="at">estimate =</span> .pred_class, <span class="at">truth =</span> outcome, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) <span class="co"># set second level of outcome as &quot;success&quot;</span></span></code></pre></div>
 <p><strong>ROC Curve: evaluating logistic model using soft predictions</strong></p>
 <p>For each threshold level, you can calculate sensitivity and specificity. An ROC (receiver operating characteristics) curve plots (1-specificity) on the x axis against the sensitivity. Ideally, we want sensitivity = 1 (no errors for one outcome group) and (1-specificity) = 0 (no errors for the other outcome group). This would visually look like a vertical line at x=0 and horizontal line at y = 1 (a “sharp corner”). The better model will be as close to this shape as possible.</p>
 <p>The y=x line is there and would be equivalent to guessing. A poor model will be close to this line.</p>
 <p>Typically the ROC curve shape is somewhere between a “sharp corner” and the diagonal y=x line. For different thresholds, as sensitivity increases, the specificity decreases or (1-specificity increases).</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="logistic-regression-evaluation.html#cb165-1" aria-hidden="true" tabindex="-1"></a>logistic_roc <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span> </span>
-<span id="cb165-2"><a href="logistic-regression-evaluation.html#cb165-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">roc_curve</span>(outcome, .pred_OUTCOME, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) <span class="co"># set second level of outcome as &quot;success&quot;</span></span>
-<span id="cb165-3"><a href="logistic-regression-evaluation.html#cb165-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-4"><a href="logistic-regression-evaluation.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(logistic_roc) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="logistic-regression-evaluation.html#cb168-1" aria-hidden="true" tabindex="-1"></a>logistic_roc <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span> </span>
+<span id="cb168-2"><a href="logistic-regression-evaluation.html#cb168-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">roc_curve</span>(outcome, .pred_OUTCOME, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) <span class="co"># set second level of outcome as &quot;success&quot;</span></span>
+<span id="cb168-3"><a href="logistic-regression-evaluation.html#cb168-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-4"><a href="logistic-regression-evaluation.html#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(logistic_roc) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><strong>Calculate evaluation metrics of the logistic model using CV</strong></p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="logistic-regression-evaluation.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CV Fit Model</span></span>
-<span id="cb166-2"><a href="logistic-regression-evaluation.html#cb166-2" aria-hidden="true" tabindex="-1"></a>log_cv_fit <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
-<span id="cb166-3"><a href="logistic-regression-evaluation.html#cb166-3" aria-hidden="true" tabindex="-1"></a>    log_wf, </span>
-<span id="cb166-4"><a href="logistic-regression-evaluation.html#cb166-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> data_cv10,</span>
-<span id="cb166-5"><a href="logistic-regression-evaluation.html#cb166-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy, roc_auc),</span>
-<span id="cb166-6"><a href="logistic-regression-evaluation.html#cb166-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>, <span class="at">event_level =</span> <span class="st">&#39;second&#39;</span>))  <span class="co"># you need predictions for ROC calculations</span></span>
-<span id="cb166-7"><a href="logistic-regression-evaluation.html#cb166-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-8"><a href="logistic-regression-evaluation.html#cb166-8" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(log_cv_fit) <span class="co">#default threshold is 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="logistic-regression-evaluation.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CV Fit Model</span></span>
+<span id="cb169-2"><a href="logistic-regression-evaluation.html#cb169-2" aria-hidden="true" tabindex="-1"></a>log_cv_fit <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb169-3"><a href="logistic-regression-evaluation.html#cb169-3" aria-hidden="true" tabindex="-1"></a>    log_wf, </span>
+<span id="cb169-4"><a href="logistic-regression-evaluation.html#cb169-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> data_cv10,</span>
+<span id="cb169-5"><a href="logistic-regression-evaluation.html#cb169-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy, roc_auc),</span>
+<span id="cb169-6"><a href="logistic-regression-evaluation.html#cb169-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>, <span class="at">event_level =</span> <span class="st">&#39;second&#39;</span>))  <span class="co"># you need predictions for ROC calculations</span></span>
+<span id="cb169-7"><a href="logistic-regression-evaluation.html#cb169-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb169-8"><a href="logistic-regression-evaluation.html#cb169-8" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(log_cv_fit) <span class="co">#default threshold is 0.5</span></span></code></pre></div>
 <p><br><br><br></p>
 </div>
 <div id="exercises-8" class="section level2 unnumbered">
@@ -646,26 +549,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>capital_run_length_total</code>: sum of length of uninterrupted sequences of capital letters</li>
 </ul>
 <p>Our goal will be to use email features to predict whether or not an email is spam - essentially, to build a spam filter!</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="logistic-regression-evaluation.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb167-2"><a href="logistic-regression-evaluation.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb167-3"><a href="logistic-regression-evaluation.html#cb167-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb167-4"><a href="logistic-regression-evaluation.html#cb167-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb167-5"><a href="logistic-regression-evaluation.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(probably) <span class="co">#install.packages(&#39;probably&#39;)</span></span>
-<span id="cb167-6"><a href="logistic-regression-evaluation.html#cb167-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb167-7"><a href="logistic-regression-evaluation.html#cb167-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-8"><a href="logistic-regression-evaluation.html#cb167-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-9"><a href="logistic-regression-evaluation.html#cb167-9" aria-hidden="true" tabindex="-1"></a>spam <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://www.dropbox.com/s/leurr6a30f4l32a/spambase.csv?dl=1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="logistic-regression-evaluation.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb170-2"><a href="logistic-regression-evaluation.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb170-3"><a href="logistic-regression-evaluation.html#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb170-4"><a href="logistic-regression-evaluation.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb170-5"><a href="logistic-regression-evaluation.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(probably) <span class="co">#install.packages(&#39;probably&#39;)</span></span>
+<span id="cb170-6"><a href="logistic-regression-evaluation.html#cb170-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb170-7"><a href="logistic-regression-evaluation.html#cb170-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-8"><a href="logistic-regression-evaluation.html#cb170-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-9"><a href="logistic-regression-evaluation.html#cb170-9" aria-hidden="true" tabindex="-1"></a>spam <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://www.dropbox.com/s/leurr6a30f4l32a/spambase.csv?dl=1&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exercise-1-visualization-warmup" class="section level3 unnumbered">
 <h3>Exercise 1: Visualization warmup</h3>
 <p>Let’s take a look at the frequency of the word “George” (the email recipient’s name is George) (<code>word_freq_george</code>) and the frequency of exclamation points (<code>char_freq_exclam</code>).</p>
 <p>Create appropriate visualizations to assess the predictive ability of these two predictors.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="logistic-regression-evaluation.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to adjust the axis limits, you can add the following to your plot:</span></span>
-<span id="cb168-2"><a href="logistic-regression-evaluation.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="co"># + coord_cartesian(ylim = c(0,1))</span></span>
-<span id="cb168-3"><a href="logistic-regression-evaluation.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="co"># + coord_cartesian(xlim = c(0,1))</span></span>
-<span id="cb168-4"><a href="logistic-regression-evaluation.html#cb168-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-5"><a href="logistic-regression-evaluation.html#cb168-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spam, <span class="fu">aes</span>(<span class="at">x =</span> ___, <span class="at">y =</span> ___)) <span class="sc">+</span></span>
-<span id="cb168-6"><a href="logistic-regression-evaluation.html#cb168-6" aria-hidden="true" tabindex="-1"></a>    geom_???()</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="logistic-regression-evaluation.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to adjust the axis limits, you can add the following to your plot:</span></span>
+<span id="cb171-2"><a href="logistic-regression-evaluation.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="co"># + coord_cartesian(ylim = c(0,1))</span></span>
+<span id="cb171-3"><a href="logistic-regression-evaluation.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="co"># + coord_cartesian(xlim = c(0,1))</span></span>
+<span id="cb171-4"><a href="logistic-regression-evaluation.html#cb171-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-5"><a href="logistic-regression-evaluation.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spam, <span class="fu">aes</span>(<span class="at">x =</span> ___, <span class="at">y =</span> ___)) <span class="sc">+</span></span>
+<span id="cb171-6"><a href="logistic-regression-evaluation.html#cb171-6" aria-hidden="true" tabindex="-1"></a>    geom_???()</span></code></pre></div>
 </div>
 <div id="exercise-2-implementing-logistic-regression-in-tidymodels" class="section level3 unnumbered">
 <h3>Exercise 2: Implementing logistic regression in <code>tidymodels</code></h3>
@@ -674,25 +577,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Write down the corresponding logistic regression model formula using mathematical notation.</p></li>
 <li><p>Use <code>tidymodels</code> to fit this logistic regression model to the training data.</p></li>
 </ol>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="logistic-regression-evaluation.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you set reference level (to the outcome you are NOT interested in)</span></span>
-<span id="cb169-2"><a href="logistic-regression-evaluation.html#cb169-2" aria-hidden="true" tabindex="-1"></a>spam <span class="ot">&lt;-</span> spam <span class="sc">%&gt;%</span></span>
-<span id="cb169-3"><a href="logistic-regression-evaluation.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spam =</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(spam), <span class="at">ref=</span><span class="st">&#39;not spam&#39;</span>)) <span class="co">#set reference level</span></span>
-<span id="cb169-4"><a href="logistic-regression-evaluation.html#cb169-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-5"><a href="logistic-regression-evaluation.html#cb169-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression Model Spec</span></span>
-<span id="cb169-6"><a href="logistic-regression-evaluation.html#cb169-6" aria-hidden="true" tabindex="-1"></a>logistic_spec <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb169-7"><a href="logistic-regression-evaluation.html#cb169-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb169-8"><a href="logistic-regression-evaluation.html#cb169-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>)</span>
-<span id="cb169-9"><a href="logistic-regression-evaluation.html#cb169-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-10"><a href="logistic-regression-evaluation.html#cb169-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Recipe</span></span>
-<span id="cb169-11"><a href="logistic-regression-evaluation.html#cb169-11" aria-hidden="true" tabindex="-1"></a>logistic_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(spam <span class="sc">~</span> _____, <span class="at">data =</span> spam)</span>
-<span id="cb169-12"><a href="logistic-regression-evaluation.html#cb169-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-13"><a href="logistic-regression-evaluation.html#cb169-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
-<span id="cb169-14"><a href="logistic-regression-evaluation.html#cb169-14" aria-hidden="true" tabindex="-1"></a>log_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb169-15"><a href="logistic-regression-evaluation.html#cb169-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_recipe</span>(logistic_rec) <span class="sc">%&gt;%</span></span>
-<span id="cb169-16"><a href="logistic-regression-evaluation.html#cb169-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_model</span>(logistic_spec) </span>
-<span id="cb169-17"><a href="logistic-regression-evaluation.html#cb169-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-18"><a href="logistic-regression-evaluation.html#cb169-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model</span></span>
-<span id="cb169-19"><a href="logistic-regression-evaluation.html#cb169-19" aria-hidden="true" tabindex="-1"></a>log_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(log_wf, <span class="at">data =</span> ___)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="logistic-regression-evaluation.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you set reference level (to the outcome you are NOT interested in)</span></span>
+<span id="cb172-2"><a href="logistic-regression-evaluation.html#cb172-2" aria-hidden="true" tabindex="-1"></a>spam <span class="ot">&lt;-</span> spam <span class="sc">%&gt;%</span></span>
+<span id="cb172-3"><a href="logistic-regression-evaluation.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spam =</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(spam), <span class="at">ref=</span><span class="st">&#39;not spam&#39;</span>)) <span class="co">#set reference level</span></span>
+<span id="cb172-4"><a href="logistic-regression-evaluation.html#cb172-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-5"><a href="logistic-regression-evaluation.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression Model Spec</span></span>
+<span id="cb172-6"><a href="logistic-regression-evaluation.html#cb172-6" aria-hidden="true" tabindex="-1"></a>logistic_spec <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb172-7"><a href="logistic-regression-evaluation.html#cb172-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_engine</span>(<span class="st">&#39;glm&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb172-8"><a href="logistic-regression-evaluation.html#cb172-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>)</span>
+<span id="cb172-9"><a href="logistic-regression-evaluation.html#cb172-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-10"><a href="logistic-regression-evaluation.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Recipe</span></span>
+<span id="cb172-11"><a href="logistic-regression-evaluation.html#cb172-11" aria-hidden="true" tabindex="-1"></a>logistic_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(spam <span class="sc">~</span> _____, <span class="at">data =</span> spam)</span>
+<span id="cb172-12"><a href="logistic-regression-evaluation.html#cb172-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-13"><a href="logistic-regression-evaluation.html#cb172-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflow (Recipe + Model)</span></span>
+<span id="cb172-14"><a href="logistic-regression-evaluation.html#cb172-14" aria-hidden="true" tabindex="-1"></a>log_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb172-15"><a href="logistic-regression-evaluation.html#cb172-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_recipe</span>(logistic_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb172-16"><a href="logistic-regression-evaluation.html#cb172-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_model</span>(logistic_spec) </span>
+<span id="cb172-17"><a href="logistic-regression-evaluation.html#cb172-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-18"><a href="logistic-regression-evaluation.html#cb172-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model</span></span>
+<span id="cb172-19"><a href="logistic-regression-evaluation.html#cb172-19" aria-hidden="true" tabindex="-1"></a>log_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(log_wf, <span class="at">data =</span> ___)</span></code></pre></div>
 </div>
 <div id="exercise-3-interpreting-the-model" class="section level3 unnumbered">
 <h3>Exercise 3: Interpreting the model</h3>
@@ -708,66 +611,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Use the model summary to make both a soft (probability) and hard (class) prediction for this test case <strong>by hand</strong>. Use a default probability threshold of 0.5. (You can use math expressions to use R as a calculator. The <code>exp()</code> function exponentiates a number.)</p></li>
 <li><p>Check your work from part a by using <code>predict()</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="logistic-regression-evaluation.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(___, <span class="at">new_data =</span> <span class="fu">data.frame</span>(<span class="at">word_freq_george =</span> <span class="fl">0.25</span>, <span class="at">char_freq_exclam =</span> <span class="dv">1</span>), <span class="at">type =</span> ___)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="logistic-regression-evaluation.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(___, <span class="at">new_data =</span> <span class="fu">data.frame</span>(<span class="at">word_freq_george =</span> <span class="fl">0.25</span>, <span class="at">char_freq_exclam =</span> <span class="dv">1</span>), <span class="at">type =</span> ___)</span></code></pre></div>
 </div>
 <div id="exercise-5-evaluate-the-model" class="section level3 unnumbered">
 <h3>Exercise 5: Evaluate the model</h3>
 <ol style="list-style-type: lower-alpha">
 <li>Visualize the soft predictions and comment on a potential threshold for doing hard predictions.</li>
 </ol>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="logistic-regression-evaluation.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soft predictions</span></span>
-<span id="cb171-2"><a href="logistic-regression-evaluation.html#cb171-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span>  spam <span class="sc">%&gt;%</span></span>
-<span id="cb171-3"><a href="logistic-regression-evaluation.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> spam, <span class="at">type =</span> <span class="st">&#39;prob&#39;</span>)) </span>
-<span id="cb171-4"><a href="logistic-regression-evaluation.html#cb171-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-5"><a href="logistic-regression-evaluation.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(logistic_output)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="logistic-regression-evaluation.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soft predictions</span></span>
+<span id="cb174-2"><a href="logistic-regression-evaluation.html#cb174-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span>  spam <span class="sc">%&gt;%</span></span>
+<span id="cb174-3"><a href="logistic-regression-evaluation.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(log_fit, <span class="at">new_data =</span> spam, <span class="at">type =</span> <span class="st">&#39;prob&#39;</span>)) </span>
+<span id="cb174-4"><a href="logistic-regression-evaluation.html#cb174-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-5"><a href="logistic-regression-evaluation.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(logistic_output)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Choose a threshold and calculate training metrics based on hard predictions (sensitivity, specificity, accuracy). Write a sentence interpreting these values in context.</li>
 </ol>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="logistic-regression-evaluation.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard predictions (you pick threshold)</span></span>
-<span id="cb172-2"><a href="logistic-regression-evaluation.html#cb172-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span></span>
-<span id="cb172-3"><a href="logistic-regression-evaluation.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.pred_class =</span> <span class="fu">make_two_class_pred</span>(<span class="st">`</span><span class="at">.pred_not spam</span><span class="st">`</span>, <span class="fu">levels</span>(spam), <span class="at">threshold =</span> <span class="dv">1</span> <span class="sc">-</span> ___)) </span>
-<span id="cb172-4"><a href="logistic-regression-evaluation.html#cb172-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-5"><a href="logistic-regression-evaluation.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
-<span id="cb172-6"><a href="logistic-regression-evaluation.html#cb172-6" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span></span>
-<span id="cb172-7"><a href="logistic-regression-evaluation.html#cb172-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> spam, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb172-8"><a href="logistic-regression-evaluation.html#cb172-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-9"><a href="logistic-regression-evaluation.html#cb172-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate them by hand first and then confirm below</span></span>
-<span id="cb172-10"><a href="logistic-regression-evaluation.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="co">#sens: sensitivity = chance of correctly predicting second level, given second level (Spam)</span></span>
-<span id="cb172-11"><a href="logistic-regression-evaluation.html#cb172-11" aria-hidden="true" tabindex="-1"></a><span class="co">#spec: specificity = chance of correctly predicting first level, given first level (Not Spam)</span></span>
-<span id="cb172-12"><a href="logistic-regression-evaluation.html#cb172-12" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy: accuracy = chance of correctly predicting outcome</span></span>
-<span id="cb172-13"><a href="logistic-regression-evaluation.html#cb172-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-14"><a href="logistic-regression-evaluation.html#cb172-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-15"><a href="logistic-regression-evaluation.html#cb172-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-16"><a href="logistic-regression-evaluation.html#cb172-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-17"><a href="logistic-regression-evaluation.html#cb172-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-18"><a href="logistic-regression-evaluation.html#cb172-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-19"><a href="logistic-regression-evaluation.html#cb172-19" aria-hidden="true" tabindex="-1"></a>log_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy)</span>
-<span id="cb172-20"><a href="logistic-regression-evaluation.html#cb172-20" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span> </span>
-<span id="cb172-21"><a href="logistic-regression-evaluation.html#cb172-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log_metrics</span>(<span class="at">estimate =</span> .pred_class, <span class="at">truth =</span> spam, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="logistic-regression-evaluation.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard predictions (you pick threshold)</span></span>
+<span id="cb175-2"><a href="logistic-regression-evaluation.html#cb175-2" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span></span>
+<span id="cb175-3"><a href="logistic-regression-evaluation.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.pred_class =</span> <span class="fu">make_two_class_pred</span>(<span class="st">`</span><span class="at">.pred_not spam</span><span class="st">`</span>, <span class="fu">levels</span>(spam), <span class="at">threshold =</span> <span class="dv">1</span> <span class="sc">-</span> ___)) </span>
+<span id="cb175-4"><a href="logistic-regression-evaluation.html#cb175-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-5"><a href="logistic-regression-evaluation.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
+<span id="cb175-6"><a href="logistic-regression-evaluation.html#cb175-6" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span></span>
+<span id="cb175-7"><a href="logistic-regression-evaluation.html#cb175-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> spam, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb175-8"><a href="logistic-regression-evaluation.html#cb175-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-9"><a href="logistic-regression-evaluation.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate them by hand first and then confirm below</span></span>
+<span id="cb175-10"><a href="logistic-regression-evaluation.html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="co">#sens: sensitivity = chance of correctly predicting second level, given second level (Spam)</span></span>
+<span id="cb175-11"><a href="logistic-regression-evaluation.html#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="co">#spec: specificity = chance of correctly predicting first level, given first level (Not Spam)</span></span>
+<span id="cb175-12"><a href="logistic-regression-evaluation.html#cb175-12" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy: accuracy = chance of correctly predicting outcome</span></span>
+<span id="cb175-13"><a href="logistic-regression-evaluation.html#cb175-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-14"><a href="logistic-regression-evaluation.html#cb175-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-15"><a href="logistic-regression-evaluation.html#cb175-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-16"><a href="logistic-regression-evaluation.html#cb175-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-17"><a href="logistic-regression-evaluation.html#cb175-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-18"><a href="logistic-regression-evaluation.html#cb175-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-19"><a href="logistic-regression-evaluation.html#cb175-19" aria-hidden="true" tabindex="-1"></a>log_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy)</span>
+<span id="cb175-20"><a href="logistic-regression-evaluation.html#cb175-20" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span> </span>
+<span id="cb175-21"><a href="logistic-regression-evaluation.html#cb175-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log_metrics</span>(<span class="at">estimate =</span> .pred_class, <span class="at">truth =</span> spam, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Now visualize the soft predictions using all possible thresholds by visualizing the ROC curve and calculating the area under the roc curve. Discuss what this tells you about how well the model classifies spam emails.</li>
 </ol>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="logistic-regression-evaluation.html#cb173-1" aria-hidden="true" tabindex="-1"></a>logistic_roc <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span> </span>
-<span id="cb173-2"><a href="logistic-regression-evaluation.html#cb173-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">roc_curve</span>(spam, .pred_spam, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) </span>
-<span id="cb173-3"><a href="logistic-regression-evaluation.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb173-4"><a href="logistic-regression-evaluation.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(logistic_roc) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
-<span id="cb173-5"><a href="logistic-regression-evaluation.html#cb173-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb173-6"><a href="logistic-regression-evaluation.html#cb173-6" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span> </span>
-<span id="cb173-7"><a href="logistic-regression-evaluation.html#cb173-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(spam, .pred_spam, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="logistic-regression-evaluation.html#cb176-1" aria-hidden="true" tabindex="-1"></a>logistic_roc <span class="ot">&lt;-</span> logistic_output <span class="sc">%&gt;%</span> </span>
+<span id="cb176-2"><a href="logistic-regression-evaluation.html#cb176-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">roc_curve</span>(spam, .pred_spam, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>) </span>
+<span id="cb176-3"><a href="logistic-regression-evaluation.html#cb176-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-4"><a href="logistic-regression-evaluation.html#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(logistic_roc) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
+<span id="cb176-5"><a href="logistic-regression-evaluation.html#cb176-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-6"><a href="logistic-regression-evaluation.html#cb176-6" aria-hidden="true" tabindex="-1"></a>logistic_output <span class="sc">%&gt;%</span> </span>
+<span id="cb176-7"><a href="logistic-regression-evaluation.html#cb176-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(spam, .pred_spam, <span class="at">event_level =</span> <span class="st">&quot;second&quot;</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Now, let’s use CV to evaluate the model on test data. Comment on the difference in CV metrics to the training metrics.</li>
 </ol>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="logistic-regression-evaluation.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb174-2"><a href="logistic-regression-evaluation.html#cb174-2" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(spam, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb174-3"><a href="logistic-regression-evaluation.html#cb174-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-4"><a href="logistic-regression-evaluation.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CV Fit Model</span></span>
-<span id="cb174-5"><a href="logistic-regression-evaluation.html#cb174-5" aria-hidden="true" tabindex="-1"></a>log_cv_fit <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
-<span id="cb174-6"><a href="logistic-regression-evaluation.html#cb174-6" aria-hidden="true" tabindex="-1"></a>    log_wf, </span>
-<span id="cb174-7"><a href="logistic-regression-evaluation.html#cb174-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> data_cv10,</span>
-<span id="cb174-8"><a href="logistic-regression-evaluation.html#cb174-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy, roc_auc),</span>
-<span id="cb174-9"><a href="logistic-regression-evaluation.html#cb174-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>, <span class="at">event_level =</span> <span class="st">&#39;second&#39;</span>))  <span class="co"># you need predictions for ROC calculations</span></span>
-<span id="cb174-10"><a href="logistic-regression-evaluation.html#cb174-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-11"><a href="logistic-regression-evaluation.html#cb174-11" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(log_cv_fit) <span class="co">#default threshold is 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="logistic-regression-evaluation.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb177-2"><a href="logistic-regression-evaluation.html#cb177-2" aria-hidden="true" tabindex="-1"></a>data_cv10 <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(spam, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb177-3"><a href="logistic-regression-evaluation.html#cb177-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-4"><a href="logistic-regression-evaluation.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CV Fit Model</span></span>
+<span id="cb177-5"><a href="logistic-regression-evaluation.html#cb177-5" aria-hidden="true" tabindex="-1"></a>log_cv_fit <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb177-6"><a href="logistic-regression-evaluation.html#cb177-6" aria-hidden="true" tabindex="-1"></a>    log_wf, </span>
+<span id="cb177-7"><a href="logistic-regression-evaluation.html#cb177-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> data_cv10,</span>
+<span id="cb177-8"><a href="logistic-regression-evaluation.html#cb177-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">metric_set</span>(sens, yardstick<span class="sc">::</span>spec, accuracy, roc_auc),</span>
+<span id="cb177-9"><a href="logistic-regression-evaluation.html#cb177-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">control_resamples</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>, <span class="at">event_level =</span> <span class="st">&#39;second&#39;</span>))  <span class="co"># you need predictions for ROC calculations</span></span>
+<span id="cb177-10"><a href="logistic-regression-evaluation.html#cb177-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-11"><a href="logistic-regression-evaluation.html#cb177-11" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(log_cv_fit) <span class="co">#default threshold is 0.5</span></span></code></pre></div>
 
 </div>
 </div>
@@ -782,7 +685,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -823,7 +725,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
