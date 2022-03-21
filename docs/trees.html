@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topic 13 Trees | STAT 253: Statistical Machine Learning</title>
   <meta name="description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Topic 13 Trees | STAT 253: Statistical Machine Learning" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/253_fall_2021" />
+  <meta name="github-repo" content="bryandmartin/253_spring_2022" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Topic 13 Trees | STAT 253: Statistical Machine Learning" />
@@ -33,6 +33,7 @@
 <link rel="next" href="bagging-and-random-forests.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -402,57 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bagging-and-random-forests.html"><a href="bagging-and-random-forests.html#exercise-6-variable-importance-measures"><i class="fa fa-check"></i>Exercise 6: Variable importance measures</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>VII Unsupervised Learning</b></span></li>
-<li class="chapter" data-level="15" data-path="k-means-clustering.html"><a href="k-means-clustering.html"><i class="fa fa-check"></i><b>15</b> K-Means Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#learning-goals-14"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercises-12"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-1-visual-explorations"><i class="fa fa-check"></i>Exercise 1: Visual explorations</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-2-k-means-clustering-on-bill-length-and-depth"><i class="fa fa-check"></i>Exercise 2: K-means clustering on bill length and depth</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-3-addressing-variable-scale"><i class="fa fa-check"></i>Exercise 3: Addressing variable scale</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-4-clustering-on-more-variables"><i class="fa fa-check"></i>Exercise 4: Clustering on more variables</a></li>
-<li class="chapter" data-level="" data-path="k-means-clustering.html"><a href="k-means-clustering.html#exercise-5-interpreting-the-clusters"><i class="fa fa-check"></i>Exercise 5: Interpreting the clusters</a></li>
-<li><a href="k-means-clustering.html#exercise-6-picking-k">Exercise 6: Picking <span class="math inline">\(k\)</span></a></li>
-<li><a href="k-means-clustering.html#go-deeper-picking-k">Go Deeper: Picking <span class="math inline">\(k\)</span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html"><i class="fa fa-check"></i><b>16</b> Hierarchical Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#learning-goals-15"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercises-13"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-1-hierarchical-clustering-by-hand"><i class="fa fa-check"></i>Exercise 1: Hierarchical clustering by hand</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-2-exploring-penguin-dendrograms"><i class="fa fa-check"></i>Exercise 2: Exploring penguin dendrograms</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-3-interpreting-the-clusters-visually"><i class="fa fa-check"></i>Exercise 3: Interpreting the clusters visually</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-4-tree-cutting-and-interpretation"><i class="fa fa-check"></i>Exercise 4: Tree-cutting and interpretation</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-5-k-means-vs.-hierarchical"><i class="fa fa-check"></i>Exercise 5: K-means vs. hierarchical</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#dig-into-dendrograms"><i class="fa fa-check"></i>Dig into Dendrograms</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html"><i class="fa fa-check"></i><b>17</b> Catch up Clustering Day</a>
-<ul>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#learning-goals-16"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#real-data-clustering"><i class="fa fa-check"></i>Real Data Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#your-goal"><i class="fa fa-check"></i>Your Goal</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#clustering-in-the-wild"><i class="fa fa-check"></i>Clustering in the Wild</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#r-coding-challenges"><i class="fa fa-check"></i>R Coding Challenges</a></li>
-</ul></li>
-<li class="chapter" data-level="18" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>18</b> Principal Components Analysis</a>
-<ul>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#learning-goals-17"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercises-14"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-1-core-concepts"><i class="fa fa-check"></i>Exercise 1: Core concepts</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-2-exploring-pc-loadings"><i class="fa fa-check"></i>Exercise 2: Exploring PC loadings</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-3-exploring-pc-scores"><i class="fa fa-check"></i>Exercise 3: Exploring PC scores</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-4-scree-plots-and-dimension-reduction"><i class="fa fa-check"></i>Exercise 4: Scree plots and dimension reduction</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-5-variable-scaling"><i class="fa fa-check"></i>Exercise 5: Variable scaling</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>VIII Homework</b></span></li>
+<li class="part"><span><b>VII Homework</b></span></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
 <ul>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html#project-work-1"><i class="fa fa-check"></i>Project Work</a></li>
@@ -486,13 +436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#portfolio-work-3"><i class="fa fa-check"></i>Portfolio Work</a></li>
 <li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#reflection-3"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html"><i class="fa fa-check"></i>Homework 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#project-work-5"><i class="fa fa-check"></i>Project Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#portfolio-work-4"><i class="fa fa-check"></i>Portfolio Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#reflection-4"><i class="fa fa-check"></i>Reflection</a></li>
-</ul></li>
-<li class="part"><span><b>IX Project</b></span></li>
+<li class="part"><span><b>VIII Project</b></span></li>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i>Final Project</a>
 <ul>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html#requirements"><i class="fa fa-check"></i>Requirements</a></li>
@@ -530,48 +474,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Explain how different tree parameters relate to the bias-variance tradeoff</li>
 </ul>
 <p><br></p>
-<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1M4ODLJCERV6qwHWJ4szZoe2blk17ZPnOem9ig9tGOe4/edit?usp=sharing">here</a>.</p>
+<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1NXUuhCurRGjvEjBqtng7kKSDW012zKpqlPk1LDBwK_s/edit?usp=sharing">here</a>.</p>
 <p><br><br><br></p>
 </div>
 <div id="trees-in-tidymodels" class="section level2 unnumbered">
 <h2>Trees in <code>tidymodels</code></h2>
 <p>To build tree models in <code>tidymodels</code>, first load the package and set the seed for the random number generator to ensure reproducible results:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="trees.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb188-2"><a href="trees.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb188-3"><a href="trees.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb188-4"><a href="trees.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb188-5"><a href="trees.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb188-6"><a href="trees.html#cb188-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-7"><a href="trees.html#cb188-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___) <span class="co"># Pick your favorite number to fill in the parentheses</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="trees.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb191-2"><a href="trees.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb191-3"><a href="trees.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb191-4"><a href="trees.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb191-5"><a href="trees.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb191-6"><a href="trees.html#cb191-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-7"><a href="trees.html#cb191-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___) <span class="co"># Pick your favorite number to fill in the parentheses</span></span></code></pre></div>
 <p>To fit a classification tree, we can adapt the following:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="trees.html#cb189-1" aria-hidden="true" tabindex="-1"></a>ct_spec <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb189-2"><a href="trees.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;rpart&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb189-3"><a href="trees.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> <span class="cn">NULL</span>,  <span class="co">#default is 0.01 (used for pruning a tree)</span></span>
-<span id="cb189-4"><a href="trees.html#cb189-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">min_n =</span> <span class="cn">NULL</span>, <span class="co">#min number of observations to try split: default is 20 [I think the documentation has a typo and says 2]  (used to stop early)</span></span>
-<span id="cb189-5"><a href="trees.html#cb189-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">tree_depth =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="co">#max depth, number of branches/splits to get to any final group: default is 30 (used to stop early)</span></span>
-<span id="cb189-6"><a href="trees.html#cb189-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>) <span class="co"># change this for regression tree</span></span>
-<span id="cb189-7"><a href="trees.html#cb189-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-8"><a href="trees.html#cb189-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-9"><a href="trees.html#cb189-9" aria-hidden="true" tabindex="-1"></a>data_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(___ <span class="sc">~</span> ___, <span class="at">data =</span> ______)</span>
-<span id="cb189-10"><a href="trees.html#cb189-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-11"><a href="trees.html#cb189-11" aria-hidden="true" tabindex="-1"></a>data_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb189-12"><a href="trees.html#cb189-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ct_spec) <span class="sc">%&gt;%</span></span>
-<span id="cb189-13"><a href="trees.html#cb189-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec)</span>
-<span id="cb189-14"><a href="trees.html#cb189-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-15"><a href="trees.html#cb189-15" aria-hidden="true" tabindex="-1"></a>fit_mod <span class="ot">&lt;-</span> data_wf <span class="sc">%&gt;%</span> <span class="co"># or use tune_grid() to tune any of the parameters above</span></span>
-<span id="cb189-16"><a href="trees.html#cb189-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> _____)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="trees.html#cb192-1" aria-hidden="true" tabindex="-1"></a>ct_spec <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb192-2"><a href="trees.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;rpart&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb192-3"><a href="trees.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> <span class="cn">NULL</span>,  <span class="co">#default is 0.01 (used for pruning a tree)</span></span>
+<span id="cb192-4"><a href="trees.html#cb192-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">min_n =</span> <span class="cn">NULL</span>, <span class="co">#min number of observations to try split: default is 20 [I think the documentation has a typo and says 2]  (used to stop early)</span></span>
+<span id="cb192-5"><a href="trees.html#cb192-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">tree_depth =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span> <span class="co">#max depth, number of branches/splits to get to any final group: default is 30 (used to stop early)</span></span>
+<span id="cb192-6"><a href="trees.html#cb192-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>) <span class="co"># change this for regression tree</span></span>
+<span id="cb192-7"><a href="trees.html#cb192-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-8"><a href="trees.html#cb192-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-9"><a href="trees.html#cb192-9" aria-hidden="true" tabindex="-1"></a>data_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(___ <span class="sc">~</span> ___, <span class="at">data =</span> ______)</span>
+<span id="cb192-10"><a href="trees.html#cb192-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-11"><a href="trees.html#cb192-11" aria-hidden="true" tabindex="-1"></a>data_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb192-12"><a href="trees.html#cb192-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ct_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb192-13"><a href="trees.html#cb192-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec)</span>
+<span id="cb192-14"><a href="trees.html#cb192-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-15"><a href="trees.html#cb192-15" aria-hidden="true" tabindex="-1"></a>fit_mod <span class="ot">&lt;-</span> data_wf <span class="sc">%&gt;%</span> <span class="co"># or use tune_grid() to tune any of the parameters above</span></span>
+<span id="cb192-16"><a href="trees.html#cb192-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> _____)</span></code></pre></div>
 <p><br></p>
 <p><strong>Visualizing and interpreting the “best” tree</strong></p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="trees.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the tree (make sure to load the rpart.plot package first)</span></span>
-<span id="cb190-2"><a href="trees.html#cb190-2" aria-hidden="true" tabindex="-1"></a>fit_mod <span class="sc">%&gt;%</span></span>
-<span id="cb190-3"><a href="trees.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb190-4"><a href="trees.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpart.plot</span>()</span>
-<span id="cb190-5"><a href="trees.html#cb190-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-6"><a href="trees.html#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get variable importance metrics </span></span>
-<span id="cb190-7"><a href="trees.html#cb190-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of the goodness of split measures (impurity reduction) for each split for which it was the primary variable.</span></span>
-<span id="cb190-8"><a href="trees.html#cb190-8" aria-hidden="true" tabindex="-1"></a>fit_mod <span class="sc">%&gt;%</span></span>
-<span id="cb190-9"><a href="trees.html#cb190-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb190-10"><a href="trees.html#cb190-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="st">&#39;variable.importance&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="trees.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the tree (make sure to load the rpart.plot package first)</span></span>
+<span id="cb193-2"><a href="trees.html#cb193-2" aria-hidden="true" tabindex="-1"></a>fit_mod <span class="sc">%&gt;%</span></span>
+<span id="cb193-3"><a href="trees.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb193-4"><a href="trees.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpart.plot</span>()</span>
+<span id="cb193-5"><a href="trees.html#cb193-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-6"><a href="trees.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get variable importance metrics </span></span>
+<span id="cb193-7"><a href="trees.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of the goodness of split measures (impurity reduction) for each split for which it was the primary variable.</span></span>
+<span id="cb193-8"><a href="trees.html#cb193-8" aria-hidden="true" tabindex="-1"></a>fit_mod <span class="sc">%&gt;%</span></span>
+<span id="cb193-9"><a href="trees.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb193-10"><a href="trees.html#cb193-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="st">&#39;variable.importance&#39;</span>)</span></code></pre></div>
 <p><br><br><br></p>
 </div>
 <div id="exercises-10" class="section level2 unnumbered">
@@ -585,20 +529,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://ncap.org.uk/sites/default/files/EK_land_use_0.jpg"><br>
 Source: <a href="https://ncap.org.uk/sites/default/files/EK_land_use_0.jpg" class="uri">https://ncap.org.uk/sites/default/files/EK_land_use_0.jpg</a>
 </center>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="trees.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb191-2"><a href="trees.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb191-3"><a href="trees.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb191-4"><a href="trees.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
-<span id="cb191-5"><a href="trees.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb191-6"><a href="trees.html#cb191-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb191-7"><a href="trees.html#cb191-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-8"><a href="trees.html#cb191-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-9"><a href="trees.html#cb191-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
-<span id="cb191-10"><a href="trees.html#cb191-10" aria-hidden="true" tabindex="-1"></a>land <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://www.macalester.edu/~ajohns24/data/land_cover.csv&quot;</span>)</span>
-<span id="cb191-11"><a href="trees.html#cb191-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-12"><a href="trees.html#cb191-12" aria-hidden="true" tabindex="-1"></a><span class="co"># There are 9 land types, but we&#39;ll focus on 3 of them</span></span>
-<span id="cb191-13"><a href="trees.html#cb191-13" aria-hidden="true" tabindex="-1"></a>land <span class="ot">&lt;-</span> land <span class="sc">%&gt;%</span> </span>
-<span id="cb191-14"><a href="trees.html#cb191-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(class <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;asphalt&quot;</span>, <span class="st">&quot;grass&quot;</span>, <span class="st">&quot;tree&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="trees.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb194-2"><a href="trees.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb194-3"><a href="trees.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb194-4"><a href="trees.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
+<span id="cb194-5"><a href="trees.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb194-6"><a href="trees.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb194-7"><a href="trees.html#cb194-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-8"><a href="trees.html#cb194-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-9"><a href="trees.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb194-10"><a href="trees.html#cb194-10" aria-hidden="true" tabindex="-1"></a>land <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://www.macalester.edu/~ajohns24/data/land_cover.csv&quot;</span>)</span>
+<span id="cb194-11"><a href="trees.html#cb194-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-12"><a href="trees.html#cb194-12" aria-hidden="true" tabindex="-1"></a><span class="co"># There are 9 land types, but we&#39;ll focus on 3 of them</span></span>
+<span id="cb194-13"><a href="trees.html#cb194-13" aria-hidden="true" tabindex="-1"></a>land <span class="ot">&lt;-</span> land <span class="sc">%&gt;%</span> </span>
+<span id="cb194-14"><a href="trees.html#cb194-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(class <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;asphalt&quot;</span>, <span class="st">&quot;grass&quot;</span>, <span class="st">&quot;tree&quot;</span>))</span></code></pre></div>
 </div>
 <div id="exercise-1-core-theme-parametricnonparametric" class="section level3 unnumbered">
 <h3>Exercise 1: Core theme: parametric/nonparametric</h3>
@@ -628,69 +572,69 @@ Source: <a href="https://ncap.org.uk/sites/default/files/EK_land_use_0.jpg" clas
 <li>The Gini index impurity measure (default for rpart) can be a minimum of zero and has an upper bound of 1.</li>
 <li>Try a sequence of 10 <code>cost_complexity</code> values from <span class="math inline">\(10^{-5}\)</span> to 0.1.</li>
 </ul>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="trees.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you understand what each line of code is doing</span></span>
-<span id="cb192-2"><a href="trees.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># don&#39;t change this</span></span>
-<span id="cb192-3"><a href="trees.html#cb192-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-4"><a href="trees.html#cb192-4" aria-hidden="true" tabindex="-1"></a>data_fold <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(land, <span class="at">v =</span> <span class="dv">10</span>)</span>
-<span id="cb192-5"><a href="trees.html#cb192-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-6"><a href="trees.html#cb192-6" aria-hidden="true" tabindex="-1"></a>ct_spec_tune <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb192-7"><a href="trees.html#cb192-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;rpart&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb192-8"><a href="trees.html#cb192-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> <span class="fu">tune</span>(),  </span>
-<span id="cb192-9"><a href="trees.html#cb192-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">min_n =</span> <span class="dv">2</span>, </span>
-<span id="cb192-10"><a href="trees.html#cb192-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">tree_depth =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb192-11"><a href="trees.html#cb192-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>) </span>
-<span id="cb192-12"><a href="trees.html#cb192-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-13"><a href="trees.html#cb192-13" aria-hidden="true" tabindex="-1"></a>data_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(class <span class="sc">~</span> ., <span class="at">data =</span> land)</span>
-<span id="cb192-14"><a href="trees.html#cb192-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-15"><a href="trees.html#cb192-15" aria-hidden="true" tabindex="-1"></a>data_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb192-16"><a href="trees.html#cb192-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ct_spec_tune) <span class="sc">%&gt;%</span></span>
-<span id="cb192-17"><a href="trees.html#cb192-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec)</span>
-<span id="cb192-18"><a href="trees.html#cb192-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-19"><a href="trees.html#cb192-19" aria-hidden="true" tabindex="-1"></a>param_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">1</span>)), <span class="at">levels =</span> <span class="dv">10</span>) </span>
-<span id="cb192-20"><a href="trees.html#cb192-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-21"><a href="trees.html#cb192-21" aria-hidden="true" tabindex="-1"></a>tune_res <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
-<span id="cb192-22"><a href="trees.html#cb192-22" aria-hidden="true" tabindex="-1"></a>  data_wf_tune, </span>
-<span id="cb192-23"><a href="trees.html#cb192-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> data_fold, </span>
-<span id="cb192-24"><a href="trees.html#cb192-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> param_grid, </span>
-<span id="cb192-25"><a href="trees.html#cb192-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(accuracy) <span class="co">#change this for regression trees</span></span>
-<span id="cb192-26"><a href="trees.html#cb192-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="trees.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you understand what each line of code is doing</span></span>
+<span id="cb195-2"><a href="trees.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># don&#39;t change this</span></span>
+<span id="cb195-3"><a href="trees.html#cb195-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-4"><a href="trees.html#cb195-4" aria-hidden="true" tabindex="-1"></a>data_fold <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(land, <span class="at">v =</span> <span class="dv">10</span>)</span>
+<span id="cb195-5"><a href="trees.html#cb195-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-6"><a href="trees.html#cb195-6" aria-hidden="true" tabindex="-1"></a>ct_spec_tune <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb195-7"><a href="trees.html#cb195-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="at">engine =</span> <span class="st">&#39;rpart&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-8"><a href="trees.html#cb195-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> <span class="fu">tune</span>(),  </span>
+<span id="cb195-9"><a href="trees.html#cb195-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">min_n =</span> <span class="dv">2</span>, </span>
+<span id="cb195-10"><a href="trees.html#cb195-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">tree_depth =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb195-11"><a href="trees.html#cb195-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&#39;classification&#39;</span>) </span>
+<span id="cb195-12"><a href="trees.html#cb195-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-13"><a href="trees.html#cb195-13" aria-hidden="true" tabindex="-1"></a>data_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(class <span class="sc">~</span> ., <span class="at">data =</span> land)</span>
+<span id="cb195-14"><a href="trees.html#cb195-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-15"><a href="trees.html#cb195-15" aria-hidden="true" tabindex="-1"></a>data_wf_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb195-16"><a href="trees.html#cb195-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ct_spec_tune) <span class="sc">%&gt;%</span></span>
+<span id="cb195-17"><a href="trees.html#cb195-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(data_rec)</span>
+<span id="cb195-18"><a href="trees.html#cb195-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-19"><a href="trees.html#cb195-19" aria-hidden="true" tabindex="-1"></a>param_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">1</span>)), <span class="at">levels =</span> <span class="dv">10</span>) </span>
+<span id="cb195-20"><a href="trees.html#cb195-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-21"><a href="trees.html#cb195-21" aria-hidden="true" tabindex="-1"></a>tune_res <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb195-22"><a href="trees.html#cb195-22" aria-hidden="true" tabindex="-1"></a>  data_wf_tune, </span>
+<span id="cb195-23"><a href="trees.html#cb195-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> data_fold, </span>
+<span id="cb195-24"><a href="trees.html#cb195-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> param_grid, </span>
+<span id="cb195-25"><a href="trees.html#cb195-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(accuracy) <span class="co">#change this for regression trees</span></span>
+<span id="cb195-26"><a href="trees.html#cb195-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>Make a plot of test performance versus the <code>cost_complexity</code> tuning parameter. Does it look as you expected?</li>
 </ol>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="trees.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(tune_res) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="trees.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(tune_res) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Now choose the <code>cost_complexity</code> value that gives the simplest tree (high or low cost_complexity?) within 1 SE of the max accuracy. Pull out the CV accuracy for the chosen cost_complexity.</li>
 </ol>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="trees.html#cb194-1" aria-hidden="true" tabindex="-1"></a>best_complexity <span class="ot">&lt;-</span> <span class="fu">select_by_one_std_err</span>(tune_res, <span class="at">metric =</span> <span class="st">&#39;accuracy&#39;</span>, ______)</span>
-<span id="cb194-2"><a href="trees.html#cb194-2" aria-hidden="true" tabindex="-1"></a>data_wf_final <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(data_wf_tune, best_complexity)</span>
-<span id="cb194-3"><a href="trees.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="trees.html#cb194-4" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(data_wf_final, <span class="at">data =</span> land)</span>
-<span id="cb194-5"><a href="trees.html#cb194-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-6"><a href="trees.html#cb194-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-7"><a href="trees.html#cb194-7" aria-hidden="true" tabindex="-1"></a>tune_res <span class="sc">%&gt;%</span> </span>
-<span id="cb194-8"><a href="trees.html#cb194-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb194-9"><a href="trees.html#cb194-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cost_complexity <span class="sc">==</span> ________)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="trees.html#cb197-1" aria-hidden="true" tabindex="-1"></a>best_complexity <span class="ot">&lt;-</span> <span class="fu">select_by_one_std_err</span>(tune_res, <span class="at">metric =</span> <span class="st">&#39;accuracy&#39;</span>, ______)</span>
+<span id="cb197-2"><a href="trees.html#cb197-2" aria-hidden="true" tabindex="-1"></a>data_wf_final <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(data_wf_tune, best_complexity)</span>
+<span id="cb197-3"><a href="trees.html#cb197-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-4"><a href="trees.html#cb197-4" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(data_wf_final, <span class="at">data =</span> land)</span>
+<span id="cb197-5"><a href="trees.html#cb197-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-6"><a href="trees.html#cb197-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-7"><a href="trees.html#cb197-7" aria-hidden="true" tabindex="-1"></a>tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb197-8"><a href="trees.html#cb197-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb197-9"><a href="trees.html#cb197-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cost_complexity <span class="sc">==</span> ________)</span></code></pre></div>
 </div>
 <div id="exercise-4-visualizing-trees" class="section level3 unnumbered">
 <h3>Exercise 4: Visualizing trees</h3>
 <p>Let’s visualize the difference between the trees learned under <code>cost_complexity</code> parameters. The code below fits a tree for a lower than optimal <code>cost_complexity</code> value (<code>tree_mod_lowcp</code>) and a higher than optimal <code>cost_complexity</code> (<code>tree_mod_highcp</code>). We then plot these trees (1st and 3rd) along with our best tree (2nd).</p>
 <p>Look at page 3 of the <code>rpart.plot</code> <a href="http://www.milbo.org/doc/prp.pdf">package vignette</a> (an example-heavy manual) to understand what the plot components mean.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="trees.html#cb195-1" aria-hidden="true" tabindex="-1"></a>tree_mod_lowcp <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
-<span id="cb195-2"><a href="trees.html#cb195-2" aria-hidden="true" tabindex="-1"></a>    data_wf_tune <span class="sc">%&gt;%</span></span>
-<span id="cb195-3"><a href="trees.html#cb195-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_model</span>(ct_spec_tune <span class="sc">%&gt;%</span> <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> .<span class="dv">00001</span>)),</span>
-<span id="cb195-4"><a href="trees.html#cb195-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> land</span>
-<span id="cb195-5"><a href="trees.html#cb195-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb195-6"><a href="trees.html#cb195-6" aria-hidden="true" tabindex="-1"></a>tree_mod_highcp <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
-<span id="cb195-7"><a href="trees.html#cb195-7" aria-hidden="true" tabindex="-1"></a>    data_wf_tune <span class="sc">%&gt;%</span></span>
-<span id="cb195-8"><a href="trees.html#cb195-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_model</span>(ct_spec_tune <span class="sc">%&gt;%</span> <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> .<span class="dv">1</span>)),</span>
-<span id="cb195-9"><a href="trees.html#cb195-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> land</span>
-<span id="cb195-10"><a href="trees.html#cb195-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb195-11"><a href="trees.html#cb195-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb195-12"><a href="trees.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all 3 trees in a row</span></span>
-<span id="cb195-13"><a href="trees.html#cb195-13" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb195-14"><a href="trees.html#cb195-14" aria-hidden="true" tabindex="-1"></a>tree_mod_lowcp <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span>
-<span id="cb195-15"><a href="trees.html#cb195-15" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span>
-<span id="cb195-16"><a href="trees.html#cb195-16" aria-hidden="true" tabindex="-1"></a>tree_mod_highcp <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="trees.html#cb198-1" aria-hidden="true" tabindex="-1"></a>tree_mod_lowcp <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
+<span id="cb198-2"><a href="trees.html#cb198-2" aria-hidden="true" tabindex="-1"></a>    data_wf_tune <span class="sc">%&gt;%</span></span>
+<span id="cb198-3"><a href="trees.html#cb198-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_model</span>(ct_spec_tune <span class="sc">%&gt;%</span> <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> .<span class="dv">00001</span>)),</span>
+<span id="cb198-4"><a href="trees.html#cb198-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> land</span>
+<span id="cb198-5"><a href="trees.html#cb198-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb198-6"><a href="trees.html#cb198-6" aria-hidden="true" tabindex="-1"></a>tree_mod_highcp <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
+<span id="cb198-7"><a href="trees.html#cb198-7" aria-hidden="true" tabindex="-1"></a>    data_wf_tune <span class="sc">%&gt;%</span></span>
+<span id="cb198-8"><a href="trees.html#cb198-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_model</span>(ct_spec_tune <span class="sc">%&gt;%</span> <span class="fu">set_args</span>(<span class="at">cost_complexity =</span> .<span class="dv">1</span>)),</span>
+<span id="cb198-9"><a href="trees.html#cb198-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> land</span>
+<span id="cb198-10"><a href="trees.html#cb198-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb198-11"><a href="trees.html#cb198-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-12"><a href="trees.html#cb198-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all 3 trees in a row</span></span>
+<span id="cb198-13"><a href="trees.html#cb198-13" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb198-14"><a href="trees.html#cb198-14" aria-hidden="true" tabindex="-1"></a>tree_mod_lowcp <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span>
+<span id="cb198-15"><a href="trees.html#cb198-15" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span>
+<span id="cb198-16"><a href="trees.html#cb198-16" aria-hidden="true" tabindex="-1"></a>tree_mod_highcp <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span></code></pre></div>
 <ul>
 <li><p>Verify for a couple of splits the idea of increasing node purity/homogeneity in tree-building. (How is this idea reflected in the numbers in the plot output?) Discuss as a group.</p></li>
 <li><p>Tuning classification trees (like with the <code>cost_complexity</code> parameter) is also referred to as <strong>“pruning”</strong>. Why does this make sense? NOTE: If “pruning” is a new word to you, first Google it.</p></li>
@@ -701,28 +645,28 @@ Source: <a href="https://ncap.org.uk/sites/default/files/EK_land_use_0.jpg" clas
 <ol style="list-style-type: lower-alpha">
 <li>Looking at the plot of the best fitted tree, manually make a soft (probability) and hard (class) prediction for the case shown below.</li>
 </ol>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="trees.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick out training case 2 to make a prediction</span></span>
-<span id="cb196-2"><a href="trees.html#cb196-2" aria-hidden="true" tabindex="-1"></a>test_case <span class="ot">&lt;-</span> land[<span class="dv">2</span>,]</span>
-<span id="cb196-3"><a href="trees.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show only the needed predictors</span></span>
-<span id="cb196-4"><a href="trees.html#cb196-4" aria-hidden="true" tabindex="-1"></a>test_case <span class="sc">%&gt;%</span> <span class="fu">select</span>(NDVI, Bright_100, SD_NIR, GLCM2_100)</span>
-<span id="cb196-5"><a href="trees.html#cb196-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb196-6"><a href="trees.html#cb196-6" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="trees.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick out training case 2 to make a prediction</span></span>
+<span id="cb199-2"><a href="trees.html#cb199-2" aria-hidden="true" tabindex="-1"></a>test_case <span class="ot">&lt;-</span> land[<span class="dv">2</span>,]</span>
+<span id="cb199-3"><a href="trees.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show only the needed predictors</span></span>
+<span id="cb199-4"><a href="trees.html#cb199-4" aria-hidden="true" tabindex="-1"></a>test_case <span class="sc">%&gt;%</span> <span class="fu">select</span>(NDVI, Bright_100, SD_NIR, GLCM2_100)</span>
+<span id="cb199-5"><a href="trees.html#cb199-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb199-6"><a href="trees.html#cb199-6" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="sc">%&gt;%</span> <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> <span class="fu">rpart.plot</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Verify your predictions with the <code>predict()</code> function. (Note: we introduced this code in <a href="r-cheatsheet.html#logistic-regression">Logistic Regression</a>, but this type of code applies to any classification model fit in <code>tidymodels</code>).</li>
 </ol>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="trees.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soft (probability) prediction</span></span>
-<span id="cb197-2"><a href="trees.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(land_final_fit, <span class="at">new_data =</span> test_case, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span>
-<span id="cb197-3"><a href="trees.html#cb197-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb197-4"><a href="trees.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard (class) prediction</span></span>
-<span id="cb197-5"><a href="trees.html#cb197-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(land_final_fit, <span class="at">new_data =</span> test_case, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="trees.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soft (probability) prediction</span></span>
+<span id="cb200-2"><a href="trees.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(land_final_fit, <span class="at">new_data =</span> test_case, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span>
+<span id="cb200-3"><a href="trees.html#cb200-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-4"><a href="trees.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard (class) prediction</span></span>
+<span id="cb200-5"><a href="trees.html#cb200-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(land_final_fit, <span class="at">new_data =</span> test_case, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exercise-6-variable-importance-in-trees" class="section level3 unnumbered">
 <h3>Exercise 6: Variable importance in trees</h3>
 <p>We can obtain numerical variable importance measures from trees. These measure, roughly, “the total decrease in node impurities from splitting on the variable” (even if the variable isn’t ultimately used in the split).</p>
 <p>What are the 3 most important predictors by this measure? Does this agree with you might have expected based on the plot of the best fitted tree? What might greedy behavior have to do with this?</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="trees.html#cb198-1" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="sc">%&gt;%</span></span>
-<span id="cb198-2"><a href="trees.html#cb198-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb198-3"><a href="trees.html#cb198-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="st">&#39;variable.importance&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="trees.html#cb201-1" aria-hidden="true" tabindex="-1"></a>land_final_fit <span class="sc">%&gt;%</span></span>
+<span id="cb201-2"><a href="trees.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb201-3"><a href="trees.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="st">&#39;variable.importance&#39;</span>)</span></code></pre></div>
 </div>
 <div id="extra-regression-trees" class="section level3 unnumbered">
 <h3>Extra! Regression Trees!</h3>
@@ -736,15 +680,15 @@ Split 2: x1 &lt; 4
     - Yes: 1, 1, 2
     - No: 2, 2, 4, 4, 4</code></pre>
 <p>In case you want to explore building regression trees in R, try out the following exercises using the <code>College</code> data from the <code>ISLR</code> package. Our goal was to predict graduation rate (<code>Grad.Rate</code>) as a function of other predictors. You can look at the data codebook with <code>?College</code> in the Console.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="trees.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
-<span id="cb200-2"><a href="trees.html#cb200-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-3"><a href="trees.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(College)</span>
-<span id="cb200-4"><a href="trees.html#cb200-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-5"><a href="trees.html#cb200-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A little data cleaning</span></span>
-<span id="cb200-6"><a href="trees.html#cb200-6" aria-hidden="true" tabindex="-1"></a>college_clean <span class="ot">&lt;-</span> College <span class="sc">%&gt;%</span> </span>
-<span id="cb200-7"><a href="trees.html#cb200-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school =</span> <span class="fu">rownames</span>(College)) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-8"><a href="trees.html#cb200-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Grad.Rate <span class="sc">&lt;=</span> <span class="dv">100</span>) <span class="co"># Remove one school with grad rate of 118%</span></span>
-<span id="cb200-9"><a href="trees.html#cb200-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(college_clean) <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># Remove school names as row names</span></span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="trees.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb203-2"><a href="trees.html#cb203-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-3"><a href="trees.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(College)</span>
+<span id="cb203-4"><a href="trees.html#cb203-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-5"><a href="trees.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A little data cleaning</span></span>
+<span id="cb203-6"><a href="trees.html#cb203-6" aria-hidden="true" tabindex="-1"></a>college_clean <span class="ot">&lt;-</span> College <span class="sc">%&gt;%</span> </span>
+<span id="cb203-7"><a href="trees.html#cb203-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school =</span> <span class="fu">rownames</span>(College)) <span class="sc">%&gt;%</span> </span>
+<span id="cb203-8"><a href="trees.html#cb203-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Grad.Rate <span class="sc">&lt;=</span> <span class="dv">100</span>) <span class="co"># Remove one school with grad rate of 118%</span></span>
+<span id="cb203-9"><a href="trees.html#cb203-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(college_clean) <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># Remove school names as row names</span></span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li><p>Adapt our general decision tree code for the regression setting by adapting the <code>metric</code> used to pick the final model. (Note how other parts stay the same!)</p></li>
 <li><p>Plot test performance as a function of <code>cost_complexity</code>, and comment on the shape of the plot.</p></li>
@@ -765,7 +709,6 @@ Split 2: x1 &lt; 4
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -806,7 +749,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
