@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=TRUE)
 # Homework 4 {-}
 
 <center>
-**Due Thursday, November 4 at 11:59pm CST on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=27982)**
+**Due Date TBD**
 </center>
 
 **Deliverables:** Submit a single PDF containing your responses for Reflections and one group member submit the project work for the team. 
@@ -139,14 +139,5 @@ Keep in mind that the final project will require you to complete the pieces belo
 
 
 **Ethics:** Read the article [How to Support your Data Interpretations](https://weallcount.com/2020/10/24/how-to-support-your-data-interpretations/). Write a short (roughly 250 words), thoughtful response about the ideas that the article brings forth. Which pillar(s) do you think is/are hardest to do well for groups that rely on data analytics, and why?
-
-
-**Reflection:** Write a short, thoughtful reflection about how things went this week. Feel free to use whichever prompts below resonate most with you, but don't feel limited to these prompts.
-
-- How are class-related things going? Is there anything that you need from the instructor?
-- How is collaborative learning going in class? in project groups? Is there anything I could help you with?
-- How is your work/life balance going? What do you want to make time for this next week?
-
-
 
 
