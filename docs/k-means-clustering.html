@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topic 15 K-Means Clustering | STAT 253: Statistical Machine Learning</title>
   <meta name="description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Topic 15 K-Means Clustering | STAT 253: Statistical Machine Learning" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/253_fall_2021" />
+  <meta name="github-repo" content="bryandmartin/253_spring_2022" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Topic 15 K-Means Clustering | STAT 253: Statistical Machine Learning" />
@@ -30,9 +30,10 @@
   
   
 <link rel="prev" href="bagging-and-random-forests.html"/>
-<link rel="next" href="hierarchical-clustering.html"/>
+<link rel="next" href="homework-1.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -417,41 +417,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="k-means-clustering.html#go-deeper-picking-k">Go Deeper: Picking <span class="math inline">\(k\)</span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html"><i class="fa fa-check"></i><b>16</b> Hierarchical Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#learning-goals-15"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercises-13"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-1-hierarchical-clustering-by-hand"><i class="fa fa-check"></i>Exercise 1: Hierarchical clustering by hand</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-2-exploring-penguin-dendrograms"><i class="fa fa-check"></i>Exercise 2: Exploring penguin dendrograms</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-3-interpreting-the-clusters-visually"><i class="fa fa-check"></i>Exercise 3: Interpreting the clusters visually</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-4-tree-cutting-and-interpretation"><i class="fa fa-check"></i>Exercise 4: Tree-cutting and interpretation</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#exercise-5-k-means-vs.-hierarchical"><i class="fa fa-check"></i>Exercise 5: K-means vs. hierarchical</a></li>
-<li class="chapter" data-level="" data-path="hierarchical-clustering.html"><a href="hierarchical-clustering.html#dig-into-dendrograms"><i class="fa fa-check"></i>Dig into Dendrograms</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html"><i class="fa fa-check"></i><b>17</b> Catch up Clustering Day</a>
-<ul>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#learning-goals-16"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#real-data-clustering"><i class="fa fa-check"></i>Real Data Clustering</a>
-<ul>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#your-goal"><i class="fa fa-check"></i>Your Goal</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#clustering-in-the-wild"><i class="fa fa-check"></i>Clustering in the Wild</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#r-coding-challenges"><i class="fa fa-check"></i>R Coding Challenges</a></li>
-</ul></li>
-<li class="chapter" data-level="18" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>18</b> Principal Components Analysis</a>
-<ul>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#learning-goals-17"><i class="fa fa-check"></i>Learning Goals</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercises-14"><i class="fa fa-check"></i>Exercises</a>
-<ul>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-1-core-concepts"><i class="fa fa-check"></i>Exercise 1: Core concepts</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-2-exploring-pc-loadings"><i class="fa fa-check"></i>Exercise 2: Exploring PC loadings</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-3-exploring-pc-scores"><i class="fa fa-check"></i>Exercise 3: Exploring PC scores</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-4-scree-plots-and-dimension-reduction"><i class="fa fa-check"></i>Exercise 4: Scree plots and dimension reduction</a></li>
-<li class="chapter" data-level="" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#exercise-5-variable-scaling"><i class="fa fa-check"></i>Exercise 5: Variable scaling</a></li>
-</ul></li>
-</ul></li>
 <li class="part"><span><b>VIII Homework</b></span></li>
 <li class="chapter" data-level="" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i>Homework 1</a>
 <ul>
@@ -485,12 +450,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#portfolio-work-3"><i class="fa fa-check"></i>Portfolio Work</a></li>
 <li class="chapter" data-level="" data-path="homework-4.html"><a href="homework-4.html#reflection-3"><i class="fa fa-check"></i>Reflection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html"><i class="fa fa-check"></i>Homework 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#project-work-5"><i class="fa fa-check"></i>Project Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#portfolio-work-4"><i class="fa fa-check"></i>Portfolio Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#reflection-4"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
 <li class="part"><span><b>IX Project</b></span></li>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i>Final Project</a>
@@ -529,7 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Implement strategies for interpreting / contextualizing the clusters</li>
 </ul>
 <p><br></p>
-<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1zzpPnlMWdbAFNvvJ6DxTHJFjshq79FVyeYjDoTAVnKk/edit?usp=sharing">here</a>.</p>
+<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1-oS2-B4DTcErwF4p_mpdI08Jf-x1M7HEs5Rv-__B5pw/edit?usp=sharing">here</a>.</p>
 <p><br><br><br></p>
 </div>
 <div id="exercises-12" class="section level2 unnumbered">
@@ -537,14 +496,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>You can download a template RMarkdown file to start from <a href="template_rmds/15-kmeans.Rmd">here</a>.</strong></p>
 <p>In <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">this paper</a>, Gorman et al. study characteristics of penguin populations in the Antarctic. We’ll be looking at a dataset of penguin body measurements available in the <code>palmerpenguins</code> package. (Make sure to install this package before beginning.)</p>
 <p>Our goal in using this data is to better understand the following questions: What similarities are there among the penguins? Do there appear to be different species? If so, how many species are there?</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="k-means-clustering.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb210-2"><a href="k-means-clustering.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb210-3"><a href="k-means-clustering.html#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb210-4"><a href="k-means-clustering.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb210-5"><a href="k-means-clustering.html#cb210-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-6"><a href="k-means-clustering.html#cb210-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove observations with missing data on key variables</span></span>
-<span id="cb210-7"><a href="k-means-clustering.html#cb210-7" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb210-8"><a href="k-means-clustering.html#cb210-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="k-means-clustering.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb213-2"><a href="k-means-clustering.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb213-3"><a href="k-means-clustering.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb213-4"><a href="k-means-clustering.html#cb213-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb213-5"><a href="k-means-clustering.html#cb213-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb213-6"><a href="k-means-clustering.html#cb213-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove observations with missing data on key variables</span></span>
+<span id="cb213-7"><a href="k-means-clustering.html#cb213-7" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb213-8"><a href="k-means-clustering.html#cb213-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span></code></pre></div>
 <p><br></p>
 <div id="exercise-1-visual-explorations" class="section level3 unnumbered">
 <h3>Exercise 1: Visual explorations</h3>
@@ -552,8 +511,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: lower-alpha">
 <li>Make a scatterplot of these two measurements. If you had to visually designate 3 different penguin clusters (possible species), how would you designate them?</li>
 </ol>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="k-means-clustering.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(???)) <span class="sc">+</span></span>
-<span id="cb211-2"><a href="k-means-clustering.html#cb211-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="k-means-clustering.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(???)) <span class="sc">+</span></span>
+<span id="cb214-2"><a href="k-means-clustering.html#cb214-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Based on the plot, are there any differences in scale that you might be concerned about?</li>
 </ol>
@@ -564,84 +523,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: lower-alpha">
 <li>Use the code below to run k-means for <span class="math inline">\(k = 3\)</span> clusters. Why is it important to use <code>set.seed()</code>? (In practice, it’s best to run the algorithm for many values of the seed and compare results.)</li>
 </ol>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="k-means-clustering.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select just the bill length and depth variables</span></span>
-<span id="cb212-2"><a href="k-means-clustering.html#cb212-2" aria-hidden="true" tabindex="-1"></a>penguins_sub <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb212-3"><a href="k-means-clustering.html#cb212-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(bill_length_mm, bill_depth_mm)</span>
-<span id="cb212-4"><a href="k-means-clustering.html#cb212-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb212-5"><a href="k-means-clustering.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run k-means for k = centers = 3</span></span>
-<span id="cb212-6"><a href="k-means-clustering.html#cb212-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
-<span id="cb212-7"><a href="k-means-clustering.html#cb212-7" aria-hidden="true" tabindex="-1"></a>kclust_k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(penguins_sub, <span class="at">centers =</span> <span class="dv">3</span>)</span>
-<span id="cb212-8"><a href="k-means-clustering.html#cb212-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb212-9"><a href="k-means-clustering.html#cb212-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the cluter assignments</span></span>
-<span id="cb212-10"><a href="k-means-clustering.html#cb212-10" aria-hidden="true" tabindex="-1"></a>kclust_k3<span class="sc">$</span>cluster</span>
-<span id="cb212-11"><a href="k-means-clustering.html#cb212-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb212-12"><a href="k-means-clustering.html#cb212-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a variable (kclust_3) to the original dataset </span></span>
-<span id="cb212-13"><a href="k-means-clustering.html#cb212-13" aria-hidden="true" tabindex="-1"></a><span class="co"># containing the cluster assignments</span></span>
-<span id="cb212-14"><a href="k-means-clustering.html#cb212-14" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb212-15"><a href="k-means-clustering.html#cb212-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">kclust_3 =</span> <span class="fu">factor</span>(kclust_k3<span class="sc">$</span>cluster))</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="k-means-clustering.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select just the bill length and depth variables</span></span>
+<span id="cb215-2"><a href="k-means-clustering.html#cb215-2" aria-hidden="true" tabindex="-1"></a>penguins_sub <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb215-3"><a href="k-means-clustering.html#cb215-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(bill_length_mm, bill_depth_mm)</span>
+<span id="cb215-4"><a href="k-means-clustering.html#cb215-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-5"><a href="k-means-clustering.html#cb215-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run k-means for k = centers = 3</span></span>
+<span id="cb215-6"><a href="k-means-clustering.html#cb215-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
+<span id="cb215-7"><a href="k-means-clustering.html#cb215-7" aria-hidden="true" tabindex="-1"></a>kclust_k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(penguins_sub, <span class="at">centers =</span> <span class="dv">3</span>)</span>
+<span id="cb215-8"><a href="k-means-clustering.html#cb215-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-9"><a href="k-means-clustering.html#cb215-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the cluter assignments</span></span>
+<span id="cb215-10"><a href="k-means-clustering.html#cb215-10" aria-hidden="true" tabindex="-1"></a>kclust_k3<span class="sc">$</span>cluster</span>
+<span id="cb215-11"><a href="k-means-clustering.html#cb215-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-12"><a href="k-means-clustering.html#cb215-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a variable (kclust_3) to the original dataset </span></span>
+<span id="cb215-13"><a href="k-means-clustering.html#cb215-13" aria-hidden="true" tabindex="-1"></a><span class="co"># containing the cluster assignments</span></span>
+<span id="cb215-14"><a href="k-means-clustering.html#cb215-14" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb215-15"><a href="k-means-clustering.html#cb215-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">kclust_3 =</span> <span class="fu">factor</span>(kclust_k3<span class="sc">$</span>cluster))</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Update your original scatterplot to add a color aesthetic that corresponds to the <code>kclust_3</code> variable created above. Do the cluster assignments correspond to your intuition from exercise 1? Why might this be?</li>
 </ol>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="k-means-clustering.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the cluster assignments on the original scatterplot</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="k-means-clustering.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the cluster assignments on the original scatterplot</span></span></code></pre></div>
 </div>
 <div id="exercise-3-addressing-variable-scale" class="section level3 unnumbered">
 <h3>Exercise 3: Addressing variable scale</h3>
 <p>We can use the code below to rerun k-means clustering on the scaled data. The scaled data have been rescaled so that the standard deviation of each variable is 1. Remake the scatterplot to visualize the updated cluster assignments. Do the cluster assignments correspond to your intuition from exercise 1?</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="k-means-clustering.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run k-means on the *scaled* data (all variables have SD = 1)</span></span>
-<span id="cb214-2"><a href="k-means-clustering.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
-<span id="cb214-3"><a href="k-means-clustering.html#cb214-3" aria-hidden="true" tabindex="-1"></a>kclust_k3_scale <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(penguins_sub), <span class="at">centers =</span> <span class="dv">3</span>)</span>
-<span id="cb214-4"><a href="k-means-clustering.html#cb214-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb214-5"><a href="k-means-clustering.html#cb214-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">kclust_3_scale =</span> <span class="fu">factor</span>(kclust_k3_scale<span class="sc">$</span>cluster))</span>
-<span id="cb214-6"><a href="k-means-clustering.html#cb214-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb214-7"><a href="k-means-clustering.html#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the new cluster assignments</span></span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="k-means-clustering.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run k-means on the *scaled* data (all variables have SD = 1)</span></span>
+<span id="cb217-2"><a href="k-means-clustering.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
+<span id="cb217-3"><a href="k-means-clustering.html#cb217-3" aria-hidden="true" tabindex="-1"></a>kclust_k3_scale <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(penguins_sub), <span class="at">centers =</span> <span class="dv">3</span>)</span>
+<span id="cb217-4"><a href="k-means-clustering.html#cb217-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb217-5"><a href="k-means-clustering.html#cb217-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">kclust_3_scale =</span> <span class="fu">factor</span>(kclust_k3_scale<span class="sc">$</span>cluster))</span>
+<span id="cb217-6"><a href="k-means-clustering.html#cb217-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-7"><a href="k-means-clustering.html#cb217-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the new cluster assignments</span></span></code></pre></div>
 </div>
 <div id="exercise-4-clustering-on-more-variables" class="section level3 unnumbered">
 <h3>Exercise 4: Clustering on more variables</h3>
 <p>We can use as many variables in our clustering as makes sense given our goals. The dataset contains another body measurement variable of interest to us: <code>flipper_length_mm</code> (flipper length in mm).</p>
 <p>Complete the code below to cluster on bill length and depth as well as flipper length. Looking at the summary statistics, do you think it would be best to scale the variables?</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="k-means-clustering.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the variables to be used in clustering</span></span>
-<span id="cb215-2"><a href="k-means-clustering.html#cb215-2" aria-hidden="true" tabindex="-1"></a>penguins_sub <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb215-3"><a href="k-means-clustering.html#cb215-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(???)</span>
-<span id="cb215-4"><a href="k-means-clustering.html#cb215-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb215-5"><a href="k-means-clustering.html#cb215-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at summary statistics of the 3 variables</span></span>
-<span id="cb215-6"><a href="k-means-clustering.html#cb215-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penguins_sub)</span>
-<span id="cb215-7"><a href="k-means-clustering.html#cb215-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb215-8"><a href="k-means-clustering.html#cb215-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform clustering: should you use scale()?</span></span>
-<span id="cb215-9"><a href="k-means-clustering.html#cb215-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
-<span id="cb215-10"><a href="k-means-clustering.html#cb215-10" aria-hidden="true" tabindex="-1"></a>kclust_k3_3vars <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(???)</span>
-<span id="cb215-11"><a href="k-means-clustering.html#cb215-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb215-12"><a href="k-means-clustering.html#cb215-12" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb215-13"><a href="k-means-clustering.html#cb215-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">kclust_3_3vars =</span> <span class="fu">factor</span>(kclust_k3_3vars<span class="sc">$</span>cluster))</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="k-means-clustering.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the variables to be used in clustering</span></span>
+<span id="cb218-2"><a href="k-means-clustering.html#cb218-2" aria-hidden="true" tabindex="-1"></a>penguins_sub <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb218-3"><a href="k-means-clustering.html#cb218-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(???)</span>
+<span id="cb218-4"><a href="k-means-clustering.html#cb218-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb218-5"><a href="k-means-clustering.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at summary statistics of the 3 variables</span></span>
+<span id="cb218-6"><a href="k-means-clustering.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penguins_sub)</span>
+<span id="cb218-7"><a href="k-means-clustering.html#cb218-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb218-8"><a href="k-means-clustering.html#cb218-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform clustering: should you use scale()?</span></span>
+<span id="cb218-9"><a href="k-means-clustering.html#cb218-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
+<span id="cb218-10"><a href="k-means-clustering.html#cb218-10" aria-hidden="true" tabindex="-1"></a>kclust_k3_3vars <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(???)</span>
+<span id="cb218-11"><a href="k-means-clustering.html#cb218-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb218-12"><a href="k-means-clustering.html#cb218-12" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb218-13"><a href="k-means-clustering.html#cb218-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">kclust_3_3vars =</span> <span class="fu">factor</span>(kclust_k3_3vars<span class="sc">$</span>cluster))</span></code></pre></div>
 </div>
 <div id="exercise-5-interpreting-the-clusters" class="section level3 unnumbered">
 <h3>Exercise 5: Interpreting the clusters</h3>
 <p>One way to interpet the resulting clusters is to explore how variables differ across the clusters. We can look at the 3 variables used in the clustering as well as a body mass variable available in the dataset.</p>
 <p>Run the code below to look at the mean bill length, bill depth, flipper length, and body mass across the 3 clusters. What characterizes each of the 3 clusters? Try to come up with contextual “names” for the clusters (e.g., “big beaks” or “small penguins”).</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="k-means-clustering.html#cb216-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb216-2"><a href="k-means-clustering.html#cb216-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(kclust_3_3vars) <span class="sc">%&gt;%</span></span>
-<span id="cb216-3"><a href="k-means-clustering.html#cb216-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g), mean))</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="k-means-clustering.html#cb219-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb219-2"><a href="k-means-clustering.html#cb219-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(kclust_3_3vars) <span class="sc">%&gt;%</span></span>
+<span id="cb219-3"><a href="k-means-clustering.html#cb219-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g), mean))</span></code></pre></div>
 </div>
 <div id="exercise-6-picking-k" class="section level3 unnumbered">
 <h3>Exercise 6: Picking <span class="math inline">\(k\)</span></h3>
 <p>We’ve been using <span class="math inline">\(k = 3\)</span> so far, but how can we pick <span class="math inline">\(k\)</span> using a data-driven approach. One strategy is to compare the <strong>total squared distance of each case from its assigned centroid</strong> for different values of <span class="math inline">\(k\)</span>. (This measure is available within the <code>$tot.withinss</code> component of objects resulting from <code>kmeans()</code>.)</p>
 <p>Run the code below to create this plot for choices of <span class="math inline">\(k\)</span> from 1 to 15. Using this plot and thinking about data context and our scientific goals, what are some reasonable choices for the number of clusters?</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="k-means-clustering.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-specific function to cluster and calculate total within-cluster SS</span></span>
-<span id="cb217-2"><a href="k-means-clustering.html#cb217-2" aria-hidden="true" tabindex="-1"></a>penguin_cluster_ss <span class="ot">&lt;-</span> <span class="cf">function</span>(k){</span>
-<span id="cb217-3"><a href="k-means-clustering.html#cb217-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform clustering</span></span>
-<span id="cb217-4"><a href="k-means-clustering.html#cb217-4" aria-hidden="true" tabindex="-1"></a>    kclust <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(penguins_sub), <span class="at">centers =</span> k)</span>
-<span id="cb217-5"><a href="k-means-clustering.html#cb217-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb217-6"><a href="k-means-clustering.html#cb217-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the total within-cluster sum of squares</span></span>
-<span id="cb217-7"><a href="k-means-clustering.html#cb217-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(kclust<span class="sc">$</span>tot.withinss)</span>
-<span id="cb217-8"><a href="k-means-clustering.html#cb217-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb217-9"><a href="k-means-clustering.html#cb217-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb217-10"><a href="k-means-clustering.html#cb217-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb217-11"><a href="k-means-clustering.html#cb217-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,</span>
-<span id="cb217-12"><a href="k-means-clustering.html#cb217-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">tot_wc_ss =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, penguin_cluster_ss)</span>
-<span id="cb217-13"><a href="k-means-clustering.html#cb217-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb217-14"><a href="k-means-clustering.html#cb217-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> tot_wc_ss)) <span class="sc">+</span></span>
-<span id="cb217-15"><a href="k-means-clustering.html#cb217-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb217-16"><a href="k-means-clustering.html#cb217-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of clusters&quot;</span>,<span class="at">y =</span> <span class="st">&#39;Total within-cluster sum of squares&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb217-17"><a href="k-means-clustering.html#cb217-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="k-means-clustering.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-specific function to cluster and calculate total within-cluster SS</span></span>
+<span id="cb220-2"><a href="k-means-clustering.html#cb220-2" aria-hidden="true" tabindex="-1"></a>penguin_cluster_ss <span class="ot">&lt;-</span> <span class="cf">function</span>(k){</span>
+<span id="cb220-3"><a href="k-means-clustering.html#cb220-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform clustering</span></span>
+<span id="cb220-4"><a href="k-means-clustering.html#cb220-4" aria-hidden="true" tabindex="-1"></a>    kclust <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(penguins_sub), <span class="at">centers =</span> k)</span>
+<span id="cb220-5"><a href="k-means-clustering.html#cb220-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-6"><a href="k-means-clustering.html#cb220-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the total within-cluster sum of squares</span></span>
+<span id="cb220-7"><a href="k-means-clustering.html#cb220-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(kclust<span class="sc">$</span>tot.withinss)</span>
+<span id="cb220-8"><a href="k-means-clustering.html#cb220-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb220-9"><a href="k-means-clustering.html#cb220-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-10"><a href="k-means-clustering.html#cb220-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb220-11"><a href="k-means-clustering.html#cb220-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,</span>
+<span id="cb220-12"><a href="k-means-clustering.html#cb220-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">tot_wc_ss =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, penguin_cluster_ss)</span>
+<span id="cb220-13"><a href="k-means-clustering.html#cb220-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb220-14"><a href="k-means-clustering.html#cb220-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> tot_wc_ss)) <span class="sc">+</span></span>
+<span id="cb220-15"><a href="k-means-clustering.html#cb220-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb220-16"><a href="k-means-clustering.html#cb220-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of clusters&quot;</span>,<span class="at">y =</span> <span class="st">&#39;Total within-cluster sum of squares&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb220-17"><a href="k-means-clustering.html#cb220-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 </div>
 <div id="go-deeper-picking-k" class="section level3 unnumbered">
 <h3>Go Deeper: Picking <span class="math inline">\(k\)</span></h3>
@@ -655,42 +614,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <strong>Silhouette Method</strong> is based on minimizing within sum of squares while maximizing the difference between clusters. For each data point, we can calculate the silhouette value,
 <span class="math display">\[\frac{b - a}{\max(a,b)}\]</span>
 where <span class="math inline">\(b\)</span> is the smallest mean distance of the data point to all points in any OTHER cluster and <span class="math inline">\(a\)</span> is the mean distance between the data point and all other data points in the same cluster.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="k-means-clustering.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-specific function to cluster and calculate total within-cluster SS</span></span>
-<span id="cb218-2"><a href="k-means-clustering.html#cb218-2" aria-hidden="true" tabindex="-1"></a>penguin_cluster_silhouette <span class="ot">&lt;-</span> <span class="cf">function</span>(k){</span>
-<span id="cb218-3"><a href="k-means-clustering.html#cb218-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform clustering</span></span>
-<span id="cb218-4"><a href="k-means-clustering.html#cb218-4" aria-hidden="true" tabindex="-1"></a>    kclust <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(penguins_sub), <span class="at">centers =</span> k)</span>
-<span id="cb218-5"><a href="k-means-clustering.html#cb218-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-6"><a href="k-means-clustering.html#cb218-6" aria-hidden="true" tabindex="-1"></a>     ss <span class="ot">&lt;-</span> cluster<span class="sc">::</span><span class="fu">silhouette</span>(kclust<span class="sc">$</span>cluster, <span class="fu">dist</span>(<span class="fu">scale</span>(penguins_sub)))</span>
-<span id="cb218-7"><a href="k-means-clustering.html#cb218-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb218-8"><a href="k-means-clustering.html#cb218-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the silhouette measures</span></span>
-<span id="cb218-9"><a href="k-means-clustering.html#cb218-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">mean</span>(ss[, <span class="dv">3</span>]))</span>
-<span id="cb218-10"><a href="k-means-clustering.html#cb218-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb218-11"><a href="k-means-clustering.html#cb218-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-12"><a href="k-means-clustering.html#cb218-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose value that MAXIMIZES average silhouette</span></span>
-<span id="cb218-13"><a href="k-means-clustering.html#cb218-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb218-14"><a href="k-means-clustering.html#cb218-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>,</span>
-<span id="cb218-15"><a href="k-means-clustering.html#cb218-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_sil =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, penguin_cluster_silhouette)</span>
-<span id="cb218-16"><a href="k-means-clustering.html#cb218-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb218-17"><a href="k-means-clustering.html#cb218-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> avg_sil)) <span class="sc">+</span></span>
-<span id="cb218-18"><a href="k-means-clustering.html#cb218-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb218-19"><a href="k-means-clustering.html#cb218-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of clusters&quot;</span>,<span class="at">y =</span> <span class="st">&#39;Average Silhouette&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb218-20"><a href="k-means-clustering.html#cb218-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="k-means-clustering.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-specific function to cluster and calculate total within-cluster SS</span></span>
+<span id="cb221-2"><a href="k-means-clustering.html#cb221-2" aria-hidden="true" tabindex="-1"></a>penguin_cluster_silhouette <span class="ot">&lt;-</span> <span class="cf">function</span>(k){</span>
+<span id="cb221-3"><a href="k-means-clustering.html#cb221-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform clustering</span></span>
+<span id="cb221-4"><a href="k-means-clustering.html#cb221-4" aria-hidden="true" tabindex="-1"></a>    kclust <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(penguins_sub), <span class="at">centers =</span> k)</span>
+<span id="cb221-5"><a href="k-means-clustering.html#cb221-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-6"><a href="k-means-clustering.html#cb221-6" aria-hidden="true" tabindex="-1"></a>     ss <span class="ot">&lt;-</span> cluster<span class="sc">::</span><span class="fu">silhouette</span>(kclust<span class="sc">$</span>cluster, <span class="fu">dist</span>(<span class="fu">scale</span>(penguins_sub)))</span>
+<span id="cb221-7"><a href="k-means-clustering.html#cb221-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb221-8"><a href="k-means-clustering.html#cb221-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the silhouette measures</span></span>
+<span id="cb221-9"><a href="k-means-clustering.html#cb221-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">mean</span>(ss[, <span class="dv">3</span>]))</span>
+<span id="cb221-10"><a href="k-means-clustering.html#cb221-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb221-11"><a href="k-means-clustering.html#cb221-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-12"><a href="k-means-clustering.html#cb221-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose value that MAXIMIZES average silhouette</span></span>
+<span id="cb221-13"><a href="k-means-clustering.html#cb221-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb221-14"><a href="k-means-clustering.html#cb221-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>,</span>
+<span id="cb221-15"><a href="k-means-clustering.html#cb221-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_sil =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, penguin_cluster_silhouette)</span>
+<span id="cb221-16"><a href="k-means-clustering.html#cb221-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-17"><a href="k-means-clustering.html#cb221-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> avg_sil)) <span class="sc">+</span></span>
+<span id="cb221-18"><a href="k-means-clustering.html#cb221-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb221-19"><a href="k-means-clustering.html#cb221-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of clusters&quot;</span>,<span class="at">y =</span> <span class="st">&#39;Average Silhouette&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb221-20"><a href="k-means-clustering.html#cb221-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p>The <strong>Gap Method</strong> is based on statistical inference using Monte Carlo Simulations. This method is beyond the scope of the course but feel free to dig into other more mathematical resources</p>
 
 </div>
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
 <a href="bagging-and-random-forests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hierarchical-clustering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="homework-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -731,7 +692,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

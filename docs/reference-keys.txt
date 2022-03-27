@@ -13,3 +13,4 @@ logistic-regression-evaluation
 lasso-logistic-regression
 trees
 bagging-and-random-forests
+k-means-clustering

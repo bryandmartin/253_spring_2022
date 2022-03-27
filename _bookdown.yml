@@ -9,6 +9,7 @@ rmd_files: ["index.Rmd", "schedule.Rmd", "learning_objectives.Rmd",
   "10-loess-gams.Rmd", "11-logistic-regression.Rmd",
   "12-lasso-logistic.Rmd",
   "13-trees.Rmd", "14-bagging-rf.Rmd",
+  "15-kmeans.Rmd",
   "hw1.Rmd", "hw2.Rmd", "hw3.Rmd","hw4.Rmd",
   "project.Rmd"]
 language:
