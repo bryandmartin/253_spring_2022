@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=TRUE)
 # Homework 4 {-}
 
 <center>
-**Due Date TBD**
+**Due Date: Friday, April 8th at 9:00 AM CST**
 </center>
 
 **Deliverables:** Submit a single PDF containing your responses for Reflections and one group member submit the project work for the team. 

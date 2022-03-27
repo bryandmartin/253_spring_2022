@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
 
 <br>
 
-Slides from today are available [here](https://docs.google.com/presentation/d/1zzpPnlMWdbAFNvvJ6DxTHJFjshq79FVyeYjDoTAVnKk/edit?usp=sharing).
+Slides from today are available [here](https://docs.google.com/presentation/d/1-oS2-B4DTcErwF4p_mpdI08Jf-x1M7HEs5Rv-__B5pw/edit?usp=sharing).
 
 
 
