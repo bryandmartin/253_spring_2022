@@ -9,7 +9,7 @@ rmd_files: ["index.Rmd", "schedule.Rmd", "learning_objectives.Rmd",
   "10-loess-gams.Rmd", "11-logistic-regression.Rmd",
   "12-lasso-logistic.Rmd",
   "13-trees.Rmd", "14-bagging-rf.Rmd",
-  "15-kmeans.Rmd",
+  "15-kmeans.Rmd","16-hclust.Rmd",
   "hw1.Rmd", "hw2.Rmd", "hw3.Rmd","hw4.Rmd",
   "project.Rmd"]
 language:
@@ -18,9 +18,6 @@ language:
 
 
 
-
-# , "15-kmeans.Rmd"]
-# , "16-hclust.Rmd"]
 # , "17-catch-up-clustering.Rmd"]
 # , "18-pca.Rmd"]
 # , "hw5.Rmd"]
