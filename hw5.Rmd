@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
 # Homework 5 {-}
 
 <center>
-**Due Tuesday, November 23 at midnight CST on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=27990)**
+**Due Friday, April 22 at 9:00AM CST on Moodle**
 </center>
 
 **Deliverables:** Each person should submit a PDF containing your responses for Reflections and if your team wants feedback, one group member should submit the separate project work for the team. 
@@ -46,7 +46,7 @@ If you would like feedback on any part of the final deliverables, you may submit
 
 **Revisions:**
 
-- Make any revisions desired to previous concepts. **Important note:** When making revisions, please change from "editing" to "suggesting" so that we can easily see what you've added to the document since we gave feedback (we will "accept" the changes when we give feedback). If you don't do this, we won't know to reread that section and give new feedback.
+- Make any revisions desired to previous concepts. 
 
 - General guidance for past homeworks are available on Moodle (under the Solutions section). Look at these to guide your revisions. You can always ask for guidance in office hours as well.
 
@@ -120,22 +120,6 @@ If you would like feedback on any part of the final deliverables, you may submit
 - Interpretation of output: What information can we gain by looking at the loadings of the first few principal components? Explain in at most 3 sentences.
 
 
-
-<br><br><br>
-
-
-
-## Reflection {-}
-
-
-**Ethics:** (optional) In case it's of interest and you have the bandwidth for it, the article ["Race," Racism, and the Practice of Epidemiology](https://academic.oup.com/aje/article/154/4/299/61900) is a very illuminating one.
-
-**Reflection:** Write a short, thoughtful reflection about how things went the past few weeks. Feel free to use whichever prompts below resonate most with you, but don't feel limited to these prompts.
-
-- How was Content Conversation 2 for you? What have you learned about yourself in these conversations?
-- How are class-related things going? Is there anything that you need from the instructor?
-- How is collaborative learning going in class? in project groups? Is there anything I could help you with?
-- How is your work/life balance going? What do you want to make time for this next week?
 
 
 

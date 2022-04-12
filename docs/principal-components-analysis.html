@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topic 18 Principal Components Analysis | STAT 253: Statistical Machine Learning</title>
   <meta name="description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Topic 18 Principal Components Analysis | STAT 253: Statistical Machine Learning" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/253_fall_2021" />
+  <meta name="github-repo" content="bryandmartin/253_spring_2022" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Topic 18 Principal Components Analysis | STAT 253: Statistical Machine Learning" />
@@ -33,6 +33,7 @@
 <link rel="next" href="homework-1.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -438,7 +438,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#your-goal"><i class="fa fa-check"></i>Your Goal</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#clustering-in-the-wild"><i class="fa fa-check"></i>Clustering in the Wild</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#r-coding-challenges"><i class="fa fa-check"></i>R Coding Challenges</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>18</b> Principal Components Analysis</a>
 <ul>
@@ -490,7 +489,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#project-work-5"><i class="fa fa-check"></i>Project Work</a></li>
 <li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#portfolio-work-4"><i class="fa fa-check"></i>Portfolio Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#reflection-4"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
 <li class="part"><span><b>IX Project</b></span></li>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i>Final Project</a>
@@ -528,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Interpret and use a scree plot to guide dimension reduction</li>
 </ul>
 <p><br></p>
-<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1RUbqV4q_Qbj13aEsBhILXM12us8bGYgByRGUvzEb7Dk/edit?usp=sharing">here</a>.</p>
+<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1EIWMFg2e-Y6KB2cW70cDTYi-c8sSotUarrCJe9m_Oak/edit?usp=sharing">here</a>.</p>
 <p><br><br><br></p>
 </div>
 <div id="exercises-14" class="section level2 unnumbered">
@@ -549,25 +547,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><br><br><br></p>
 <p>Now let’s use PCA to explore a gene expression dataset. The <code>Khan</code> dataset in the <code>ISLR</code> package contains gene expression measurements in cancer tissue samples. (Khan is the first author’s last name.) Such data are commonly part of biological studies to better understand the molecular basis for disease. You can find information about this dataset by entering <code>?Khan</code> in the Console.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="principal-components-analysis.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb230-2"><a href="principal-components-analysis.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb230-3"><a href="principal-components-analysis.html#cb230-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb230-4"><a href="principal-components-analysis.html#cb230-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
-<span id="cb230-5"><a href="principal-components-analysis.html#cb230-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Khan)</span>
-<span id="cb230-6"><a href="principal-components-analysis.html#cb230-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-7"><a href="principal-components-analysis.html#cb230-7" aria-hidden="true" tabindex="-1"></a><span class="co"># train_data contains 2308 gene expression measurements for 63 samples</span></span>
-<span id="cb230-8"><a href="principal-components-analysis.html#cb230-8" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> Khan <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;xtrain&#39;</span>)</span>
-<span id="cb230-9"><a href="principal-components-analysis.html#cb230-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-10"><a href="principal-components-analysis.html#cb230-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the variables to be gene1, gene2, etc.</span></span>
-<span id="cb230-11"><a href="principal-components-analysis.html#cb230-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(train_data) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene&quot;</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(train_data)))</span>
-<span id="cb230-12"><a href="principal-components-analysis.html#cb230-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-13"><a href="principal-components-analysis.html#cb230-13" aria-hidden="true" tabindex="-1"></a><span class="co"># train_labels contains information on which of 4 cancer subtypes each sample comes from</span></span>
-<span id="cb230-14"><a href="principal-components-analysis.html#cb230-14" aria-hidden="true" tabindex="-1"></a>train_labels <span class="ot">&lt;-</span> Khan <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;ytrain&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="principal-components-analysis.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb233-2"><a href="principal-components-analysis.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb233-3"><a href="principal-components-analysis.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb233-4"><a href="principal-components-analysis.html#cb233-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb233-5"><a href="principal-components-analysis.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Khan)</span>
+<span id="cb233-6"><a href="principal-components-analysis.html#cb233-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-7"><a href="principal-components-analysis.html#cb233-7" aria-hidden="true" tabindex="-1"></a><span class="co"># train_data contains 2308 gene expression measurements for 63 samples</span></span>
+<span id="cb233-8"><a href="principal-components-analysis.html#cb233-8" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> Khan <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;xtrain&#39;</span>)</span>
+<span id="cb233-9"><a href="principal-components-analysis.html#cb233-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-10"><a href="principal-components-analysis.html#cb233-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the variables to be gene1, gene2, etc.</span></span>
+<span id="cb233-11"><a href="principal-components-analysis.html#cb233-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(train_data) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene&quot;</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(train_data)))</span>
+<span id="cb233-12"><a href="principal-components-analysis.html#cb233-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-13"><a href="principal-components-analysis.html#cb233-13" aria-hidden="true" tabindex="-1"></a><span class="co"># train_labels contains information on which of 4 cancer subtypes each sample comes from</span></span>
+<span id="cb233-14"><a href="principal-components-analysis.html#cb233-14" aria-hidden="true" tabindex="-1"></a>train_labels <span class="ot">&lt;-</span> Khan <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;ytrain&#39;</span>)</span></code></pre></div>
 </div>
 <div id="exercise-2-exploring-pc-loadings" class="section level3 unnumbered">
 <h3>Exercise 2: Exploring PC loadings</h3>
 <p>The <code>prcomp()</code> function performs PCA. Look at the help page for the <code>prcomp()</code> function under the “Value” section, and recall that <code>pluck('name')</code> or <code>$</code> extracts named components of objects (e.g., <code>list_object %&gt;% pluck('name_of_component')</code> or <code>list_object$name_of_component</code>).</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="principal-components-analysis.html#cb231-1" aria-hidden="true" tabindex="-1"></a>pca_out <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(train_data, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="principal-components-analysis.html#cb234-1" aria-hidden="true" tabindex="-1"></a>pca_out <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(train_data, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li><p>Use the <code>head()</code> function to display the first few rows of the loadings matrix.</p></li>
 <li><p>Using just the first 3 genes, write out the equation for principal component 4.</p></li>
@@ -584,16 +582,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: lower-alpha">
 <li>The <code>x</code> component of <code>pca_out</code> contains these scores. Complete the code below to make a scatterplot of the PC2 scores versus the PC1 scores.</li>
 </ol>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="principal-components-analysis.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color the points by the information in train_labels (the 4 cancer subtypes present)</span></span>
-<span id="cb232-2"><a href="principal-components-analysis.html#cb232-2" aria-hidden="true" tabindex="-1"></a>pca_out <span class="sc">%&gt;%</span> </span>
-<span id="cb232-3"><a href="principal-components-analysis.html#cb232-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="st">&#39;x&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb232-4"><a href="principal-components-analysis.html#cb232-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb232-5"><a href="principal-components-analysis.html#cb232-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">labels =</span> train_labels) <span class="sc">%&gt;%</span></span>
-<span id="cb232-6"><a href="principal-components-analysis.html#cb232-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ??, <span class="at">y =</span> ??, <span class="at">color =</span> <span class="fu">factor</span>(??))) <span class="sc">+</span> </span>
-<span id="cb232-7"><a href="principal-components-analysis.html#cb232-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb232-8"><a href="principal-components-analysis.html#cb232-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;PC1&#39;</span>, <span class="at">y =</span> <span class="st">&#39;PC2&#39;</span>) <span class="sc">+</span></span>
-<span id="cb232-9"><a href="principal-components-analysis.html#cb232-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb232-10"><a href="principal-components-analysis.html#cb232-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="principal-components-analysis.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color the points by the information in train_labels (the 4 cancer subtypes present)</span></span>
+<span id="cb235-2"><a href="principal-components-analysis.html#cb235-2" aria-hidden="true" tabindex="-1"></a>pca_out <span class="sc">%&gt;%</span> </span>
+<span id="cb235-3"><a href="principal-components-analysis.html#cb235-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="st">&#39;x&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb235-4"><a href="principal-components-analysis.html#cb235-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb235-5"><a href="principal-components-analysis.html#cb235-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">labels =</span> train_labels) <span class="sc">%&gt;%</span></span>
+<span id="cb235-6"><a href="principal-components-analysis.html#cb235-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ??, <span class="at">y =</span> ??, <span class="at">color =</span> <span class="fu">factor</span>(??))) <span class="sc">+</span> </span>
+<span id="cb235-7"><a href="principal-components-analysis.html#cb235-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb235-8"><a href="principal-components-analysis.html#cb235-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;PC1&#39;</span>, <span class="at">y =</span> <span class="st">&#39;PC2&#39;</span>) <span class="sc">+</span></span>
+<span id="cb235-9"><a href="principal-components-analysis.html#cb235-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb235-10"><a href="principal-components-analysis.html#cb235-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Do you notice any clustering by tumor type?</li>
 <li>How could we use k-means and hierarchical clustering to see whether the cases (tissue samples) cluster by tumor type?</li>
@@ -606,32 +604,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: lower-alpha">
 <li>The <code>sdev</code> component of <code>pca_out</code> gives the standard deviation explained by each principal component. Explain what the first 2 lines of code below are doing.</li>
 </ol>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="principal-components-analysis.html#cb233-1" aria-hidden="true" tabindex="-1"></a>var_explained <span class="ot">&lt;-</span> (pca_out <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;sdev&#39;</span>))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb233-2"><a href="principal-components-analysis.html#cb233-2" aria-hidden="true" tabindex="-1"></a>pve <span class="ot">&lt;-</span> var_explained<span class="sc">/</span><span class="fu">sum</span>(var_explained)</span>
-<span id="cb233-3"><a href="principal-components-analysis.html#cb233-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb233-4"><a href="principal-components-analysis.html#cb233-4" aria-hidden="true" tabindex="-1"></a>var_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb233-5"><a href="principal-components-analysis.html#cb233-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">PC =</span> <span class="fu">seq_len</span>(<span class="fu">length</span>(var_explained)),</span>
-<span id="cb233-6"><a href="principal-components-analysis.html#cb233-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_explained =</span> var_explained,</span>
-<span id="cb233-7"><a href="principal-components-analysis.html#cb233-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pve =</span> pve</span>
-<span id="cb233-8"><a href="principal-components-analysis.html#cb233-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb233-9"><a href="principal-components-analysis.html#cb233-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb233-10"><a href="principal-components-analysis.html#cb233-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct scree plots</span></span>
-<span id="cb233-11"><a href="principal-components-analysis.html#cb233-11" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> var_data <span class="sc">%&gt;%</span></span>
-<span id="cb233-12"><a href="principal-components-analysis.html#cb233-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC, <span class="at">y =</span> pve)) <span class="sc">+</span></span>
-<span id="cb233-13"><a href="principal-components-analysis.html#cb233-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb233-14"><a href="principal-components-analysis.html#cb233-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb233-15"><a href="principal-components-analysis.html#cb233-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Principal Component&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Proportion of varinace explained&#39;</span>) <span class="sc">+</span></span>
-<span id="cb233-16"><a href="principal-components-analysis.html#cb233-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span>
-<span id="cb233-17"><a href="principal-components-analysis.html#cb233-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb233-18"><a href="principal-components-analysis.html#cb233-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> var_data <span class="sc">%&gt;%</span></span>
-<span id="cb233-19"><a href="principal-components-analysis.html#cb233-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC, <span class="at">y =</span> <span class="fu">cumsum</span>(pve))) <span class="sc">+</span></span>
-<span id="cb233-20"><a href="principal-components-analysis.html#cb233-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb233-21"><a href="principal-components-analysis.html#cb233-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb233-22"><a href="principal-components-analysis.html#cb233-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Principal Component&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Cumulative proportion of variance explained&#39;</span>) <span class="sc">+</span></span>
-<span id="cb233-23"><a href="principal-components-analysis.html#cb233-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span>
-<span id="cb233-24"><a href="principal-components-analysis.html#cb233-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb233-25"><a href="principal-components-analysis.html#cb233-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) </span>
-<span id="cb233-26"><a href="principal-components-analysis.html#cb233-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(p1, p2)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="principal-components-analysis.html#cb236-1" aria-hidden="true" tabindex="-1"></a>var_explained <span class="ot">&lt;-</span> (pca_out <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">&#39;sdev&#39;</span>))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb236-2"><a href="principal-components-analysis.html#cb236-2" aria-hidden="true" tabindex="-1"></a>pve <span class="ot">&lt;-</span> var_explained<span class="sc">/</span><span class="fu">sum</span>(var_explained)</span>
+<span id="cb236-3"><a href="principal-components-analysis.html#cb236-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-4"><a href="principal-components-analysis.html#cb236-4" aria-hidden="true" tabindex="-1"></a>var_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb236-5"><a href="principal-components-analysis.html#cb236-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">PC =</span> <span class="fu">seq_len</span>(<span class="fu">length</span>(var_explained)),</span>
+<span id="cb236-6"><a href="principal-components-analysis.html#cb236-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_explained =</span> var_explained,</span>
+<span id="cb236-7"><a href="principal-components-analysis.html#cb236-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pve =</span> pve</span>
+<span id="cb236-8"><a href="principal-components-analysis.html#cb236-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb236-9"><a href="principal-components-analysis.html#cb236-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb236-10"><a href="principal-components-analysis.html#cb236-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct scree plots</span></span>
+<span id="cb236-11"><a href="principal-components-analysis.html#cb236-11" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> var_data <span class="sc">%&gt;%</span></span>
+<span id="cb236-12"><a href="principal-components-analysis.html#cb236-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC, <span class="at">y =</span> pve)) <span class="sc">+</span></span>
+<span id="cb236-13"><a href="principal-components-analysis.html#cb236-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb236-14"><a href="principal-components-analysis.html#cb236-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb236-15"><a href="principal-components-analysis.html#cb236-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Principal Component&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Proportion of varinace explained&#39;</span>) <span class="sc">+</span></span>
+<span id="cb236-16"><a href="principal-components-analysis.html#cb236-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb236-17"><a href="principal-components-analysis.html#cb236-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-18"><a href="principal-components-analysis.html#cb236-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> var_data <span class="sc">%&gt;%</span></span>
+<span id="cb236-19"><a href="principal-components-analysis.html#cb236-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC, <span class="at">y =</span> <span class="fu">cumsum</span>(pve))) <span class="sc">+</span></span>
+<span id="cb236-20"><a href="principal-components-analysis.html#cb236-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb236-21"><a href="principal-components-analysis.html#cb236-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb236-22"><a href="principal-components-analysis.html#cb236-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Principal Component&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Cumulative proportion of variance explained&#39;</span>) <span class="sc">+</span></span>
+<span id="cb236-23"><a href="principal-components-analysis.html#cb236-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb236-24"><a href="principal-components-analysis.html#cb236-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-25"><a href="principal-components-analysis.html#cb236-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) </span>
+<span id="cb236-26"><a href="principal-components-analysis.html#cb236-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(p1, p2)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Explain why the plots above look the way they do. (These plots are called <strong>scree plots</strong>.)</li>
 <li>We can think of principal components as new variables. PCA allows us to perform dimension reduction to use a smaller set of variables, often to accompany supervised learning. How can we use the plots above to guide a choice about the number of PCs to use?</li>
@@ -658,7 +656,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -699,7 +696,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

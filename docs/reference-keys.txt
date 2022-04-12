@@ -15,3 +15,5 @@ trees
 bagging-and-random-forests
 k-means-clustering
 hierarchical-clustering
+catch-up-clustering-day
+principal-components-analysis

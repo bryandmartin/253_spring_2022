@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topic 17 Catch up Clustering Day | STAT 253: Statistical Machine Learning</title>
   <meta name="description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Topic 17 Catch up Clustering Day | STAT 253: Statistical Machine Learning" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is the class website for Statistical Machine Learning at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/253_fall_2021" />
+  <meta name="github-repo" content="bryandmartin/253_spring_2022" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Topic 17 Catch up Clustering Day | STAT 253: Statistical Machine Learning" />
@@ -33,6 +33,7 @@
 <link rel="next" href="principal-components-analysis.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -438,7 +438,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#your-goal"><i class="fa fa-check"></i>Your Goal</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#clustering-in-the-wild"><i class="fa fa-check"></i>Clustering in the Wild</a></li>
-<li class="chapter" data-level="" data-path="catch-up-clustering-day.html"><a href="catch-up-clustering-day.html#r-coding-challenges"><i class="fa fa-check"></i>R Coding Challenges</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>18</b> Principal Components Analysis</a>
 <ul>
@@ -490,7 +489,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#project-work-5"><i class="fa fa-check"></i>Project Work</a></li>
 <li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#portfolio-work-4"><i class="fa fa-check"></i>Portfolio Work</a></li>
-<li class="chapter" data-level="" data-path="homework-5.html"><a href="homework-5.html#reflection-4"><i class="fa fa-check"></i>Reflection</a></li>
 </ul></li>
 <li class="part"><span><b>IX Project</b></span></li>
 <li class="chapter" data-level="" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i>Final Project</a>
@@ -526,8 +524,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Implement k-means and hierarchical clustering and interpret in their outputs and algorithms</li>
 <li>Synthesize and apply concepts covered so far on real data</li>
 </ul>
-<p><br></p>
-<p>Slides from today are available <a href="https://docs.google.com/presentation/d/1vi8HLrUuTmbqh4J4HgGXgBel-rF9j9_K6EmkAj6mwTM/edit?usp=sharing">here</a>.</p>
 <p><br><br><br></p>
 </div>
 <div id="real-data-clustering" class="section level2 unnumbered">
@@ -555,8 +551,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Proline</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="catch-up-clustering-day.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb226-2"><a href="catch-up-clustering-day.html#cb226-2" aria-hidden="true" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;wine.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="catch-up-clustering-day.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb229-2"><a href="catch-up-clustering-day.html#cb229-2" aria-hidden="true" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;wine.csv&#39;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Mall Customers (download <a href="template_rmds/mall_customers.csv">here</a>)</li>
 </ol>
@@ -570,8 +566,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Spending Score (summary of buying behavior)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="catch-up-clustering-day.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb227-2"><a href="catch-up-clustering-day.html#cb227-2" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;mall_customers.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="catch-up-clustering-day.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb230-2"><a href="catch-up-clustering-day.html#cb230-2" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;mall_customers.csv&#39;</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Credit Card Clients (download <a href="template_rmds/creditcard.csv">here</a>)</li>
 </ol>
@@ -599,8 +595,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>TENURE : Tenure of credit card service for user</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="catch-up-clustering-day.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb228-2"><a href="catch-up-clustering-day.html#cb228-2" aria-hidden="true" tabindex="-1"></a>credit <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;creditcard.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="catch-up-clustering-day.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb231-2"><a href="catch-up-clustering-day.html#cb231-2" aria-hidden="true" tabindex="-1"></a>credit <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;creditcard.csv&#39;</span>)</span></code></pre></div>
 <div id="your-goal" class="section level3 unnumbered">
 <h3>Your Goal</h3>
 <ul>
@@ -618,12 +614,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="catch-up-clustering-day.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kmeans</span>(data, <span class="at">centers =</span> k)</span>
-<span id="cb229-2"><a href="catch-up-clustering-day.html#cb229-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-3"><a href="catch-up-clustering-day.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
-<span id="cb229-4"><a href="catch-up-clustering-day.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pam</span>(<span class="fu">daisy</span>(data), <span class="at">k =</span> k)</span>
-<span id="cb229-5"><a href="catch-up-clustering-day.html#cb229-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-6"><a href="catch-up-clustering-day.html#cb229-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hclust</span>(<span class="fu">daisy</span>(data))</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="catch-up-clustering-day.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kmeans</span>(data, <span class="at">centers =</span> k)</span>
+<span id="cb232-2"><a href="catch-up-clustering-day.html#cb232-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-3"><a href="catch-up-clustering-day.html#cb232-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb232-4"><a href="catch-up-clustering-day.html#cb232-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pam</span>(<span class="fu">daisy</span>(data), <span class="at">k =</span> k)</span>
+<span id="cb232-5"><a href="catch-up-clustering-day.html#cb232-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-6"><a href="catch-up-clustering-day.html#cb232-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hclust</span>(<span class="fu">daisy</span>(data))</span></code></pre></div>
 <ul>
 <li>Insights
 <ul>
@@ -632,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Deliverable
 <ul>
 <li>Create 1 graphic that demonstrates your insight</li>
-<li>Add it to this <a href="https://drive.google.com/drive/folders/1RRNsbNXbXCX-RSNW5QWsh88Fq3nIOomM?usp=sharing">Shared Folder</a> with your names in the filename</li>
+<li>Add it to this <a href="https://drive.google.com/drive/folders/15O-WcCUBfvDYY-C5tb4ppFzQRhMfAQLc?usp=sharing">Shared Folder</a> with your names in the filename</li>
 </ul></li>
 </ul>
 </div>
@@ -647,27 +643,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Clustering ICD10 Diagnosis Codes (<a href="https://arxiv.org/abs/1909.00306" class="uri">https://arxiv.org/abs/1909.00306</a>)</li>
 <li>Clustering Activity Sequences (<a href="https://www.sciencedirect.com/science/article/abs/pii/S0968090X21000395?via%3Dihub" class="uri">https://www.sciencedirect.com/science/article/abs/pii/S0968090X21000395?via%3Dihub</a>)</li>
 </ul>
-</div>
-<div id="r-coding-challenges" class="section level2 unnumbered">
-<h2>R Coding Challenges</h2>
-<p>The best way to learn new things about R is to work on a data project.</p>
-<ul>
-<li>The goals drive what code is needed.</li>
-<li>Learn them as you need them.</li>
-</ul>
-<p>What things have come up so far for you?</p>
-<ul>
-<li>What has been the most frustrating?</li>
-<li>When do you get stuck?</li>
-<li>What are you wanting to do with your data?</li>
-</ul>
-<p>Besides class projects, you can practice visualizing data:</p>
-<ul>
-<li><a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday Challenges</a>
-<ul>
-<li>Check out David Robinson’s <a href="https://www.youtube.com/watch?v=nx5yhXAQLxw">TidyTuesday’s Screencasts</a></li>
-</ul></li>
-</ul>
 
 </div>
 </div>
@@ -681,7 +656,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -722,7 +696,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

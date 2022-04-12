@@ -9,13 +9,6 @@
 - Implement k-means and hierarchical clustering and interpret in their outputs and algorithms
 - Synthesize and apply concepts covered so far on real data
 
-
-<br>
-
-Slides from today are available [here](https://docs.google.com/presentation/d/1vi8HLrUuTmbqh4J4HgGXgBel-rF9j9_K6EmkAj6mwTM/edit?usp=sharing).
-
-
-
 <br><br><br>
 
 ## Real Data Clustering {-}
@@ -109,7 +102,7 @@ hclust(daisy(data))
 
 - Deliverable
   - Create 1 graphic that demonstrates your insight
-  - Add it to this [Shared Folder](https://drive.google.com/drive/folders/1RRNsbNXbXCX-RSNW5QWsh88Fq3nIOomM?usp=sharing) with your names in the filename
+  - Add it to this [Shared Folder](https://drive.google.com/drive/folders/15O-WcCUBfvDYY-C5tb4ppFzQRhMfAQLc?usp=sharing) with your names in the filename
 
 
 ## Clustering in the Wild {-}
@@ -121,26 +114,3 @@ To give you a taste of how these methods get use in "the wild" world of science,
 - Document Clustering (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7790388/)
 - Clustering ICD10 Diagnosis Codes (https://arxiv.org/abs/1909.00306)
 - Clustering Activity Sequences (https://www.sciencedirect.com/science/article/abs/pii/S0968090X21000395?via%3Dihub)
-
-## R Coding Challenges {-}
-
-The best way to learn new things about R is to work on a data project.
-
-- The goals drive what code is needed. 
-- Learn them as you need them. 
-
-
-What things have come up so far for you?
-
-- What has been the most frustrating?
-- When do you get stuck?
-- What are you wanting to do with your data?
-
-
-Besides class projects, you can practice visualizing data:
-
-- [TidyTuesday Challenges](https://github.com/rfordatascience/tidytuesday)
-  - Check out David Robinson's [TidyTuesday's Screencasts](https://www.youtube.com/watch?v=nx5yhXAQLxw)
-  
-
-
